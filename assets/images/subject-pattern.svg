@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="340" height="340" viewBox="0 0 340 340">
+  <g fill="none" stroke="#6592e6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Atom (fysik) -->
+    <g transform="translate(60,70) rotate(-12)">
+      <circle r="4" fill="#6592e6" stroke="none"/>
+      <ellipse rx="34" ry="13"/>
+      <ellipse rx="34" ry="13" transform="rotate(60)"/>
+      <ellipse rx="34" ry="13" transform="rotate(120)"/>
+    </g>
+
+    <!-- Kolbe (kemi) -->
+    <g transform="translate(230,55) rotate(6)">
+      <path d="M -8,-30 L -8,-8 L -26,32 Q -22,40 26,40 Q 30,40 26,32 L 8,-8 L 8,-30"/>
+      <path d="M -12,-30 L 12,-30"/>
+      <circle cx="4" cy="24" r="2.4" fill="#6592e6" stroke="none"/>
+      <circle cx="-8" cy="18" r="1.8" fill="#6592e6" stroke="none"/>
+      <circle cx="10" cy="12" r="1.6" fill="#6592e6" stroke="none"/>
+    </g>
+
+    <!-- DNA-spiral (biologi) -->
+    <g transform="translate(58,214)" stroke-width="3">
+      <path d="M -13,-58 C -7,-53 -2,-51 -4,-48 C 14,-40 14,-32 4,-24 C -14,-16 -14,-8 -4,0 C 14,8 14,16 4,24 C -14,32 -14,40 -4,48 C -2,51 3,54 11,59"/>
+      <path d="M 13,-58 C 7,-53 2,-51 4,-48 C -14,-40 -14,-32 -4,-24 C 14,-16 14,-8 4,0 C -14,8 -14,16 -4,24 C 14,32 14,40 4,48 C 2,51 -3,54 -11,59"/>
+      <path d="M 9,-40 L -9,-32" stroke-width="2.4"/>
+      <path d="M -9,-16 L 9,-8" stroke-width="2.4"/>
+      <path d="M 9,8 L -9,16" stroke-width="2.4"/>
+      <path d="M -9,32 L 9,40" stroke-width="2.4"/>
+    </g>
+
+    <!-- Musiknode (musik) -->
+    <g transform="translate(255,235) rotate(-8)">
+      <ellipse cx="-14" cy="26" rx="11" ry="8" fill="#6592e6" stroke="none" transform="rotate(-18 -14 26)"/>
+      <path d="M -4,26 L -4,-30 Q 16,-24 12,-4"/>
+    </g>
+  </g>
+
+  <g fill="#6592e6" font-family="Jost, sans-serif" font-weight="600">
+    <text x="150" y="140" font-size="34" opacity="0.9">&#960;</text>
+    <text x="15" y="150" font-size="24" opacity="0.85">&#8721;</text>
+    <text x="185" y="215" font-size="22" opacity="0.85">&#8730;x</text>
+  </g>
+</svg>

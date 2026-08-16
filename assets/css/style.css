@@ -1,0 +1,424 @@
+/* FagPortal — fælles stylesheet. Ingen build-værktøj: rediger direkte og push. */
+
+:root {
+  --ink: #232323;
+  --ink-soft: #666666;
+  --paper: #ffffff;
+  --paper-alt: #f7f7f7;
+  --line: #e8e8e8;
+  --blue: #6592e6;
+  --blue-dark: #4472c4;
+  --radius: 6px;
+  --maxw: 1200px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: "Jost", -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Jost", sans-serif;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+}
+
+h1 { font-size: clamp(2.1rem, 5vw, 3.2rem); }
+h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); }
+h3 { font-size: 1.05rem; font-weight: 600; color: var(--ink-soft); }
+
+p { margin: 0 0 1em; color: var(--ink-soft); font-size: 1.05rem; }
+p:last-child { margin-bottom: 0; }
+
+a { color: var(--blue-dark); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+img { max-width: 100%; display: block; }
+
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* --- Nav --- */
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-nav .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  max-width: var(--maxw);
+}
+
+.brand {
+  color: var(--ink) !important;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none !important;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: var(--ink) !important;
+  font-weight: 400;
+  text-decoration: none !important;
+  padding: 0.4rem 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.15s;
+}
+
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
+  border-color: var(--blue);
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  color: var(--ink);
+  font-size: 1.6rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+}
+
+@media (max-width: 720px) {
+  .nav-toggle { display: block; }
+  .nav-links {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    flex-direction: column;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+  .nav-links.open { max-height: 260px; }
+  .nav-links li { border-top: 1px solid var(--line); }
+  .nav-links a { display: block; padding: 0.9rem 1.5rem; border-bottom: none; }
+}
+
+/* --- Hero (forside) --- */
+
+.hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(90deg, #ffffff 0%, #ffffff 38%, rgba(255,255,255,0.75) 55%, rgba(255,255,255,0.3) 100%),
+    url("../images/subject-pattern.svg") repeat;
+  background-size: auto, 300px 300px;
+  color: var(--ink);
+}
+.hero .wrap { position: relative; max-width: 640px; }
+.hero h1 { font-weight: 800; margin-bottom: 0.6rem; }
+.hero p { font-size: 1.15rem; }
+
+.page-header {
+  padding: 3rem 0 1rem;
+}
+
+.page-header h1 { margin-bottom: 0.3rem; }
+
+.crumb {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+/* --- Card grid (hub pages) --- */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  padding: 3rem 0 4rem;
+}
+
+.card {
+  background: var(--paper-alt);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+a.card { color: inherit; text-decoration: none !important; }
+
+.card .card-img { aspect-ratio: 16/10; overflow: hidden; background: var(--line); }
+.card .card-img img { width: 100%; height: 100%; object-fit: cover; }
+.card .card-body { padding: 1.3rem 1.4rem 1.5rem; }
+.card .card-body h3.card-title {
+  font-family: "Jost", sans-serif;
+  font-weight: 600;
+  color: var(--blue-dark);
+  font-size: 1.3rem;
+  margin-bottom: 0.4rem;
+}
+.card .card-body p { margin: 0; font-size: 0.95rem; }
+
+.card.disabled { opacity: 0.85; }
+.card.disabled .card-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eef3fc;
+}
+.card.disabled .card-img img { width: 64px; height: 64px; object-fit: contain; }
+.card.disabled .badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  background: var(--line);
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  margin-top: 0.4rem;
+}
+
+/* --- Content sections (leaf pages) --- */
+
+.section {
+  padding: 2.6rem 0;
+}
+
+.section-split {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  gap: 2.5rem;
+  align-items: center;
+}
+.section-split-text { order: 1; }
+.section-split-img { order: 2; }
+
+@media (max-width: 800px) {
+  .section-split { grid-template-columns: 1fr; }
+  .section-split-text { order: 1; }
+  .section-split-img { order: 2; }
+}
+
+.section-split-img figure { margin: 0; }
+.section-split-img img { width: 100%; }
+.section-split-img figcaption {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin-top: 0.6rem;
+}
+
+.section-wide {
+  padding: 2.6rem 0;
+  text-align: center;
+}
+.section-wide .wrap { max-width: 820px; }
+.section-wide p { text-align: left; }
+
+.section-alt { background: var(--paper-alt); }
+
+/* --- Gallery strip (invertebrate era): store, stablede billeder --- */
+
+.strip {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 1rem 0 1rem;
+}
+.strip-item + .strip-item { margin-top: 0; }
+.strip-item img { width: 100%; max-height: 65vh; object-fit: cover; }
+.strip-item .strip-body {
+  background: var(--paper-alt);
+  padding: 1.4rem 1.6rem 1.6rem;
+  text-align: left;
+}
+.strip-item h4 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+.strip-item p { font-size: 1rem; }
+.strip-item .lifespan-label { font-size: 1.05rem; font-weight: 600; margin-top: 0.9rem; margin-bottom: 0; }
+.strip-item .lifespan { font-size: 1rem; color: var(--ink-soft); margin-top: 0.2rem; }
+
+/* --- Interactive evolution map --- */
+
+.evo-map {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+.evo-map img { width: 100%; }
+.evo-map a.hotspot {
+  position: absolute;
+  display: block;
+  background: rgba(101, 146, 230, 0);
+  border: 2px solid transparent;
+  border-radius: 4px;
+  transition: background 0.15s, border-color 0.15s;
+}
+.evo-map a.hotspot:hover,
+.evo-map a.hotspot:focus-visible {
+  background: rgba(101, 146, 230, 0.22);
+  border-color: var(--blue);
+  outline: none;
+}
+.evo-map-caption {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  margin-top: 0.8rem;
+}
+
+/* --- Video --- */
+
+.video-frame {
+  position: relative;
+  padding-top: 56.25%;
+}
+.video-frame iframe {
+  position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
+}
+
+/* --- Lightbox gallery --- */
+
+.gallery-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.4rem;
+}
+.gallery-2 figure {
+  margin: 0;
+  cursor: zoom-in;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--paper);
+}
+.gallery-2 img { aspect-ratio: 4/3; object-fit: cover; width: 100%; }
+.gallery-2 figcaption { padding: 0.9rem 1.1rem 1.1rem; font-size: 0.92rem; color: var(--ink-soft); }
+
+.lightbox {
+  position: fixed; inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 2rem;
+}
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 100%; max-height: 85vh; }
+.lightbox button {
+  position: absolute;
+  top: 1.2rem; right: 1.5rem;
+  background: none; border: 0; color: #fff;
+  font-size: 2rem; cursor: pointer; line-height: 1;
+}
+
+/* --- Pager (forrige/næste gennem hvirveldyrenes rækkefølge) --- */
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0 4rem;
+  border-top: 1px solid var(--line);
+  margin-top: 1rem;
+}
+.pager a {
+  flex: 1;
+  max-width: 48%;
+  padding: 1.3rem 0 0;
+  text-decoration: none !important;
+}
+.pager .dir { display: block; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-soft); font-weight: 600; margin-bottom: 0.2rem; }
+.pager .title { display: block; color: var(--blue-dark); font-weight: 600; font-size: 1.1rem; }
+.pager .next { text-align: right; margin-left: auto; }
+
+@media (max-width: 560px) {
+  .pager { flex-direction: column; }
+  .pager a { max-width: 100%; }
+}
+
+/* --- Full-bleed diagrammer med lup-zoom --- */
+
+.full-bleed {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.zoom-wrap {
+  position: relative;
+  cursor: zoom-in;
+  overflow: hidden;
+}
+.zoom-wrap img { width: 100%; height: auto; display: block; }
+
+.magnifier {
+  position: absolute;
+  display: none;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  border: 3px solid var(--blue);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+  background-repeat: no-repeat;
+  background-color: #fff;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.zoom-hint {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  padding: 0.8rem 0 0;
+}
+
+@media (max-width: 720px) {
+  .magnifier { display: none !important; }
+}
+
+/* --- Footer --- */
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
+  padding: 2rem 0;
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.site-footer strong { color: var(--ink); }
