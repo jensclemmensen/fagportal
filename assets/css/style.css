@@ -462,6 +462,49 @@ a.card { color: inherit; text-decoration: none !important; }
 
 .data-table td.desc { color: var(--ink-soft); }
 
+/* --- Tutorial-liste og tip-boks --- */
+
+.tutorial-list {
+  counter-reset: tut;
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+.tutorial-list li {
+  counter-increment: tut;
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.tutorial-list li::before {
+  content: counter(tut);
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--paper-alt);
+  color: var(--blue-dark);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tutorial-list a { font-size: 1.1rem; font-weight: 600; }
+
+.tip-box {
+  background: var(--paper-alt);
+  border-left: 4px solid var(--blue);
+  border-radius: var(--radius);
+  padding: 1.3rem 1.6rem;
+  margin: 1.5rem 0;
+}
+.tip-box p { margin-bottom: 0.7rem; }
+.tip-box p:last-child { margin-bottom: 0; }
+.tip-box ul { margin: 0.5rem 0 0; padding-left: 1.2rem; }
+.tip-box li { margin-bottom: 0.3rem; color: var(--ink-soft); }
+
 /* --- Håndskrevet papirlap-illustration --- */
 
 .paper-note {
