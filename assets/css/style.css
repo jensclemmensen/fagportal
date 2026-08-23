@@ -382,23 +382,51 @@ a.card { color: inherit; text-decoration: none !important; }
 
 .zoom-wrap {
   position: relative;
-  cursor: zoom-in;
-  overflow: hidden;
 }
-.zoom-wrap img { width: 100%; height: auto; display: block; }
+.zoom-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
-.magnifier {
+.el-hot {
+  position: absolute;
+  background: rgba(101, 146, 230, 0);
+  border: 2px solid transparent;
+  border-radius: 4px;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.el-hot:hover,
+.el-hot:focus-visible {
+  background: rgba(101, 146, 230, 0.25);
+  border-color: var(--blue);
+  outline: none;
+}
+.el-hot.active {
+  background: rgba(101, 146, 230, 0.35);
+  border-color: var(--blue-dark);
+}
+
+.el-popup {
   position: absolute;
   display: none;
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  border: 3px solid var(--blue);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.35);
-  background-repeat: no-repeat;
+  overflow: hidden;
   background-color: #fff;
+  border: 3px solid var(--blue-dark);
+  border-radius: 0;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+  z-index: 20;
   pointer-events: none;
-  z-index: 10;
+}
+.el-popup.open { display: block; }
+.el-popup-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
 }
 
 .zoom-hint {
@@ -408,8 +436,28 @@ a.card { color: inherit; text-decoration: none !important; }
   padding: 0.8rem 0 0;
 }
 
-@media (max-width: 720px) {
-  .magnifier { display: none !important; }
+.print-btn-wrap { text-align: center; }
+.print-btn {
+  display: inline-block;
+  margin: 1.2rem auto 0.5rem;
+  padding: 0.7rem 1.6rem;
+  background: var(--blue-dark);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-family: "Jost", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.print-btn:hover { background: var(--blue); }
+
+@media print {
+  @page { size: A4 landscape; margin: 10mm; }
+  .site-nav, .crumb, .zoom-hint, .print-btn-wrap, .pager, .site-footer, .el-hot, .el-popup {
+    display: none !important;
+  }
+  .full-bleed { width: 100% !important; left: auto !important; right: auto !important; margin: 0 !important; }
 }
 
 /* --- Datatabel (fx musikstykkers formled) --- */
