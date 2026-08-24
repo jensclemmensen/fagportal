@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8.c — Klassens ynglingsmusik — El FagPortal de Jensemand</title>
+<meta name="description" content="8.c stemmer på deres yndlingssange.">
+<link rel="icon" href="assets/images/favicon.png">
+<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">El FagPortal de Jensemand</a>
+    <button class="nav-toggle" aria-label="Åbn menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Forsiden</a></li>
+      <li><a href="biologi.html">Biologi</a></li>
+      <li><a href="fysik-kemi.html">Fysik-kemi</a></li>
+      <li><a href="musik.html" aria-current="page">Musik</a></li>
+      <li><a href="valgfag.html">Valgfag</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="page-header wrap">
+  <a class="crumb" href="klassens-yndlingsmusik.html">&larr; Klassens ynglingsmusik</a>
+  <h1>8.c</h1>
+  <p style="max-width:65ch;">Skriv op til fire af dine yndlingssange herunder. Du skal kun udfylde titel og kunstner for den første sang — resten er valgfrit.</p>
+</div>
+
+<div class="wrap">
+  <form id="ym-form" class="ym-form" data-klasse="8.c" novalidate>
+    <div class="ym-song">
+      <h3>Sang 1</h3>
+      <div class="ym-fields">
+        <label>Sangtitel <input type="text" name="s1t" required></label>
+        <label>Kunstner <input type="text" name="s1k" required></label>
+        <label>Genre <input type="text" name="s1g"></label>
+      </div>
+    </div>
+    <div class="ym-song">
+      <h3>Sang 2</h3>
+      <div class="ym-fields">
+        <label>Sangtitel <input type="text" name="s2t"></label>
+        <label>Kunstner <input type="text" name="s2k"></label>
+        <label>Genre <input type="text" name="s2g"></label>
+      </div>
+    </div>
+    <div class="ym-song">
+      <h3>Sang 3</h3>
+      <div class="ym-fields">
+        <label>Sangtitel <input type="text" name="s3t"></label>
+        <label>Kunstner <input type="text" name="s3k"></label>
+        <label>Genre <input type="text" name="s3g"></label>
+      </div>
+    </div>
+    <div class="ym-song">
+      <h3>Sang 4</h3>
+      <div class="ym-fields">
+        <label>Sangtitel <input type="text" name="s4t"></label>
+        <label>Kunstner <input type="text" name="s4k"></label>
+        <label>Genre <input type="text" name="s4g"></label>
+      </div>
+    </div>
+    <button type="submit" class="ym-submit">Send mine sange</button>
+    <p class="ym-status" role="status"></p>
+  </form>
+
+  <h2>Oversigt — 8.c's yndlingssange</h2>
+  <p class="ym-updated"></p>
+  <div class="table-scroll">
+    <table class="data-table ym-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Sang</th>
+          <th>Kunstner</th>
+          <th>Genre</th>
+          <th>Stemmer</th>
+        </tr>
+      </thead>
+      <tbody id="ym-tbody">
+        <tr><td colspan="5">Henter…</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <button type="button" class="print-btn" id="ym-refresh" style="margin-top:1.2rem;">Opdater oversigt</button>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>El FagPortal de Jensemand</strong> — lavet til mine elever, helt uden reklamer.</p>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/yndlingsmusik.js"></script>
+</body>
+</html>

@@ -571,6 +571,68 @@ a.card { color: inherit; text-decoration: none !important; }
   margin-top: 0.8rem;
 }
 
+/* --- Klassens ynglingsmusik (formular + oversigt) --- */
+
+.ym-form {
+  background: var(--paper-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.5rem 1.8rem;
+  margin: 1.5rem 0 2.5rem;
+}
+.ym-song { margin-bottom: 1.3rem; }
+.ym-song:last-of-type { margin-bottom: 0; }
+.ym-song h3 { margin-bottom: 0.6rem; }
+.ym-fields {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+}
+.ym-fields label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  font-weight: 600;
+  gap: 0.35rem;
+}
+.ym-fields input {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--ink);
+  background: var(--paper);
+}
+.ym-fields input:focus {
+  outline: 2px solid var(--blue);
+  outline-offset: 1px;
+}
+.ym-submit {
+  display: inline-block;
+  margin-top: 0.9rem;
+  padding: 0.7rem 1.6rem;
+  background: var(--blue-dark);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-family: "Jost", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.ym-submit:hover { background: var(--blue); }
+.ym-submit:disabled { opacity: 0.6; cursor: default; }
+.ym-status { margin: 0.8rem 0 0; font-weight: 600; }
+.ym-status.ok { color: #2f7d4f; }
+.ym-status.err { color: #b23a3a; }
+.ym-updated { font-size: 0.85rem; color: var(--ink-soft); margin-top: -0.5rem; }
+
+@media (max-width: 640px) {
+  .ym-fields { grid-template-columns: 1fr; }
+}
+
 /* --- Footer --- */
 
 .site-footer {
