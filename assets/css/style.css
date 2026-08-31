@@ -163,7 +163,10 @@ img { max-width: 100%; display: block; }
 
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  /* auto-fill (ikke auto-fit) reserverer usynlige "tomme" kolonner, så et
+     enkelt kort får samme bredde som når der er nok kort til at fylde en
+     hel række — i stedet for at blive strukket ud til fuld bredde. */
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 1.5rem;
   padding: 3rem 0 4rem;
 }
@@ -174,8 +177,6 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 380px;
 }
 
 a.card { color: inherit; text-decoration: none !important; }
