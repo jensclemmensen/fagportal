@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (lightbox) {
     var lightboxImg = lightbox.querySelector("img");
     var closeBtn = lightbox.querySelector("button");
-    document.querySelectorAll(".gallery-2 figure").forEach(function (fig) {
+    document.querySelectorAll(".gallery-2 figure, .wall-post").forEach(function (fig) {
       fig.addEventListener("click", function () {
         var src = fig.querySelector("img").getAttribute("src");
         lightboxImg.setAttribute("src", src);
