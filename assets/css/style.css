@@ -556,6 +556,18 @@ a.card { color: inherit; text-decoration: none !important; }
 .tip-box ul { margin: 0.5rem 0 0; padding-left: 1.2rem; }
 .tip-box li { margin-bottom: 0.3rem; color: var(--ink-soft); }
 
+/* --- Matematikvæg (opslag) --- */
+
+.wall-post {
+  max-width: 480px;
+  margin: 0 auto;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
+}
+.wall-post img { width: 100%; display: block; }
+
 /* --- Håndskrevet papirlap-illustration --- */
 
 .paper-note {
