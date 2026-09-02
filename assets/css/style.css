@@ -556,6 +556,43 @@ a.card { color: inherit; text-decoration: none !important; }
 .tip-box ul { margin: 0.5rem 0 0; padding-left: 1.2rem; }
 .tip-box li { margin-bottom: 0.3rem; color: var(--ink-soft); }
 
+/* --- Reaktionsskemaer til afstemning --- */
+
+.reaction-list {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+.reaction-list li {
+  background: var(--paper-alt);
+  border-radius: var(--radius);
+  padding: 0.5rem 1.2rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+.reaction-list .num {
+  color: var(--ink-soft);
+  font-weight: 700;
+  min-width: 1.6em;
+}
+.reaction-eq {
+  font-family: "Jost", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.reaction-eq sub { font-size: 0.7em; }
+.reaction-eq sup { font-size: 0.7em; }
+.reaction-arrow {
+  color: var(--blue-dark);
+  font-weight: 700;
+  margin: 0 0.15em;
+}
+
 /* --- Matematikvæg (opslag) --- */
 
 .wall-post {
