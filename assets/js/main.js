@@ -72,10 +72,12 @@ document.addEventListener("DOMContentLoaded", function () {
         var fracW = btnRect.width / wrapRect.width;
         var fracH = btnRect.height / wrapRect.height;
 
-        // lidt luft omkring feltet, så hele den (tynde) sorte kantlinje altid er synlig
-        var pad = 1.09;
-        var cellW = fracW * natW * pad;
-        var cellH = fracH * natH * pad;
+        // lidt luft omkring feltet, så hele den (tynde) sorte kantlinje altid er synlig.
+        // Et fast pixel-mål (i billedets egen opløsning) virker bedre end en procentdel,
+        // for grundstoffer i kanten af skemaet har længere til nærmeste streg end dem midt i.
+        var padPx = 10;
+        var cellW = fracW * natW + padPx * 2;
+        var cellH = fracH * natH + padPx * 2;
         var cellCenterX = (fracLeft + fracW / 2) * natW;
         var cellCenterY = (fracTop + fracH / 2) * natH;
 
@@ -124,6 +126,15 @@ document.addEventListener("DOMContentLoaded", function () {
   if (printBtn) {
     printBtn.addEventListener("click", function () {
       window.print();
+    });
+  }
+
+  // Kemiske formler/reaktionsskemaer: skriv dem bare som $$H2O$$ eller
+  // $$CH3OH + O2 -> CO2 + 2H2O$$ i teksten, så bliver de tegnet pænt op.
+  if (typeof renderMathInElement === "function") {
+    renderMathInElement(document.body, {
+      delimiters: [{ left: "$$", right: "$$", display: false }],
+      preProcess: function (math) { return "\\ce{" + math + "}"; }
     });
   }
 });

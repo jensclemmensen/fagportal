@@ -381,14 +381,21 @@ a.card { color: inherit; text-decoration: none !important; }
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
+  display: flex;
+  justify-content: center;
 }
 
 .zoom-wrap {
   position: relative;
+  display: inline-block;
+  max-width: 100%;
 }
 .zoom-wrap img {
-  width: 100%;
+  width: auto;
   height: auto;
+  max-width: 100%;
+  /* så hele kortet kan ses uden at scrolle, uanset skærmens højde */
+  max-height: 78vh;
   display: block;
 }
 
@@ -461,6 +468,7 @@ a.card { color: inherit; text-decoration: none !important; }
     display: none !important;
   }
   .full-bleed { width: 100% !important; left: auto !important; right: auto !important; margin: 0 !important; }
+  .zoom-wrap img { max-height: none !important; }
 }
 
 /* --- Datatabel (fx musikstykkers formled) --- */

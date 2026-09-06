@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 </head>
 <body data-fag="fysik-kemi.html">
 
@@ -31,7 +32,8 @@
 
 <!-- SIDE_INDHOLD: her tilføjer/retter du indholdet på siden.
      Nyt reaktionsskema? Kopiér en linje i "punkter" på en af liste-blokkene
-     herunder, og ret formlen (brug <sub> om tal der skal stå sænket). -->
+     herunder, og skriv formlen mellem to dollartegn, fx "$$CH4 + O2 -> CO2 + H2O$$".
+     Ladninger skrives fx som "Cl-" eller "SO4^2-". -->
 <script>
 const SIDE_INDHOLD = [
   {
@@ -52,15 +54,15 @@ const SIDE_INDHOLD = [
     undertekst: "Afstem følgende reaktionsskemaer:",
     nummereret: true,
     punkter: [
-      'H<sub>2</sub> + O<sub>2</sub> <span class="reaction-arrow">&rarr;</span> H<sub>2</sub>O',
-      'C + O<sub>2</sub> <span class="reaction-arrow">&rarr;</span> CO',
-      'C + O<sub>2</sub> <span class="reaction-arrow">&rarr;</span> CO<sub>2</sub>',
-      'CH<sub>4</sub> + H<sub>2</sub>O <span class="reaction-arrow">&rarr;</span> CO + H<sub>2</sub>',
-      'CO + H<sub>2</sub>O <span class="reaction-arrow">&rarr;</span> CO<sub>2</sub> + H<sub>2</sub>',
-      'H<sub>2</sub> + N<sub>2</sub> <span class="reaction-arrow">&rarr;</span> NH<sub>3</sub>',
-      'NH<sub>3</sub> + O<sub>2</sub> <span class="reaction-arrow">&rarr;</span> NO + H<sub>2</sub>O',
-      'C<sub>7</sub>H<sub>16</sub> + O<sub>2</sub> <span class="reaction-arrow">&rarr;</span> CO<sub>2</sub> + H<sub>2</sub>O',
-      'H<sub>2</sub>CO<sub>3</sub> <span class="reaction-arrow">&rarr;</span> CO<sub>2</sub> + H<sub>2</sub>O'
+      "$$H2 + O2 -> H2O$$",
+      "$$C + O2 -> CO$$",
+      "$$C + O2 -> CO2$$",
+      "$$CH4 + H2O -> CO + H2$$",
+      "$$CO + H2O -> CO2 + H2$$",
+      "$$H2 + N2 -> NH3$$",
+      "$$NH3 + O2 -> NO + H2O$$",
+      "$$C7H16 + O2 -> CO2 + H2O$$",
+      "$$H2CO3 -> CO2 + H2O$$"
     ]
   },
   {
@@ -68,26 +70,26 @@ const SIDE_INDHOLD = [
     overskrift: "Og nu de lidt sværere :)",
     nummereret: true,
     punkter: [
-      'CH<sub>3</sub>OH + O<sub>2</sub> <span class="reaction-arrow">&rarr;</span> CO<sub>2</sub> + H<sub>2</sub>O',
-      'C<sub>4</sub>H<sub>8</sub>S + O<sub>2</sub> <span class="reaction-arrow">&rarr;</span> CO<sub>2</sub> + H<sub>2</sub>O + SO<sub>2</sub>',
-      'C<sub>3</sub>H<sub>8</sub> + O<sub>2</sub> <span class="reaction-arrow">&rarr;</span> CO<sub>2</sub> + H<sub>2</sub>O',
-      'CH<sub>4</sub> + O<sub>2</sub> <span class="reaction-arrow">&rarr;</span> CO<sub>2</sub> + H<sub>2</sub>O',
-      'AgNO<sub>3</sub> + Na<sub>2</sub>S <span class="reaction-arrow">&rarr;</span> Ag<sub>2</sub>S + NaNO<sub>3</sub>',
-      'NH<sub>4</sub>NO<sub>3</sub> <span class="reaction-arrow">&rarr;</span> N<sub>2</sub> + O<sub>2</sub> + H<sub>2</sub>O',
-      'NH<sub>4</sub>NO<sub>3</sub> <span class="reaction-arrow">&rarr;</span> N<sub>2</sub>O + H<sub>2</sub>O',
-      'C<sub>7</sub>H<sub>16</sub> + O<sub>2</sub> <span class="reaction-arrow">&rarr;</span> CO<sub>2</sub> + H<sub>2</sub>O',
-      'C<sub>6</sub>H<sub>12</sub> + O<sub>2</sub> <span class="reaction-arrow">&rarr;</span> CO<sub>2</sub> + H<sub>2</sub>O',
-      'H<sub>2</sub>SO<sub>4</sub> + NaCl <span class="reaction-arrow">&rarr;</span> Na<sub>2</sub>SO<sub>4</sub> + HCl',
-      'C<sub>8</sub>H<sub>7</sub>N + O<sub>2</sub> <span class="reaction-arrow">&rarr;</span> CO<sub>2</sub> + H<sub>2</sub>O + NO',
-      'H<sub>2</sub>O + SO<sub>2</sub> + Cl<sub>2</sub> <span class="reaction-arrow">&rarr;</span> SO<sub>4</sub><sup>2-</sup> + Cl<sup>-</sup> + H<sup>+</sup>',
-      'NaN<sub>3</sub> <span class="reaction-arrow">&rarr;</span> Na + N<sub>2</sub>',
-      'Al + S <span class="reaction-arrow">&rarr;</span> Al<sub>2</sub>S<sub>3</sub>',
-      'CH<sub>3</sub>OH + O<sub>2</sub> <span class="reaction-arrow">&rarr;</span> HCHO + H<sub>2</sub>O',
-      'CH<sub>4</sub> + H<sub>2</sub>O <span class="reaction-arrow">&rarr;</span> CO + H<sub>2</sub>',
-      'CO + H<sub>2</sub> <span class="reaction-arrow">&rarr;</span> CH<sub>3</sub>OH',
-      'NH<sub>3</sub> + O<sub>2</sub> <span class="reaction-arrow">&rarr;</span> NO + H<sub>2</sub>O',
-      'H<sub>2</sub> + N<sub>2</sub> <span class="reaction-arrow">&rarr;</span> NH<sub>3</sub>',
-      'Mg + HCl <span class="reaction-arrow">&rarr;</span> H<sub>2</sub> + MgCl<sub>2</sub>'
+      "$$CH3OH + O2 -> CO2 + H2O$$",
+      "$$C4H8S + O2 -> CO2 + H2O + SO2$$",
+      "$$C3H8 + O2 -> CO2 + H2O$$",
+      "$$CH4 + O2 -> CO2 + H2O$$",
+      "$$AgNO3 + Na2S -> Ag2S + NaNO3$$",
+      "$$NH4NO3 -> N2 + O2 + H2O$$",
+      "$$NH4NO3 -> N2O + H2O$$",
+      "$$C7H16 + O2 -> CO2 + H2O$$",
+      "$$C6H12 + O2 -> CO2 + H2O$$",
+      "$$H2SO4 + NaCl -> Na2SO4 + HCl$$",
+      "$$C8H7N + O2 -> CO2 + H2O + NO$$",
+      "$$H2O + SO2 + Cl2 -> SO4^2- + Cl- + H+$$",
+      "$$NaN3 -> Na + N2$$",
+      "$$Al + S -> Al2S3$$",
+      "$$CH3OH + O2 -> HCHO + H2O$$",
+      "$$CH4 + H2O -> CO + H2$$",
+      "$$CO + H2 -> CH3OH$$",
+      "$$NH3 + O2 -> NO + H2O$$",
+      "$$H2 + N2 -> NH3$$",
+      "$$Mg + HCl -> H2 + MgCl2$$"
     ]
   }
 ];
@@ -99,6 +101,9 @@ const SIDE_INDHOLD = [
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/mhchem.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
 <script src="assets/js/fag-liste.js"></script>
 <script src="assets/js/blocks.js"></script>
 <script src="assets/js/main.js"></script>
