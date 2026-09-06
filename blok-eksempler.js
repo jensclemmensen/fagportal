@@ -25,7 +25,7 @@ const BLOK_EKSEMPLER = [
     overskriftLille: "Valgfri lille overskrift",
     tekst: "Din tekst her.",
     billede: "assets/images/billede.jpg",
-    altTekst: "Kort beskrivelse af billedet"
+    billedtekst: "Billedtekst, vist under billedet"
   },
 
   // ---- Samme, men med billedet til venstre i stedet ----
@@ -35,7 +35,7 @@ const BLOK_EKSEMPLER = [
     overskriftLille: "Valgfri lille overskrift",
     tekst: "Din tekst her.",
     billede: "assets/images/billede.jpg",
-    altTekst: "Kort beskrivelse af billedet",
+    billedtekst: "Billedtekst, vist under billedet",
     side: "venstre"
   },
 
@@ -48,7 +48,6 @@ const BLOK_EKSEMPLER = [
       "Andet afsnit. Du kan bruge <strong>fed tekst</strong> og andre HTML-tags her."
     ],
     billede: "assets/images/billede.jpg",
-    altTekst: "Kort beskrivelse af billedet",
     billedtekst: "Valgfri billedtekst, vist under billedet."
   },
 
@@ -88,8 +87,7 @@ const BLOK_EKSEMPLER = [
   {
     type: "billede",
     overskrift: "Valgfri overskrift",
-    billede: "assets/images/billede.jpg",
-    altTekst: "Kort beskrivelse af billedet"
+    billede: "assets/images/billede.jpg"
   },
 
   // ---- Samme, men uden zoom-funktion (fx til et diagram med tekst) ----
@@ -97,7 +95,6 @@ const BLOK_EKSEMPLER = [
     type: "billede",
     overskrift: "Valgfri overskrift",
     billede: "assets/images/billede.jpg",
-    altTekst: "Kort beskrivelse af billedet",
     fuldSkaerm: false
   },
 
@@ -127,7 +124,6 @@ const BLOK_EKSEMPLER = [
   // ---- Nyt kort til EMNE_LISTE (vises på fagets egen forside, fx fysik-kemi.html) ----
   {
     billede: "assets/images/billede.jpg",
-    altTekst: "Kort beskrivelse af billedet",
     titel: "Titel",
     tekst: "Kort beskrivelse under titlen.",
     link: "sidenavn.html"
@@ -138,7 +134,6 @@ const BLOK_EKSEMPLER = [
   // Ligger i sin egen fil: assets/js/fag-liste.js
   {
     billede: "assets/images/billede.jpg",
-    altTekst: "Kort beskrivelse af billedet",
     titel: "Fagets navn",
     tekst: "Kort beskrivelse af faget.",
     link: "sidenavn.html"

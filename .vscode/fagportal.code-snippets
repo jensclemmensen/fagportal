@@ -9,7 +9,7 @@
       "  overskriftLille: \"${2:Valgfri lille overskrift}\",",
       "  tekst: \"${3:Din tekst her.}\",",
       "  billede: \"assets/images/${4:billede.jpg}\",",
-      "  altTekst: \"${5:Kort beskrivelse af billedet}\"",
+      "  billedtekst: \"${5:Billedtekst, vist under billedet}\"",
       "},"
     ],
     "description": "Billede + tekst side om side (billede til højre som standard)"
@@ -24,7 +24,7 @@
       "  overskriftLille: \"${2:Valgfri lille overskrift}\",",
       "  tekst: \"${3:Din tekst her.}\",",
       "  billede: \"assets/images/${4:billede.jpg}\",",
-      "  altTekst: \"${5:Kort beskrivelse af billedet}\",",
+      "  billedtekst: \"${5:Billedtekst, vist under billedet}\",",
       "  side: \"venstre\"",
       "},"
     ],
@@ -81,8 +81,7 @@
       "{",
       "  type: \"billede\",",
       "  overskrift: \"${1:Valgfri overskrift}\",",
-      "  billede: \"assets/images/${2:billede.jpg}\",",
-      "  altTekst: \"${3:Kort beskrivelse af billedet}\"",
+      "  billede: \"assets/images/${2:billede.jpg}\"",
       "},"
     ],
     "description": "Et enkelt, centreret billede (klik for at zoome)"
@@ -110,10 +109,9 @@
     "body": [
       "{",
       "  billede: \"assets/images/${1:billede.jpg}\",",
-      "  altTekst: \"${2:Kort beskrivelse af billedet}\",",
-      "  titel: \"${3:Titel}\",",
-      "  tekst: \"${4:Kort beskrivelse under titlen.}\",",
-      "  link: \"${5:sidenavn.html}\"",
+      "  titel: \"${2:Titel}\",",
+      "  tekst: \"${3:Kort beskrivelse under titlen.}\",",
+      "  link: \"${4:sidenavn.html}\"",
       "},"
     ],
     "description": "Nyt kort til EMNE_LISTE (vises på fagets egen forside)"

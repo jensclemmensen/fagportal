@@ -62,7 +62,7 @@
     var imgWrap = el("div", "card-img");
     var img = el("img");
     img.src = item.billede;
-    img.alt = item.altTekst || "";
+    img.alt = item.titel || "";
     if (item.billedeTop) img.style.objectPosition = "top";
     imgWrap.appendChild(img);
 
@@ -98,7 +98,7 @@
     var figure = el("figure");
     var img = el("img");
     img.src = b.billede;
-    img.alt = b.altTekst || "";
+    img.alt = b.billedtekst || "";
     figure.appendChild(img);
     if (b.billedtekst) {
       var figcap = el("figcaption");
@@ -218,7 +218,7 @@
     var post = el("div", "wall-post");
     var img = el("img");
     img.src = b.billede;
-    img.alt = b.altTekst || "";
+    img.alt = b.overskrift || "";
     post.appendChild(img);
     wrap.appendChild(post);
     if (b.fuldSkaerm === false) post.classList.add("wall-post--ingen-zoom");
