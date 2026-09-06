@@ -138,30 +138,56 @@
     return wrap;
   }
 
+  // Ét enkelt videokort til "kort"-visningen (bruges både alene og i grupper).
+  function lavVideoKort(v) {
+    var a = el("a", "card");
+    a.href = "https://www.youtube.com/watch?v=" + v.youtubeId + (v.start ? "&t=" + v.start + "s" : "");
+    a.target = "_blank";
+    a.rel = "noopener";
+    var imgWrap = el("div", "card-img");
+    var img = el("img");
+    img.src = v.billede || ("https://img.youtube.com/vi/" + v.youtubeId + "/maxresdefault.jpg");
+    img.alt = v.overskrift || "";
+    imgWrap.appendChild(img);
+    var body = el("div", "card-body");
+    if (v.overskrift) {
+      var h3 = el("h3", "card-title");
+      h3.textContent = v.overskrift;
+      body.appendChild(h3);
+    }
+    if (v.tekst) {
+      var p = el("p");
+      p.textContent = v.tekst;
+      body.appendChild(p);
+    }
+    a.appendChild(imgWrap);
+    a.appendChild(body);
+    return a;
+  }
+
   function lavVideo(b) {
     var wrap = el("div", "wrap");
-    wrap.style.maxWidth = "820px";
 
-    if (b.visning === "kort") {
+    if (b.visning === "kort" && b.videoer) {
+      // Flere videokort i ét fælles grid (fx en oversigt over flere tutorials).
+      if (b.overskrift) {
+        var h2Grid = el("h2");
+        if (b.overskriftJustering !== "venstre") h2Grid.style.textAlign = "center";
+        h2Grid.textContent = b.overskrift;
+        wrap.appendChild(h2Grid);
+      }
       var grid = el("div", "card-grid");
-      var a = el("a", "card");
-      a.href = "https://www.youtube.com/watch?v=" + b.youtubeId;
-      a.target = "_blank";
-      a.rel = "noopener";
-      var imgWrap = el("div", "card-img");
-      var img = el("img");
-      img.src = b.billede || ("https://img.youtube.com/vi/" + b.youtubeId + "/maxresdefault.jpg");
-      img.alt = b.overskrift || "";
-      imgWrap.appendChild(img);
-      var body = el("div", "card-body");
-      var h3 = el("h3", "card-title");
-      h3.textContent = b.overskrift || "";
-      body.appendChild(h3);
-      a.appendChild(imgWrap);
-      a.appendChild(body);
-      grid.appendChild(a);
+      b.videoer.forEach(function (v) {
+        grid.appendChild(lavVideoKort(v));
+      });
+      wrap.appendChild(grid);
+    } else if (b.visning === "kort") {
+      wrap.style.maxWidth = "820px";
+      var grid = el("div", "card-grid");
+      grid.appendChild(lavVideoKort(b));
       wrap.appendChild(grid);
     } else {
+      wrap.style.maxWidth = "820px";
       if (b.overskrift) {
         var h2 = el("h2");
         h2.style.textAlign = "center";
