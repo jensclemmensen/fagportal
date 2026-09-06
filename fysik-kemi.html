@@ -12,20 +12,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body data-fag="fysik-kemi.html">
 
 <header class="site-nav">
   <div class="wrap">
     <a class="brand" href="index.html">El FagPortal de Jensemand</a>
     <button class="nav-toggle" aria-label="Åbn menu">☰</button>
-    <ul class="nav-links">
-      <li><a href="index.html">Forsiden</a></li>
-      <li><a href="biologi.html">Biologi</a></li>
-      <li><a href="fysik-kemi.html" aria-current="page">Fysik-kemi</a></li>
-      <li><a href="musik.html">Musik</a></li>
-      <li><a href="matematik.html">Matematik</a></li>
-      <li><a href="valgfag.html">Valgfag</a></li>
-    </ul>
+    <ul class="nav-links"></ul>
   </div>
 </header>
 
@@ -34,30 +27,37 @@
 </div>
 
 <div class="wrap">
-  <div class="card-grid">
-    <a class="card" href="periodisk-system.html">
-      <div class="card-img"><img src="assets/images/periodisk-system.svg" alt="Det periodiske system"></div>
-      <div class="card-body">
-        <h3 class="card-title">Det Periodiske System</h3>
-        <p>Grundstoffernes tegn, atommasse og antal elektroner i skallerne.</p>
-      </div>
-    </a>
-    <a class="card" href="bindingstyper.html">
-      <div class="card-img"><img src="assets/images/bindingstyper-overblik.svg" alt="Overblik over bindingstyper" style="object-position: top;"></div>
-      <div class="card-body">
-        <h3 class="card-title">Overblik over bindingstyper</h3>
-        <p>Ionbindinger, kovalente bindinger og metalbindinger sammenlignet.</p>
-      </div>
-    </a>
-    <a class="card" href="afstemme-reaktionsskemaer.html">
-      <div class="card-img"><img src="assets/images/afstem-reaktionsskemaer.jpg" alt="Kuglemodeller af ilt- og hydrogenatomer, der viser en kemisk reaktion"></div>
-      <div class="card-body">
-        <h3 class="card-title">Bliv sej til reaktionsskemaer</h3>
-        <p>To videoer der viser, hvordan man afstemmer reaktionsskemaer.</p>
-      </div>
-    </a>
-  </div>
+  <div id="emne-kort" class="card-grid"></div>
 </div>
+
+<!-- EMNE_LISTE: her tilføjer du et nyt emne under Fysik-kemi. Kopiér en blok, ret felterne.
+     Felterne står i den rækkefølge, de vises på skærmen: billede øverst, så titel, så tekst. -->
+<script>
+const EMNE_LISTE = [
+  {
+    billede: "assets/images/periodisk-system.svg",
+    altTekst: "Det periodiske system",
+    titel: "Det Periodiske System",
+    tekst: "Grundstoffernes tegn, atommasse og antal elektroner i skallerne.",
+    link: "periodisk-system.html"
+  },
+  {
+    billede: "assets/images/bindingstyper-overblik.svg",
+    altTekst: "Overblik over bindingstyper",
+    billedeTop: true,
+    titel: "Overblik over bindingstyper",
+    tekst: "Ionbindinger, kovalente bindinger og metalbindinger sammenlignet.",
+    link: "bindingstyper.html"
+  },
+  {
+    billede: "assets/images/afstem-reaktionsskemaer.jpg",
+    altTekst: "Kuglemodeller af ilt- og hydrogenatomer, der viser en kemisk reaktion",
+    titel: "Bliv sej til reaktionsskemaer",
+    tekst: "To videoer der viser, hvordan man afstemmer reaktionsskemaer.",
+    link: "afstemme-reaktionsskemaer.html"
+  }
+];
+</script>
 
 <footer class="site-footer">
   <div class="wrap">
@@ -65,6 +65,8 @@
   </div>
 </footer>
 
+<script src="assets/js/fag-liste.js"></script>
+<script src="assets/js/blocks.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>

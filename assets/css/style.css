@@ -605,6 +605,7 @@ a.card { color: inherit; text-decoration: none !important; }
   cursor: zoom-in;
 }
 .wall-post img { width: 100%; display: block; }
+.wall-post--ingen-zoom { cursor: default; }
 
 /* --- Håndskrevet papirlap-illustration --- */
 

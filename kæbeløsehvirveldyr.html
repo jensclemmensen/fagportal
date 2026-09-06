@@ -12,20 +12,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body data-fag="biologi.html">
 
 <header class="site-nav">
   <div class="wrap">
     <a class="brand" href="index.html">El FagPortal de Jensemand</a>
     <button class="nav-toggle" aria-label="Åbn menu">☰</button>
-    <ul class="nav-links">
-      <li><a href="index.html">Forsiden</a></li>
-      <li><a href="biologi.html" aria-current="page">Biologi</a></li>
-      <li><a href="fysik-kemi.html">Fysik-kemi</a></li>
-      <li><a href="musik.html">Musik</a></li>
-      <li><a href="matematik.html">Matematik</a></li>
-      <li><a href="valgfag.html">Valgfag</a></li>
-    </ul>
+    <ul class="nav-links"></ul>
   </div>
 </header>
 
@@ -34,71 +27,57 @@
   <h1>De kæbeløse hvirveldyr</h1>
 </div>
 
-<section class="section">
-  <div class="wrap">
-    <div class="section-split">
-      <div class="section-split-img">
-        <figure>
-          <img src="assets/images/myllokunmingia-ca-225-mio-r-gammel-forsil-frste-hvirveldyr.webp" alt="Fossil af Myllokunmingia">
-          <figcaption>Fossil af det første kendte hvirveldyr Myllokunmingia. Ca. 525 mio. år gammelt. 3 cm langt.</figcaption>
-        </figure>
-      </div>
-      <div class="section-split-text">
-        <h3>Sådan opstod de</h3>
-        <h2>De første med rygsøjle</h2>
-        <p>For ca. 525 mio. år siden opstår de første dyr med tegn på tidlige udgaver af det, der kendetegner hvirveldyr, nemlig:</p>
-        <p><strong>Rygsøjle · Kranie · Indre skelet</strong></p>
-        <p>Der er dog ikke tale om knogler, for de er slet ikke udviklet endnu, så strukturerne har kun været lavet af brusk. Brusk kender du fra de seje men bøjelige dele i dine ører og din næseskillevæg. Prøv lige at mærke på dem, så du er med på, hvad vi snakker om :) Du kender også brusk fra forskellige stykker kød — det er de hvide hårde stykker, som ikke er knogle, og som kun lige kan tygges.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<div id="side-indhold"></div>
 
-<section class="section section-alt">
-  <div class="wrap" style="max-width:820px;">
-    <h2 style="text-align:center;">Rygsøjle gav hvirveldyrene fart</h2>
-    <div class="video-frame">
-      <iframe src="https://www.youtube.com/embed/bf5zst0ZVPo?rel=0" title="Rygsøjle gav hvirveldyrene fart" allowfullscreen loading="lazy"></iframe>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap">
-    <div class="section-split">
-      <div class="section-split-img">
-        <figure>
-          <img src="assets/images/havlampret-567x425.jpg" alt="Munden på en havlampret">
-          <figcaption>Munden på en havlampret.</figcaption>
-        </figure>
-      </div>
-      <div class="section-split-text">
-        <p>De tidlige have var fyldt med filtratorer og bunddyr, men rovdyr var endnu sjældne og primitive. De første hvirveldyr behøvede ikke nødvendigvis at jage aktivt — det var nok at filtrere bakterier og organiske partikler fra vandet. Den runde sugmund var perfekt til dette formål og også til at hæfte sig fast på bunden eller på andre dyr.</p>
-        <p>Fraværet af en kæbe var ikke et problem i et hav, hvor føden var tilgængelig som partikler i vandet. Men da der kom flere rovdyr, og konkurrencen om ressourcerne steg, var rundmundene ikke i stand til at jage effektivt. Det er grunden til, at mange af dem i dag er parasitter — de suger blod og vævsvæske fra andre fisk ved hjælp af deres sugemund.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section-alt">
-  <div class="wrap">
-    <div class="section-split">
-      <div class="section-split-img">
-        <figure>
-          <img src="assets/images/ingen20stc3a5lefinne-1256x707.jpg" alt="Kæbeløse hvirveldyr har ikke helt tynde finner">
-          <figcaption>Kæbeløse hvirveldyr har ikke helt tynde finner.</figcaption>
-        </figure>
-      </div>
-      <div class="section-split-text">
-        <h3>Kendetegn</h3>
-        <p><strong>Ingen kæbe:</strong> nulevende arter har alle runde munde.</p>
-        <p><strong>Bruskskelet.</strong></p>
-        <p><strong>Ingen helt tynde finner</strong> (strålefinner).</p>
-        <p><strong>Ingen parrede finner:</strong> de mangler brystfinner og bugfinner, som de fleste andre fisk har.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- SIDE_INDHOLD: her tilføjer/retter du indholdet på siden. Kopiér en blok, ret felterne.
+     Felterne står i den rækkefølge, de vises på skærmen (tekst-siden er som standard
+     til venstre, billedet til højre — sæt side: "venstre" for at bytte om). -->
+<script>
+const SIDE_INDHOLD = [
+  {
+    type: "tekst-billede",
+    overskriftLille: "Sådan opstod de",
+    overskrift: "De første med rygsøjle",
+    tekst: [
+      "For ca. 525 mio. år siden opstår de første dyr med tegn på tidlige udgaver af det, der kendetegner hvirveldyr, nemlig:",
+      "<strong>Rygsøjle · Kranie · Indre skelet</strong>",
+      "Der er dog ikke tale om knogler, for de er slet ikke udviklet endnu, så strukturerne har kun været lavet af brusk. Brusk kender du fra de seje men bøjelige dele i dine ører og din næseskillevæg. Prøv lige at mærke på dem, så du er med på, hvad vi snakker om :) Du kender også brusk fra forskellige stykker kød — det er de hvide hårde stykker, som ikke er knogle, og som kun lige kan tygges."
+    ],
+    billede: "assets/images/myllokunmingia-ca-225-mio-r-gammel-forsil-frste-hvirveldyr.webp",
+    altTekst: "Fossil af Myllokunmingia",
+    billedtekst: "Fossil af det første kendte hvirveldyr Myllokunmingia. Ca. 525 mio. år gammelt. 3 cm langt."
+  },
+  {
+    type: "video",
+    overskrift: "Rygsøjle gav hvirveldyrene fart",
+    youtubeId: "bf5zst0ZVPo",
+    visning: "indlejret"
+  },
+  {
+    type: "tekst-billede",
+    tekst: [
+      "De tidlige have var fyldt med filtratorer og bunddyr, men rovdyr var endnu sjældne og primitive. De første hvirveldyr behøvede ikke nødvendigvis at jage aktivt — det var nok at filtrere bakterier og organiske partikler fra vandet. Den runde sugmund var perfekt til dette formål og også til at hæfte sig fast på bunden eller på andre dyr.",
+      "Fraværet af en kæbe var ikke et problem i et hav, hvor føden var tilgængelig som partikler i vandet. Men da der kom flere rovdyr, og konkurrencen om ressourcerne steg, var rundmundene ikke i stand til at jage effektivt. Det er grunden til, at mange af dem i dag er parasitter — de suger blod og vævsvæske fra andre fisk ved hjælp af deres sugemund."
+    ],
+    billede: "assets/images/havlampret-567x425.jpg",
+    altTekst: "Munden på en havlampret",
+    billedtekst: "Munden på en havlampret."
+  },
+  {
+    type: "tekst-billede",
+    overskriftLille: "Kendetegn",
+    tekst: [
+      "<strong>Ingen kæbe:</strong> nulevende arter har alle runde munde.",
+      "<strong>Bruskskelet.</strong>",
+      "<strong>Ingen helt tynde finner</strong> (strålefinner).",
+      "<strong>Ingen parrede finner:</strong> de mangler brystfinner og bugfinner, som de fleste andre fisk har."
+    ],
+    billede: "assets/images/ingen20stc3a5lefinne-1256x707.jpg",
+    altTekst: "Kæbeløse hvirveldyr har ikke helt tynde finner",
+    billedtekst: "Kæbeløse hvirveldyr har ikke helt tynde finner."
+  }
+];
+</script>
 
 <section class="section">
   <div class="wrap">
@@ -141,6 +120,8 @@
   </div>
 </footer>
 
+<script src="assets/js/fag-liste.js"></script>
+<script src="assets/js/blocks.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>

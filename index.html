@@ -12,20 +12,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body data-fag="index.html">
 
 <header class="site-nav">
   <div class="wrap">
     <a class="brand" href="index.html">El FagPortal de Jensemand</a>
     <button class="nav-toggle" aria-label="Åbn menu">☰</button>
-    <ul class="nav-links">
-      <li><a href="index.html" aria-current="page">Forsiden</a></li>
-      <li><a href="biologi.html">Biologi</a></li>
-      <li><a href="fysik-kemi.html">Fysik-kemi</a></li>
-      <li><a href="musik.html">Musik</a></li>
-      <li><a href="matematik.html">Matematik</a></li>
-      <li><a href="valgfag.html">Valgfag</a></li>
-    </ul>
+    <ul class="nav-links"></ul>
   </div>
 </header>
 
@@ -37,68 +30,7 @@
 </section>
 
 <div class="wrap">
-  <div class="card-grid" style="padding-top:3rem;">
-    <a class="card" href="biologi.html">
-      <div class="card-img"><img src="assets/images/padder201-1200x795.jpeg" alt="En ildsalamander"></div>
-      <div class="card-body">
-        <h3 class="card-title">Biologi</h3>
-        <p>Fra hvirveldyrenes tidlige historie til padder, krybdyr, fugle og pattedyr.</p>
-      </div>
-    </a>
-    <a class="card" href="matematik.html">
-      <div class="card-img"><img src="assets/images/matematik-tavle.jpg" alt="Matematiske formler skrevet på en tavle"></div>
-      <div class="card-body">
-        <h3 class="card-title">Matematik</h3>
-        <p>Hjælp til gange og division på papir.</p>
-      </div>
-    </a>
-    <a class="card" href="fysik-kemi.html">
-      <div class="card-img"><img src="assets/images/periodisk-system.svg" alt="Det periodiske system"></div>
-      <div class="card-body">
-        <h3 class="card-title">Fysik-kemi</h3>
-        <p>Det periodiske system og overblik over bindingstyper.</p>
-      </div>
-    </a>
-    <a class="card" href="musik.html">
-      <div class="card-img">
-        <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;" role="img" aria-label="Håndskrevet formoversigt: Intro, Vers, Omkvæd, Vers, Omkvæd, C-stykke, Omkvæd, Outro">
-          <rect x="0" y="0" width="320" height="200" fill="#fdf9ef"/>
-          <line x1="20" y1="8" x2="20" y2="192" stroke="#e6b3b3" stroke-width="1" opacity="0.55"/>
-          <g stroke="#cfe0ee" stroke-width="1" opacity="0.6">
-            <line x1="10" y1="24" x2="310" y2="24"/>
-            <line x1="10" y1="46" x2="310" y2="46"/>
-            <line x1="10" y1="68" x2="310" y2="68"/>
-            <line x1="10" y1="90" x2="310" y2="90"/>
-            <line x1="10" y1="112" x2="310" y2="112"/>
-            <line x1="10" y1="134" x2="310" y2="134"/>
-            <line x1="10" y1="156" x2="310" y2="156"/>
-            <line x1="10" y1="178" x2="310" y2="178"/>
-          </g>
-          <g font-family="Caveat, cursive" font-weight="700" font-size="20" fill="#1f3a5f">
-            <text x="32" y="20" transform="rotate(-0.6 32 20)">Intro</text>
-            <text x="32" y="42" transform="rotate(0.5 32 42)">Vers</text>
-            <text x="32" y="64" transform="rotate(-0.5 32 64)">Omkvæd</text>
-            <text x="32" y="86" transform="rotate(0.6 32 86)">Vers</text>
-            <text x="32" y="108" transform="rotate(-0.6 32 108)">Omkvæd</text>
-            <text x="32" y="130" transform="rotate(0.5 32 130)">C-stykke</text>
-            <text x="32" y="152" transform="rotate(-0.5 32 152)">Omkvæd</text>
-            <text x="32" y="174" transform="rotate(0.6 32 174)">Outro</text>
-          </g>
-        </svg>
-      </div>
-      <div class="card-body">
-        <h3 class="card-title">Musik</h3>
-        <p>Et musikstykkes form — intro, vers, omkvæd og meget mere.</p>
-      </div>
-    </a>
-    <a class="card" href="valgfag.html">
-      <div class="card-img"><img src="assets/images/onshape.png" alt="Onshape"></div>
-      <div class="card-body">
-        <h3 class="card-title">Valgfag</h3>
-        <p>3D tegning tutorials — tegn og print dine egne ting i Onshape.</p>
-      </div>
-    </a>
-  </div>
+  <div id="fag-kort" class="card-grid" style="padding-top:3rem;"></div>
 </div>
 
 <footer class="site-footer">
@@ -107,6 +39,8 @@
   </div>
 </footer>
 
+<script src="assets/js/fag-liste.js"></script>
+<script src="assets/js/blocks.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>
