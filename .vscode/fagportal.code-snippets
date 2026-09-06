@@ -1,0 +1,103 @@
+{
+  "Blok: tekst-billede": {
+    "scope": "html,javascript",
+    "prefix": "blok-tekst-billede",
+    "body": [
+      "{",
+      "  type: \"tekst-billede\",",
+      "  overskrift: \"${1:Overskriften}\",",
+      "  overskriftLille: \"${2:Valgfri lille overskrift}\",",
+      "  tekst: \"${3:Din tekst her.}\",",
+      "  billede: \"assets/images/${4:billede.jpg}\",",
+      "  altTekst: \"${5:Kort beskrivelse af billedet}\"",
+      "},"
+    ],
+    "description": "Billede + tekst side om side (billede til højre som standard)"
+  },
+  "Blok: tekst-billede (billede venstre)": {
+    "scope": "html,javascript",
+    "prefix": "blok-tekst-billede-venstre",
+    "body": [
+      "{",
+      "  type: \"tekst-billede\",",
+      "  overskrift: \"${1:Overskriften}\",",
+      "  overskriftLille: \"${2:Valgfri lille overskrift}\",",
+      "  tekst: \"${3:Din tekst her.}\",",
+      "  billede: \"assets/images/${4:billede.jpg}\",",
+      "  altTekst: \"${5:Kort beskrivelse af billedet}\",",
+      "  side: \"venstre\"",
+      "},"
+    ],
+    "description": "Billede + tekst side om side, men med billedet til venstre"
+  },
+  "Blok: video (indlejret)": {
+    "scope": "html,javascript",
+    "prefix": "blok-video",
+    "body": [
+      "{",
+      "  type: \"video\",",
+      "  overskrift: \"${1:Overskriften}\",",
+      "  youtubeId: \"${2:youtube-id}\",",
+      "  visning: \"indlejret\"",
+      "},"
+    ],
+    "description": "Video vist direkte på siden (som under Matematik)"
+  },
+  "Blok: video (kort til YouTube)": {
+    "scope": "html,javascript",
+    "prefix": "blok-video-kort",
+    "body": [
+      "{",
+      "  type: \"video\",",
+      "  overskrift: \"${1:Overskriften}\",",
+      "  youtubeId: \"${2:youtube-id}\",",
+      "  visning: \"kort\"",
+      "},"
+    ],
+    "description": "Video som et kort, der linker ud til YouTube (som under Valgfag)"
+  },
+  "Blok: billede": {
+    "scope": "html,javascript",
+    "prefix": "blok-billede",
+    "body": [
+      "{",
+      "  type: \"billede\",",
+      "  overskrift: \"${1:Valgfri overskrift}\",",
+      "  billede: \"assets/images/${2:billede.jpg}\",",
+      "  altTekst: \"${3:Kort beskrivelse af billedet}\"",
+      "},"
+    ],
+    "description": "Et enkelt, centreret billede (klik for at zoome)"
+  },
+  "Blok: liste": {
+    "scope": "html,javascript",
+    "prefix": "blok-liste",
+    "body": [
+      "{",
+      "  type: \"liste\",",
+      "  overskrift: \"${1:Overskriften}\",",
+      "  undertekst: \"${2:Valgfri undertekst}\",",
+      "  nummereret: true,",
+      "  punkter: [",
+      "    \"${3:Første punkt}\",",
+      "    \"${4:Andet punkt}\"",
+      "  ]",
+      "},"
+    ],
+    "description": "Nummereret eller unummereret liste (fx reaktionsskemaer)"
+  },
+  "Kort: emne (på fagets forside)": {
+    "scope": "html,javascript",
+    "prefix": "blok-emne-kort",
+    "body": [
+      "{",
+      "  billede: \"assets/images/${1:billede.jpg}\",",
+      "  altTekst: \"${2:Kort beskrivelse af billedet}\",",
+      "  titel: \"${3:Titel}\",",
+      "  tekst: \"${4:Kort beskrivelse under titlen.}\",",
+      "  link: \"${5:sidenavn.html}\"",
+      "},"
+    ],
+    "description": "Nyt kort til EMNE_LISTE (vises på fagets egen forside)"
+  }
+}

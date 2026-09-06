@@ -28,48 +28,44 @@
   <h1>Pattedyr</h1>
 </div>
 
-<section class="section">
-  <div class="wrap">
-    <div class="section-split">
-      <div class="section-split-img">
-        <figure>
-          <img src="assets/images/nc3a6bdyr-768x512.jpeg" alt="Næbdyr">
-          <figcaption>Pattedyr føder levende unger, på nær en lille gruppe som vi kalder kloakdyr. Kloakdyrene har bevaret nogle ting fra krybdyrene, fx lægger de æg. Næbdyret på billedet hører til kloakdyrene.</figcaption>
-        </figure>
-      </div>
-      <div class="section-split-text">
-        <h2>Sådan opstår de</h2>
-        <h3>Nataktive overlevere</h3>
-        <p>Pattedyrene opstod for ca. 225 mio. år siden. I de første 160 mio. år var de små, nataktive dyr. Det var først efter dinosaurernes uddøen for 66 mio. år siden, at pattedyrene ekspanderede til de mange former vi kender i dag.</p>
-        <p>De første pattedyr levede i dinosaurernes skygge og var tvunget til at klare sig i en niche, de store dinosaurer ikke besatte: nattens mørke. Nataktivt liv kræver god isolation (pels), konstant kropstemperatur og skarpe sanser. Alle disse træk er udgangspunktet for pattedyrenes succes.</p>
-        <p>Mælk er evolutionært meget kostbart for moderen, men giver ungerne en ekstraordinær start på livet. Mælken er tilpasset artens behov og indeholder ikke kun næring, men også antistoffer, der beskytter den unge mod infektioner. Resultatet er, at pattedyrsunger trods at blive født hjælpeløse vokser meget hurtigt og har høj overlevelse.</p>
-        <p>Den store hjerne muliggør kompleks adfærd, læring og socialt liv. Det er grunden til, at pattedyrene — og særligt primaterne — udviklede evner til redskabsbrug, sprog og civilisation. Evolutionen af hjernen er måske det mest vidtrækkende af alle hvirveldyrenes tilpasninger.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<div id="side-indhold"></div>
 
-<section class="section section-alt">
-  <div class="wrap">
-    <div class="section-split">
-      <div class="section-split-img">
-        <figure>
-          <img src="assets/images/hvalspc3a6k-474x328.jpeg" alt="Hvalspæk">
-          <figcaption>Varmblodede dyr har brug for isolering, så de få pattedyr der ikke har pels, har normalt et kraftigt fedtlag til at isolere med i stedet. Derfor skød man i gamle dage hvaler udelukkende for at bruge deres fedt til olielamper.</figcaption>
-        </figure>
-      </div>
-      <div class="section-split-text">
-        <h3>Kendetegn</h3>
-        <p><strong>Hår/pels:</strong> isolerer kroppen og hjælper med at opretholde konstant kropstemperatur.</p>
-        <p><strong>Varmblodede:</strong> ligesom fuglene opretholdes en konstant høj kropstemperatur indefra.</p>
-        <p><strong>Mælk:</strong> hunner producerer mælk til at ernære ungerne — ekstremt energirigt og tilpasset til ungens behov.</p>
-        <p><strong>Forskellige tænder:</strong> fortænder, hjørnetænder, præmolarer og kindtænder har hver deres funktion.</p>
-        <p><strong>Levende unger (de fleste):</strong> de fleste pattedyr føder unger fremfor at lægge æg.</p>
-        <p><strong>Stort hjerne/kropsforhold:</strong> pattedyr har generelt en større og mere kompleks hjerne end andre hvirveldyr.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- SIDE_INDHOLD: her tilføjer/retter du indholdet på siden. Kopiér en blok, ret felterne.
+     Felterne står i den rækkefølge, de vises på skærmen (tekst-siden er som standard
+     til venstre, billedet til højre — sæt side: "venstre" for at bytte om). -->
+<script>
+const SIDE_INDHOLD = [
+  {
+    type: "tekst-billede",
+    overskrift: "Sådan opstår de",
+    overskriftLille: "Nataktive overlevere",
+    tekst: [
+      "Pattedyrene opstod for ca. 225 mio. år siden. I de første 160 mio. år var de små, nataktive dyr. Det var først efter dinosaurernes uddøen for 66 mio. år siden, at pattedyrene ekspanderede til de mange former vi kender i dag.",
+      "De første pattedyr levede i dinosaurernes skygge og var tvunget til at klare sig i en niche, de store dinosaurer ikke besatte: nattens mørke. Nataktivt liv kræver god isolation (pels), konstant kropstemperatur og skarpe sanser. Alle disse træk er udgangspunktet for pattedyrenes succes.",
+      "Mælk er evolutionært meget kostbart for moderen, men giver ungerne en ekstraordinær start på livet. Mælken er tilpasset artens behov og indeholder ikke kun næring, men også antistoffer, der beskytter den unge mod infektioner. Resultatet er, at pattedyrsunger trods at blive født hjælpeløse vokser meget hurtigt og har høj overlevelse.",
+      "Den store hjerne muliggør kompleks adfærd, læring og socialt liv. Det er grunden til, at pattedyrene — og særligt primaterne — udviklede evner til redskabsbrug, sprog og civilisation. Evolutionen af hjernen er måske det mest vidtrækkende af alle hvirveldyrenes tilpasninger."
+    ],
+    billede: "assets/images/nc3a6bdyr-768x512.jpeg",
+    altTekst: "Næbdyr",
+    billedtekst: "Pattedyr føder levende unger, på nær en lille gruppe som vi kalder kloakdyr. Kloakdyrene har bevaret nogle ting fra krybdyrene, fx lægger de æg. Næbdyret på billedet hører til kloakdyrene."
+  },
+  {
+    type: "tekst-billede",
+    overskriftLille: "Kendetegn",
+    tekst: [
+      "<strong>Hår/pels:</strong> isolerer kroppen og hjælper med at opretholde konstant kropstemperatur.",
+      "<strong>Varmblodede:</strong> ligesom fuglene opretholdes en konstant høj kropstemperatur indefra.",
+      "<strong>Mælk:</strong> hunner producerer mælk til at ernære ungerne — ekstremt energirigt og tilpasset til ungens behov.",
+      "<strong>Forskellige tænder:</strong> fortænder, hjørnetænder, præmolarer og kindtænder har hver deres funktion.",
+      "<strong>Levende unger (de fleste):</strong> de fleste pattedyr føder unger fremfor at lægge æg.",
+      "<strong>Stort hjerne/kropsforhold:</strong> pattedyr har generelt en større og mere kompleks hjerne end andre hvirveldyr."
+    ],
+    billede: "assets/images/hvalspc3a6k-474x328.jpeg",
+    altTekst: "Hvalspæk",
+    billedtekst: "Varmblodede dyr har brug for isolering, så de få pattedyr der ikke har pels, har normalt et kraftigt fedtlag til at isolere med i stedet. Derfor skød man i gamle dage hvaler udelukkende for at bruge deres fedt til olielamper."
+  }
+];
+</script>
 
 <div class="wrap">
   <div class="pager">

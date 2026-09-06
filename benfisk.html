@@ -28,45 +28,41 @@
   <h1>Benfisk</h1>
 </div>
 
-<section class="section">
-  <div class="wrap">
-    <div class="section-split">
-      <div class="section-split-img">
-        <figure>
-          <img src="assets/images/svc3b8mmeblc3a6re-1200x370.png" alt="Svømmeblære markeret med blåt">
-          <figcaption>Fisken kan fylde luft i svømmeblæren eller tømme luft af den, alt efter om den skal op eller ned. Svømmeblæren er markeret med blåt.</figcaption>
-        </figure>
-      </div>
-      <div class="section-split-text">
-        <h2>Sådan opstod de</h2>
-        <h3>Opdrift uden anstrengelse</h3>
-        <p>Benfiskene opstod i devontiden for ca. 420 mio. år siden og udgør i dag langt den største gruppe hvirveldyr med over 30.000 kendte arter. Langt de fleste af de fisk du kender er benfisk.</p>
-        <p>Svømmeblæren er en af de vigtigste innovationer i hvirveldyrenes evolution. Den opstod sandsynligvis fra en primitiv lungesæk — et organ til at hente luft ved overfladen i iltfattige vande. Da have og søer i devontiden periodisk manglede ilt (på grund af store mængder rådnende plantemateriale), var evnen til at supplere med ilt fra overfladen en kæmpe fordel.</p>
-        <p>Hos langt de fleste moderne benfisk er svømmeblæren omdannet til et opdriftsorgan. Det er en revolutionerende opfindelse: fisken kan nu "svæve" på en given dybde uden at bruge energi på at modvirke tyngdekraften. Det frigiver energi til at søge føde, flygte fra fjender og reproducere sig.</p>
-        <p>Knogleskelettet tillader meget finere specialisering af kroppen. Tænder, kæber, finner og kroppen selv kan antage tusindvis af former alt efter, hvad en art spiser og hvordan den lever. Det er grunden til, at knoglefiskene er langt den mest artsrige gruppe hvirveldyr.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<div id="side-indhold"></div>
 
-<section class="section section-alt">
-  <div class="wrap">
-    <div class="section-split">
-      <div class="section-split-img">
-        <figure>
-          <img src="assets/images/stc3a5lefinne-450x337.jpg" alt="Strålefinne">
-          <figcaption>Strålefinner består af hud udspændt på benstråler. De giver manøvredygtighed og kan foldes ind, så de ikke giver modstand.</figcaption>
-        </figure>
-      </div>
-      <div class="section-split-text">
-        <h3>Kendetegn</h3>
-        <p><strong>Skelet af knogle:</strong> stærkere end brusk, men stadig smidigt. Giver fx større hurtighed.</p>
-        <p><strong>Svømmeblære:</strong> et gasfyldt organ der giver opdrift, så fisken kan hænge i ro på en given dybde uden konstant at svømme.</p>
-        <p><strong>Strålefinner:</strong> de fleste benfisk har strålefinner, som er helt tynde finner.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- SIDE_INDHOLD: her tilføjer/retter du indholdet på siden. Kopiér en blok, ret felterne.
+     Felterne står i den rækkefølge, de vises på skærmen (tekst-siden er som standard
+     til venstre, billedet til højre — sæt side: "venstre" for at bytte om). -->
+<script>
+const SIDE_INDHOLD = [
+  {
+    type: "tekst-billede",
+    overskrift: "Sådan opstod de",
+    overskriftLille: "Opdrift uden anstrengelse",
+    tekst: [
+      "Benfiskene opstod i devontiden for ca. 420 mio. år siden og udgør i dag langt den største gruppe hvirveldyr med over 30.000 kendte arter. Langt de fleste af de fisk du kender er benfisk.",
+      "Svømmeblæren er en af de vigtigste innovationer i hvirveldyrenes evolution. Den opstod sandsynligvis fra en primitiv lungesæk — et organ til at hente luft ved overfladen i iltfattige vande. Da have og søer i devontiden periodisk manglede ilt (på grund af store mængder rådnende plantemateriale), var evnen til at supplere med ilt fra overfladen en kæmpe fordel.",
+      "Hos langt de fleste moderne benfisk er svømmeblæren omdannet til et opdriftsorgan. Det er en revolutionerende opfindelse: fisken kan nu \"svæve\" på en given dybde uden at bruge energi på at modvirke tyngdekraften. Det frigiver energi til at søge føde, flygte fra fjender og reproducere sig.",
+      "Knogleskelettet tillader meget finere specialisering af kroppen. Tænder, kæber, finner og kroppen selv kan antage tusindvis af former alt efter, hvad en art spiser og hvordan den lever. Det er grunden til, at knoglefiskene er langt den mest artsrige gruppe hvirveldyr."
+    ],
+    billede: "assets/images/svc3b8mmeblc3a6re-1200x370.png",
+    altTekst: "Svømmeblære markeret med blåt",
+    billedtekst: "Fisken kan fylde luft i svømmeblæren eller tømme luft af den, alt efter om den skal op eller ned. Svømmeblæren er markeret med blåt."
+  },
+  {
+    type: "tekst-billede",
+    overskriftLille: "Kendetegn",
+    tekst: [
+      "<strong>Skelet af knogle:</strong> stærkere end brusk, men stadig smidigt. Giver fx større hurtighed.",
+      "<strong>Svømmeblære:</strong> et gasfyldt organ der giver opdrift, så fisken kan hænge i ro på en given dybde uden konstant at svømme.",
+      "<strong>Strålefinner:</strong> de fleste benfisk har strålefinner, som er helt tynde finner."
+    ],
+    billede: "assets/images/stc3a5lefinne-450x337.jpg",
+    altTekst: "Strålefinne",
+    billedtekst: "Strålefinner består af hud udspændt på benstråler. De giver manøvredygtighed og kan foldes ind, så de ikke giver modstand."
+  }
+];
+</script>
 
 <div class="wrap">
   <div class="pager">

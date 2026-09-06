@@ -42,61 +42,71 @@
   </ul>
 </div>
 
-<section class="section" id="regnehierarkiet">
-  <div class="wrap" style="max-width:820px;">
-    <h2 style="text-align:center;">Regnehierarkiet</h2>
-    <div class="wall-post"><img src="assets/images/vaeg-regnehierarkiet.png" alt="Opslag: Regnehierarkiet"></div>
-  </div>
-</section>
+<div id="side-indhold"></div>
 
-<section class="section section-alt" id="to-regnetegn">
-  <div class="wrap" style="max-width:820px;">
-    <h2 style="text-align:center;">To regnetegn efter hinanden</h2>
-    <div class="wall-post"><img src="assets/images/vaeg-to-regnetegn.png" alt="Opslag: To regnetegn efter hinanden"></div>
-  </div>
-</section>
-
-<section class="section" id="fjern-haev-parenteser">
-  <div class="wrap" style="max-width:820px;">
-    <h2 style="text-align:center;">Fjern/hæv parenteser</h2>
-    <div class="wall-post"><img src="assets/images/vaeg-fjern-haev-parenteser.png" alt="Opslag: Fjern/hæv parenteser"></div>
-  </div>
-</section>
-
-<section class="section section-alt" id="broeker">
-  <div class="wrap" style="max-width:820px;">
-    <h2 style="text-align:center;">Brøker du skal kende</h2>
-    <div class="wall-post"><img src="assets/images/vaeg-broeker.png" alt="Opslag: Brøker du skal kende"></div>
-  </div>
-</section>
-
-<section class="section" id="procent">
-  <div class="wrap" style="max-width:820px;">
-    <h2 style="text-align:center;">3 måder at regne med procent</h2>
-    <div class="wall-post"><img src="assets/images/vaeg-procent.png" alt="Opslag: 3 måder at regne med procent"></div>
-  </div>
-</section>
-
-<section class="section section-alt" id="moms">
-  <div class="wrap" style="max-width:820px;">
-    <h2 style="text-align:center;">Moms</h2>
-    <div class="wall-post"><img src="assets/images/vaeg-moms.png" alt="Opslag: Moms"></div>
-  </div>
-</section>
-
-<section class="section" id="sin-cos-tan">
-  <div class="wrap" style="max-width:820px;">
-    <h2 style="text-align:center;">Sinus, cosinus og tangens i retvinklede trekanter</h2>
-    <div class="wall-post"><img src="assets/images/vaeg-sin-cos-tan.png" alt="Opslag: Sinus, cosinus og tangens i retvinklede trekanter"></div>
-  </div>
-</section>
-
-<section class="section section-alt" id="fire-regningsarter">
-  <div class="wrap" style="max-width:820px;">
-    <h2 style="text-align:center;">De fire regningsarter navne</h2>
-    <div class="wall-post"><img src="assets/images/vaeg-fire-regningsarter.png" alt="Opslag: De fire regningsarter navne"></div>
-  </div>
-</section>
+<!-- SIDE_INDHOLD: her tilføjer/retter du indholdet på siden. Kopiér en blok, ret felterne.
+     "id" bruges af links øverst på siden ("Regnehierarkiet" osv.) til at hoppe direkte
+     ned til det rigtige opslag — behold den, hvis du retter i et eksisterende opslag. -->
+<script>
+const SIDE_INDHOLD = [
+  {
+    type: "billede",
+    id: "regnehierarkiet",
+    overskrift: "Regnehierarkiet",
+    billede: "assets/images/vaeg-regnehierarkiet.png",
+    altTekst: "Opslag: Regnehierarkiet"
+  },
+  {
+    type: "billede",
+    id: "to-regnetegn",
+    overskrift: "To regnetegn efter hinanden",
+    billede: "assets/images/vaeg-to-regnetegn.png",
+    altTekst: "Opslag: To regnetegn efter hinanden"
+  },
+  {
+    type: "billede",
+    id: "fjern-haev-parenteser",
+    overskrift: "Fjern/hæv parenteser",
+    billede: "assets/images/vaeg-fjern-haev-parenteser.png",
+    altTekst: "Opslag: Fjern/hæv parenteser"
+  },
+  {
+    type: "billede",
+    id: "broeker",
+    overskrift: "Brøker du skal kende",
+    billede: "assets/images/vaeg-broeker.png",
+    altTekst: "Opslag: Brøker du skal kende"
+  },
+  {
+    type: "billede",
+    id: "procent",
+    overskrift: "3 måder at regne med procent",
+    billede: "assets/images/vaeg-procent.png",
+    altTekst: "Opslag: 3 måder at regne med procent"
+  },
+  {
+    type: "billede",
+    id: "moms",
+    overskrift: "Moms",
+    billede: "assets/images/vaeg-moms.png",
+    altTekst: "Opslag: Moms"
+  },
+  {
+    type: "billede",
+    id: "sin-cos-tan",
+    overskrift: "Sinus, cosinus og tangens i retvinklede trekanter",
+    billede: "assets/images/vaeg-sin-cos-tan.png",
+    altTekst: "Opslag: Sinus, cosinus og tangens i retvinklede trekanter"
+  },
+  {
+    type: "billede",
+    id: "fire-regningsarter",
+    overskrift: "De fire regningsarter navne",
+    billede: "assets/images/vaeg-fire-regningsarter.png",
+    altTekst: "Opslag: De fire regningsarter navne"
+  }
+];
+</script>
 
 <div class="lightbox">
   <button aria-label="Luk">&times;</button>

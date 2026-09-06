@@ -250,6 +250,7 @@
       if (!byg) throw new Error('Ukendt type: "' + b.type + '"');
       var indre = byg(b);
       var section = el("section", "section" + (i % 2 === 1 ? " section-alt" : ""));
+      if (b.id) section.id = b.id;
       section.appendChild(indre);
       container.appendChild(section);
     });

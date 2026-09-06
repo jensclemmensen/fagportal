@@ -28,16 +28,21 @@
 </div>
 
 <div class="wrap">
-  <div class="card-grid">
-    <a class="card" href="3d-tegning-tutorials.html">
-      <div class="card-img"><img src="assets/images/onshape.png" alt="Onshape"></div>
-      <div class="card-body">
-        <h3 class="card-title">3D tegning tutorials</h3>
-        <p>Videotutorials i at tegne og 3D-printe i Onshape.</p>
-      </div>
-    </a>
-  </div>
+  <div id="emne-kort" class="card-grid"></div>
 </div>
+
+<!-- EMNE_LISTE: her tilføjer/retter du emnerne (kortene ovenfor). Kopiér en blok, ret felterne. -->
+<script>
+const EMNE_LISTE = [
+  {
+    billede: "assets/images/onshape.png",
+    altTekst: "Onshape",
+    titel: "3D tegning tutorials",
+    tekst: "Videotutorials i at tegne og 3D-printe i Onshape.",
+    link: "3d-tegning-tutorials.html"
+  }
+];
+</script>
 
 <footer class="site-footer">
   <div class="wrap">

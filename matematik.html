@@ -28,23 +28,30 @@
 </div>
 
 <div class="wrap">
-  <div class="card-grid">
-    <a class="card" href="gange-division-paa-papir.html">
-      <div class="card-img"><img src="assets/images/gange-division-thumb.jpg" alt="Håndskrevet division opstillet på papir" style="object-position: top;"></div>
-      <div class="card-body">
-        <h3 class="card-title">Hjælp til gange og division på papir</h3>
-        <p>To videoer der viser, hvordan man ganger og dividerer i hånden.</p>
-      </div>
-    </a>
-    <a class="card" href="klassens-matematikvaeg.html">
-      <div class="card-img"><img src="assets/images/vaeg-fire-regningsarter.png" alt="Opslag fra klassens matematikvæg" style="object-position: top;"></div>
-      <div class="card-body">
-        <h3 class="card-title">Klassens matematikvæg</h3>
-        <p>Opslag med regnehierarki, parenteser, brøker, procent, moms og trigonometri.</p>
-      </div>
-    </a>
-  </div>
+  <div id="emne-kort" class="card-grid"></div>
 </div>
+
+<!-- EMNE_LISTE: her tilføjer/retter du emnerne (kortene ovenfor). Kopiér en blok, ret felterne. -->
+<script>
+const EMNE_LISTE = [
+  {
+    billede: "assets/images/gange-division-thumb.jpg",
+    altTekst: "Håndskrevet division opstillet på papir",
+    billedeTop: true,
+    titel: "Hjælp til gange og division på papir",
+    tekst: "To videoer der viser, hvordan man ganger og dividerer i hånden.",
+    link: "gange-division-paa-papir.html"
+  },
+  {
+    billede: "assets/images/vaeg-fire-regningsarter.png",
+    altTekst: "Opslag fra klassens matematikvæg",
+    billedeTop: true,
+    titel: "Klassens matematikvæg",
+    tekst: "Opslag med regnehierarki, parenteser, brøker, procent, moms og trigonometri.",
+    link: "klassens-matematikvaeg.html"
+  }
+];
+</script>
 
 <footer class="site-footer">
   <div class="wrap">

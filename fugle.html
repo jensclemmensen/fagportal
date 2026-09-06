@@ -28,47 +28,43 @@
   <h1>Fugle</h1>
 </div>
 
-<section class="section">
-  <div class="wrap">
-    <div class="section-split">
-      <div class="section-split-img">
-        <figure>
-          <img src="assets/images/archaeopteryx-1256x858.jpeg" alt="Archaeopteryx">
-          <figcaption>Archaeopteryx: overgangsdyr mellem krybdyr og fugl.</figcaption>
-        </figure>
-      </div>
-      <div class="section-split-text">
-        <h2>Sådan opstod de</h2>
-        <h3>Erobringen af luften</h3>
-        <p>Fuglene opstod fra theropode dinosaurer for ca. 150–160 mio. år siden i juraperioden. Archaeopteryx er det berømteste fossil fra overgangen. I dag udgøres klassen af over 10.000 arter.</p>
-        <p>Fjerene er sandsynligvis opstået hos dinosaurer primært til isolation og måske signalering — ikke til flyvning. Men de viste sig at være perfekte til at skabe en flyveflade. Evnen til at flyve åbnede et helt nyt tredimensionalt rum, som ingen andre hvirveldyr beherskede fuldt ud: luften.</p>
-        <p>Flyvning kræver et enormt energiforbrug. Det er her, varmblodet bliver afgørende. Fugle kan opretholde høj muskelaktivitet uanset om det er koldt eller varmt — en umulighed for vekselvarmede dyr. Prisen er et højt fødeforbrug, men gevinsten er enorm: fugle kan leve i arktis, troperne og alt derimellem.</p>
-        <p>Det lette skelet og næb uden tænder tjener ét formål: at gøre kroppen så let som muligt. Flyvning er dyrt i energi, og evolutionen har trimmet alt unødvendigt væk.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<div id="side-indhold"></div>
 
-<section class="section section-alt">
-  <div class="wrap">
-    <div class="section-split">
-      <div class="section-split-img">
-        <figure>
-          <img src="assets/images/varmblodet20fugl-1344x768.png" alt="Fugl set med varmekamera">
-          <figcaption>Hvis man tager et billede af en fugl med et varmekamera, kan man se at den er varmere end omgivelserne. Man siger at den er varmblodet.</figcaption>
-        </figure>
-      </div>
-      <div class="section-split-text">
-        <h3>Kendetegn</h3>
-        <p><strong>Fjer:</strong> lette, stærke og isolerende — afgørende for flyveevnen og temperaturreguleringen.</p>
-        <p><strong>Varmblodede:</strong> opretholder konstant høj kropstemperatur uanset omgivelserne.</p>
-        <p><strong>Modificerede forlemmer til vinger:</strong> fuglenes arme er omdannet til vinger med fjerdækket flyveflade.</p>
-        <p><strong>Let knogleskelet:</strong> mange knogler er luftfyldte, hvilket reducerer vægten drastisk.</p>
-        <p><strong>Næb uden tænder:</strong> hos moderne fugle — letter kraniet og reducerer vægten.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- SIDE_INDHOLD: her tilføjer/retter du indholdet på siden. Kopiér en blok, ret felterne.
+     Felterne står i den rækkefølge, de vises på skærmen (tekst-siden er som standard
+     til venstre, billedet til højre — sæt side: "venstre" for at bytte om). -->
+<script>
+const SIDE_INDHOLD = [
+  {
+    type: "tekst-billede",
+    overskrift: "Sådan opstod de",
+    overskriftLille: "Erobringen af luften",
+    tekst: [
+      "Fuglene opstod fra theropode dinosaurer for ca. 150–160 mio. år siden i juraperioden. Archaeopteryx er det berømteste fossil fra overgangen. I dag udgøres klassen af over 10.000 arter.",
+      "Fjerene er sandsynligvis opstået hos dinosaurer primært til isolation og måske signalering — ikke til flyvning. Men de viste sig at være perfekte til at skabe en flyveflade. Evnen til at flyve åbnede et helt nyt tredimensionalt rum, som ingen andre hvirveldyr beherskede fuldt ud: luften.",
+      "Flyvning kræver et enormt energiforbrug. Det er her, varmblodet bliver afgørende. Fugle kan opretholde høj muskelaktivitet uanset om det er koldt eller varmt — en umulighed for vekselvarmede dyr. Prisen er et højt fødeforbrug, men gevinsten er enorm: fugle kan leve i arktis, troperne og alt derimellem.",
+      "Det lette skelet og næb uden tænder tjener ét formål: at gøre kroppen så let som muligt. Flyvning er dyrt i energi, og evolutionen har trimmet alt unødvendigt væk."
+    ],
+    billede: "assets/images/archaeopteryx-1256x858.jpeg",
+    altTekst: "Archaeopteryx",
+    billedtekst: "Archaeopteryx: overgangsdyr mellem krybdyr og fugl."
+  },
+  {
+    type: "tekst-billede",
+    overskriftLille: "Kendetegn",
+    tekst: [
+      "<strong>Fjer:</strong> lette, stærke og isolerende — afgørende for flyveevnen og temperaturreguleringen.",
+      "<strong>Varmblodede:</strong> opretholder konstant høj kropstemperatur uanset omgivelserne.",
+      "<strong>Modificerede forlemmer til vinger:</strong> fuglenes arme er omdannet til vinger med fjerdækket flyveflade.",
+      "<strong>Let knogleskelet:</strong> mange knogler er luftfyldte, hvilket reducerer vægten drastisk.",
+      "<strong>Næb uden tænder:</strong> hos moderne fugle — letter kraniet og reducerer vægten."
+    ],
+    billede: "assets/images/varmblodet20fugl-1344x768.png",
+    altTekst: "Fugl set med varmekamera",
+    billedtekst: "Hvis man tager et billede af en fugl med et varmekamera, kan man se at den er varmere end omgivelserne. Man siger at den er varmblodet."
+  }
+];
+</script>
 
 <div class="wrap">
   <div class="pager">

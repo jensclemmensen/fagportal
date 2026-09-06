@@ -28,45 +28,41 @@
   <h1>Bruskfisk</h1>
 </div>
 
-<section class="section">
-  <div class="wrap">
-    <div class="section-split">
-      <div class="section-split-img">
-        <figure>
-          <img src="assets/images/kmpemanta-verdens-strste-rokke.webp" alt="Kæmpemanta, verdens største rokke">
-          <figcaption>Kæmpemanta: verdens største rokke.</figcaption>
-        </figure>
-      </div>
-      <div class="section-split-text">
-        <h2>Sådan opstod de</h2>
-        <h3>Kæbe og manøvredygtighed</h3>
-        <p>Bruskfiskene opstod for omkring 450 mio. år siden. Hajer, rokker og havmus er nutidens repræsentanter.</p>
-        <p>Udviklingen af kæben gjorde det muligt for bruskfiskene at lave aktiv jagt, da de nu kunne holde fast i føden samt jage større bytte.</p>
-        <p>De parrede finner løste et nyt problem: styring. En svømmende krop har tendens til at rulle og dreje sig ukontrolleret. Brystfinnerne fungerer som vinger i vandet og giver hajkroppen præcis manøvredygtighed — afgørende for en aktiv jæger.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<div id="side-indhold"></div>
 
-<section class="section section-alt">
-  <div class="wrap">
-    <div class="section-split">
-      <div class="section-split-img">
-        <figure>
-          <img src="assets/images/parrede20finner-1200x803.jpg" alt="Tigerhaj med parrede finner">
-          <figcaption>Tigerhaj. Læg mærke til de fire finner der sidder i par på bryst og bug — det er de parrede finner.</figcaption>
-        </figure>
-      </div>
-      <div class="section-split-text">
-        <h3>Kendetegn</h3>
-        <p><strong>Skelet af brusk.</strong></p>
-        <p><strong>Kæbe med udskiftelige tænder:</strong> hajer kan skifte tænder tusindvis af gange i løbet af livet.</p>
-        <p><strong>Parrede finner:</strong> brystfinner og bugfinner giver kontrol over bevægelse i alle tre dimensioner.</p>
-        <p><strong>Ingen svømmeblære:</strong> bruskfiskene kompenserer med store fedtfyldte levere, der giver opdrift.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- SIDE_INDHOLD: her tilføjer/retter du indholdet på siden. Kopiér en blok, ret felterne.
+     Felterne står i den rækkefølge, de vises på skærmen (tekst-siden er som standard
+     til venstre, billedet til højre — sæt side: "venstre" for at bytte om). -->
+<script>
+const SIDE_INDHOLD = [
+  {
+    type: "tekst-billede",
+    overskrift: "Sådan opstod de",
+    overskriftLille: "Kæbe og manøvredygtighed",
+    tekst: [
+      "Bruskfiskene opstod for omkring 450 mio. år siden. Hajer, rokker og havmus er nutidens repræsentanter.",
+      "Udviklingen af kæben gjorde det muligt for bruskfiskene at lave aktiv jagt, da de nu kunne holde fast i føden samt jage større bytte.",
+      "De parrede finner løste et nyt problem: styring. En svømmende krop har tendens til at rulle og dreje sig ukontrolleret. Brystfinnerne fungerer som vinger i vandet og giver hajkroppen præcis manøvredygtighed — afgørende for en aktiv jæger."
+    ],
+    billede: "assets/images/kmpemanta-verdens-strste-rokke.webp",
+    altTekst: "Kæmpemanta, verdens største rokke",
+    billedtekst: "Kæmpemanta: verdens største rokke."
+  },
+  {
+    type: "tekst-billede",
+    overskriftLille: "Kendetegn",
+    tekst: [
+      "<strong>Skelet af brusk.</strong>",
+      "<strong>Kæbe med udskiftelige tænder:</strong> hajer kan skifte tænder tusindvis af gange i løbet af livet.",
+      "<strong>Parrede finner:</strong> brystfinner og bugfinner giver kontrol over bevægelse i alle tre dimensioner.",
+      "<strong>Ingen svømmeblære:</strong> bruskfiskene kompenserer med store fedtfyldte levere, der giver opdrift."
+    ],
+    billede: "assets/images/parrede20finner-1200x803.jpg",
+    altTekst: "Tigerhaj med parrede finner",
+    billedtekst: "Tigerhaj. Læg mærke til de fire finner der sidder i par på bryst og bug — det er de parrede finner."
+  }
+];
+</script>
 
 <div class="wrap">
   <div class="pager">

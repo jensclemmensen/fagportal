@@ -28,44 +28,40 @@
   <h1>Krybdyr</h1>
 </div>
 
-<section class="section">
-  <div class="wrap">
-    <div class="section-split">
-      <div class="section-split-img">
-        <figure>
-          <img src="assets/images/padder201-1200x795.jpeg" alt="En ildsalamander">
-          <figcaption>En ildsalamander.</figcaption>
-        </figure>
-      </div>
-      <div class="section-split-text">
-        <h2>Sådan opstår de</h2>
-        <h3>Det vandtætte æg</h3>
-        <p>Krybdyrene opstod for ca. 320 mio. år siden. De var de første ægte landdyr, der ikke behøvede vand til formering. Øgler, slanger, skildpadder og krokodiller er nutidige repræsentanter for klassen.</p>
-        <p>Det vandtætte æg er krybdyrenes store gennembrud. Mens paddeæg tørrer ud på land, har krybdyrenes æg sit eget mini-hav inde i sig — æggets læderhud holder på fugten og beskytter fosteret mod udtørring, mekanisk skade og bakterier. Dette ene træk frigjorde hvirveldyrene fra afhængigheden af åbent vand og åbnede hele den tørre landjord som levested.</p>
-        <p>Den vandtætte hud — dækket af keratinrige skæl eller plader — supplerede frigørelsen fra vand. Nu kunne krybdyrene kolonisere ørkenagtige og halvtørre habitater, som var fuldstændig utilgængelige for padder.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<div id="side-indhold"></div>
 
-<section class="section section-alt">
-  <div class="wrap">
-    <div class="section-split">
-      <div class="section-split-img">
-        <figure>
-          <img src="assets/images/c3a6g20med20lc3a6der20hud-1024x731.png" alt="Skildpaddeæg med læderhud">
-          <figcaption>Skildpaddeæg med læderhud. På trods af det meget dumme navn, er en skildpadde altså et krybdyr!</figcaption>
-        </figure>
-      </div>
-      <div class="section-split-text">
-        <h3>Kendetegn</h3>
-        <p><strong>Vandtæt skælhud:</strong> så i modsætning til padder behøver krybdyr ikke leve et fugtigt sted — de kan leve selv i ørkenen.</p>
-        <p><strong>Æg med vandtæt læderhud:</strong> så krybdyrenes æg kan ikke tørre ud ligesom padders.</p>
-        <p><strong>Specialiserede kæber og tænder:</strong> enorm variation, fra tænder der holder slap bytte til tænder der knuser skaller.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- SIDE_INDHOLD: her tilføjer/retter du indholdet på siden. Kopiér en blok, ret felterne.
+     Felterne står i den rækkefølge, de vises på skærmen (tekst-siden er som standard
+     til venstre, billedet til højre — sæt side: "venstre" for at bytte om). -->
+<script>
+const SIDE_INDHOLD = [
+  {
+    type: "tekst-billede",
+    overskrift: "Sådan opstår de",
+    overskriftLille: "Det vandtætte æg",
+    tekst: [
+      "Krybdyrene opstod for ca. 320 mio. år siden. De var de første ægte landdyr, der ikke behøvede vand til formering. Øgler, slanger, skildpadder og krokodiller er nutidige repræsentanter for klassen.",
+      "Det vandtætte æg er krybdyrenes store gennembrud. Mens paddeæg tørrer ud på land, har krybdyrenes æg sit eget mini-hav inde i sig — æggets læderhud holder på fugten og beskytter fosteret mod udtørring, mekanisk skade og bakterier. Dette ene træk frigjorde hvirveldyrene fra afhængigheden af åbent vand og åbnede hele den tørre landjord som levested.",
+      "Den vandtætte hud — dækket af keratinrige skæl eller plader — supplerede frigørelsen fra vand. Nu kunne krybdyrene kolonisere ørkenagtige og halvtørre habitater, som var fuldstændig utilgængelige for padder."
+    ],
+    billede: "assets/images/padder201-1200x795.jpeg",
+    altTekst: "En ildsalamander",
+    billedtekst: "En ildsalamander."
+  },
+  {
+    type: "tekst-billede",
+    overskriftLille: "Kendetegn",
+    tekst: [
+      "<strong>Vandtæt skælhud:</strong> så i modsætning til padder behøver krybdyr ikke leve et fugtigt sted — de kan leve selv i ørkenen.",
+      "<strong>Æg med vandtæt læderhud:</strong> så krybdyrenes æg kan ikke tørre ud ligesom padders.",
+      "<strong>Specialiserede kæber og tænder:</strong> enorm variation, fra tænder der holder slap bytte til tænder der knuser skaller."
+    ],
+    billede: "assets/images/c3a6g20med20lc3a6der20hud-1024x731.png",
+    altTekst: "Skildpaddeæg med læderhud",
+    billedtekst: "Skildpaddeæg med læderhud. På trods af det meget dumme navn, er en skildpadde altså et krybdyr!"
+  }
+];
+</script>
 
 <div class="wrap">
   <div class="pager">
