@@ -108,15 +108,15 @@
     imgSide.appendChild(figure);
 
     var textSide = el("div", "section-split-text");
-    if (b.overskriftLille) {
-      var h3 = el("h3");
-      h3.textContent = b.overskriftLille;
-      textSide.appendChild(h3);
-    }
     if (b.overskrift) {
       var h2 = el("h2");
       h2.textContent = b.overskrift;
       textSide.appendChild(h2);
+    }
+    if (b.overskriftLille) {
+      var h3 = el("h3");
+      h3.textContent = b.overskriftLille;
+      textSide.appendChild(h3);
     }
     var afsnit = Array.isArray(b.tekst) ? b.tekst : [b.tekst];
     afsnit.forEach(function (t) {
