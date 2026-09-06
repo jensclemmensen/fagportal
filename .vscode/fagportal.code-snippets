@@ -51,10 +51,28 @@
       "  type: \"video\",",
       "  overskrift: \"${1:Overskriften}\",",
       "  youtubeId: \"${2:youtube-id}\",",
+      "  tekst: \"${3:Valgfri beskrivelse under titlen}\",",
       "  visning: \"kort\"",
       "},"
     ],
-    "description": "Video som et kort, der linker ud til YouTube (som under Valgfag)"
+    "description": "Ét enkelt video-kort, der linker ud til YouTube"
+  },
+  "Blok: video (flere kort i ét grid)": {
+    "scope": "html,javascript",
+    "prefix": "blok-video-kort-grid",
+    "body": [
+      "{",
+      "  type: \"video\",",
+      "  visning: \"kort\",",
+      "  overskrift: \"${1:Overskriften over hele gitteret}\",",
+      "  overskriftJustering: \"${2|venstre,centreret|}\",",
+      "  videoer: [",
+      "    { youtubeId: \"${3:youtube-id}\", overskrift: \"${4:Titel}\", billede: \"assets/images/${5:billede.jpg}\" },",
+      "    { youtubeId: \"${6:youtube-id}\", overskrift: \"${7:Titel}\", billede: \"assets/images/${8:billede.jpg}\" }",
+      "  ]",
+      "},"
+    ],
+    "description": "Flere video-kort i ét fælles grid (som under Valgfag → Flere tutorials). Hvert kort kan også få et valgfrit \"tekst\"-felt, og \"start\" (sekunder) hvis videoen skal starte et bestemt sted."
   },
   "Blok: billede": {
     "scope": "html,javascript",
