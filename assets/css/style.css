@@ -152,6 +152,47 @@ img { max-width: 100%; display: block; }
 
 .page-header h1 { margin-bottom: 0.3rem; }
 
+/* --- Tilhørende opgaver --- */
+
+.page-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.opgave-knap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--paper-alt);
+  color: var(--blue-dark);
+  border: 1px solid var(--blue);
+  border-radius: var(--radius);
+  padding: 0.55rem 1rem;
+  font-weight: 600;
+}
+.opgave-knap:hover { background: var(--paper); }
+.opgave-antal {
+  background: var(--blue);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0 0.6rem;
+  font-size: 0.85rem;
+}
+#opgaver { scroll-margin-top: 4.5rem; }
+.opgave {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.4rem;
+  margin-bottom: 1rem;
+}
+.opgave h3 { font-size: 1.15rem; color: var(--ink); margin-bottom: 0.6rem; }
+.opgave ul { margin: 0 0 1em; padding-left: 1.3rem; color: var(--ink-soft); }
+.opgave li { margin-bottom: 0.3rem; font-size: 1.05rem; }
+.opgave-link { font-weight: 600; }
+
 .crumb {
   display: inline-block;
   margin-bottom: 1.5rem;

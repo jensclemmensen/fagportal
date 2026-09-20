@@ -121,6 +121,28 @@ const BLOK_EKSEMPLER = [
     ]
   },
 
+  // ---- TILHØRENDE OPGAVER: en ANDEN liste end SIDE_INDHOLD ----
+  // Sættes i sit eget <script>-tag på siden, som: const OPGAVER = [ ... ];
+  // (se afstemme-reaktionsskemaer.html). Findes listen, får siden en knap
+  // "Tilhørende opgaver" øverst, og opgaverne vises nederst på siden.
+  // Alle felter er valgfri: titel, tekst (tekst eller liste af afsnit),
+  // punkter (punktliste), link + linkTekst.
+  {
+    titel: "Opgave med tekst og punkter",
+    tekst: "Opgavens beskrivelse.",
+    punkter: [
+      "Første punkt.",
+      "Andet punkt."
+    ]
+  },
+
+  // ---- Opgave der linker til en fil eller en anden side ----
+  {
+    titel: "Opgaveark",
+    link: "opgaver/filnavn.pdf",
+    linkTekst: "Åbn opgaven"
+  },
+
   // ---- Nyt kort til EMNE_LISTE (vises på fagets egen forside, fx fysik-kemi.html) ----
   {
     billede: "assets/images/billede.jpg",

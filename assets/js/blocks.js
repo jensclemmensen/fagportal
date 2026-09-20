@@ -282,6 +282,76 @@
     });
   }
 
+  // ---------- tilhørende opgaver (knap øverst + sektion nederst) ----------
+
+  function lavOpgave(o) {
+    var kort = el("div", "opgave");
+    if (o.titel) {
+      var h3 = el("h3");
+      h3.textContent = o.titel;
+      kort.appendChild(h3);
+    }
+    var afsnit = Array.isArray(o.tekst) ? o.tekst : (o.tekst ? [o.tekst] : []);
+    afsnit.forEach(function (t) {
+      var p = el("p");
+      p.innerHTML = t;
+      kort.appendChild(p);
+    });
+    if (o.punkter && o.punkter.length) {
+      var ul = el("ul");
+      o.punkter.forEach(function (t) {
+        var li = el("li");
+        li.innerHTML = t;
+        ul.appendChild(li);
+      });
+      kort.appendChild(ul);
+    }
+    if (o.link) {
+      var a = el("a", "opgave-link");
+      a.href = o.link;
+      a.textContent = (o.linkTekst || "Åbn opgaven") + " →";
+      if (/^https?:/.test(o.link)) {
+        a.target = "_blank";
+        a.rel = "noopener";
+      }
+      kort.appendChild(a);
+    }
+    return kort;
+  }
+
+  function renderOpgaver(liste) {
+    if (!liste || !liste.length) return;
+
+    var section = el("section", "section section-alt");
+    section.id = "opgaver";
+    var wrap = el("div", "wrap");
+    wrap.style.maxWidth = "820px";
+    var h2 = el("h2");
+    h2.textContent = "Tilhørende opgaver";
+    wrap.appendChild(h2);
+    safeEach(liste, function (o) {
+      wrap.appendChild(lavOpgave(o));
+    });
+    section.appendChild(wrap);
+
+    var pager = document.querySelector(".pager");
+    var fodfelt = pager ? pager.parentNode : document.querySelector(".site-footer");
+    if (!fodfelt || !fodfelt.parentNode) return;
+    fodfelt.parentNode.insertBefore(section, fodfelt);
+
+    var h1 = document.querySelector(".page-header h1");
+    if (h1) {
+      var rk = el("div", "page-title-row");
+      h1.parentNode.insertBefore(rk, h1);
+      rk.appendChild(h1);
+      var knap = el("a", "opgave-knap");
+      knap.href = "#opgaver";
+      knap.innerHTML = 'Tilhørende opgaver <span class="opgave-antal"></span>';
+      knap.querySelector(".opgave-antal").textContent = liste.length;
+      rk.appendChild(knap);
+    }
+  }
+
   // ---------- kør automatisk når siden er klar ----------
 
   // OBS: denne fil skal indlæses FØR main.js i <script>-rækkefølgen,
@@ -291,5 +361,6 @@
     if (typeof FAG_LISTE !== "undefined") renderKortGrid("fag-kort", FAG_LISTE);
     if (typeof EMNE_LISTE !== "undefined") renderKortGrid("emne-kort", EMNE_LISTE);
     if (typeof SIDE_INDHOLD !== "undefined") renderIndhold("side-indhold", SIDE_INDHOLD);
+    if (typeof OPGAVER !== "undefined") renderOpgaver(OPGAVER);
   });
 })();

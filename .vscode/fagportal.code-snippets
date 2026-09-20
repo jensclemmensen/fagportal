@@ -103,6 +103,48 @@
     ],
     "description": "Nummereret eller unummereret liste (fx reaktionsskemaer)"
   },
+  "Opgave: tilhørende opgave (med tekst og punkter)": {
+    "scope": "html,javascript",
+    "prefix": "blok-opgave",
+    "body": [
+      "{",
+      "  titel: \"${1:Titel på opgaven}\",",
+      "  tekst: \"${2:Opgavetekst}\",",
+      "  punkter: [",
+      "    \"${3:Første punkt}\",",
+      "    \"${4:Andet punkt}\"",
+      "  ]",
+      "},"
+    ],
+    "description": "Ny opgave til OPGAVER-listen (vises som 'Tilhørende opgaver' på siden). Punkter, tekst og link er alle valgfri."
+  },
+  "Opgave: tilhørende opgave (link til fil/side)": {
+    "scope": "html,javascript",
+    "prefix": "blok-opgave-link",
+    "body": [
+      "{",
+      "  titel: \"${1:Titel på opgaven}\",",
+      "  link: \"${2:opgaver/filnavn.pdf}\",",
+      "  linkTekst: \"${3:Åbn opgaven}\"",
+      "},"
+    ],
+    "description": "Ny opgave der linker til en fil eller anden side"
+  },
+  "Opgave: hele OPGAVER-listen til en side": {
+    "scope": "html",
+    "prefix": "blok-opgaver-liste",
+    "body": [
+      "<script>",
+      "const OPGAVER = [",
+      "  {",
+      "    titel: \"${1:Titel på opgaven}\",",
+      "    tekst: \"${2:Opgavetekst}\"",
+      "  }",
+      "];",
+      "</script>"
+    ],
+    "description": "Gør en side til en side med 'Tilhørende opgaver' (sættes lige før <footer>)"
+  },
   "Kort: emne (på fagets forside)": {
     "scope": "html,javascript",
     "prefix": "blok-emne-kort",
