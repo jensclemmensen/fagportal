@@ -49,17 +49,30 @@ const SIDE_INDHOLD = [
     visning: "indlejret"
   },
   {
+    type: "info-boks",
+    overskrift: "Hvis du bruger molekylebyggesæt til hjælp",
+    tabelHoveder: ["Atomets symbol", "Farve", "Antal huller"],
+    tabelRaekker: [
+      ["O", "Rød", "2"],
+      ["H", "Hvid", "1"],
+      ["C", "Sort", "4"],
+      ["N", "Blå", "3"]
+    ],
+    billede: "assets/images/Molekylebyggesæt.jpg",
+    fodnote: "<strong>OBS: Reaktionsskemaer i <span class=\"reaction-ion\">denne farve</span> indeholder ioner, og kan derfor ikke bygges med molekylemodeller</strong>"
+  },
+  {
     type: "liste",
     overskrift: "Giv den gas!!",
     undertekst: "Afstem følgende reaktionsskemaer:",
     nummereret: true,
     punkter: [
       "$$H2 + O2 -> H2O$$",
-      "$$CaCO3 -> CaO + CO2$$",
       "$$CH4 + O2 -> H2O + CO2$$",
       "$$H2 + N2 -> NH3$$",
       "$$C7H16 + O2 -> CO2 + H2O$$",
-      "$$H2CO3 -> CO2 + H2O$$"
+      "$$H2CO3 -> CO2 + H2O$$",
+      "<span class=\"reaction-ion\">$$CaCO3 -> CaO + CO2$$</span>"
     ]
   },
   {
@@ -70,17 +83,17 @@ const SIDE_INDHOLD = [
       "$$C6H12O6 + O2 -> CO2 + H2O$$",
       "$$C4H8S + O2 -> CO2 + H2O + SO2$$",
       "$$C3H8 + O2 -> CO2 + H2O$$",
-      "$$AgNO3 + Na2S -> Ag2S + NaNO3$$",
-      "$$NH4NO3 -> N2 + O2 + H2O$$",
-      "$$NH4NO3 -> N2O + H2O$$",
       "$$C6H12 + O2 -> CO2 + H2O$$",
-      "$$H2SO4 + NaCl -> Na2SO4 + HCl$$",
       "$$CO2 + H2O -> C6H12O6 + O2$$",
-      "$$H2O + SO2 + Cl2 -> SO4^2- + Cl- + H+$$",
-      "$$NaN3 -> Na + N2$$",
-      "$$Al + S -> Al2S3$$",
-      "$$NaHCO3 -> Na2CO3 + H2O + CO2$$",
-      "$$Mg + HCl -> H2 + MgCl2$$"
+      "<span class=\"reaction-ion\">$$AgNO3 + Na2S -> Ag2S + NaNO3$$</span>",
+      "<span class=\"reaction-ion\">$$NH4NO3 -> N2 + O2 + H2O$$</span>",
+      "<span class=\"reaction-ion\">$$NH4NO3 -> N2O + H2O$$</span>",
+      "<span class=\"reaction-ion\">$$H2SO4 + NaCl -> Na2SO4 + HCl$$</span>",
+      "<span class=\"reaction-ion\">$$H2O + SO2 + Cl2 -> SO4^2- + Cl- + H+$$</span>",
+      "<span class=\"reaction-ion\">$$NaN3 -> Na + N2$$</span>",
+      "<span class=\"reaction-ion\">$$Al + S -> Al2S3$$</span>",
+      "<span class=\"reaction-ion\">$$NaHCO3 -> Na2CO3 + H2O + CO2$$</span>",
+      "<span class=\"reaction-ion\">$$Mg + HCl -> H2 + MgCl2$$</span>"
     ]
   },
   {
@@ -94,7 +107,7 @@ const SIDE_INDHOLD = [
       "$$C4H10 + O2 -> CO2 + H2O$$",
       "$$C2H2 + O2 -> CO2 + H2O$$",
       "$$CH3OH + O2 -> HCHO + H2O$$",
-      "$$KClO3 -> KCl + O2$$"
+      "<span class=\"reaction-ion\">$$KClO3 -> KCl + O2$$</span>"
     ]
   }
 ];

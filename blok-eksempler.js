@@ -121,6 +121,20 @@ const BLOK_EKSEMPLER = [
     ]
   },
 
+  // ---- Info-boks: et kort med overskrift, tabel og valgfri fodnote ----
+  // (fx en huskeliste, se afstemme-reaktionsskemaer.html)
+  {
+    type: "info-boks",
+    overskrift: "Overskriften",
+    tabelHoveder: ["Kolonne 1", "Kolonne 2"],
+    tabelRaekker: [
+      ["Række 1, celle 1", "Række 1, celle 2"],
+      ["Række 2, celle 1", "Række 2, celle 2"]
+    ],
+    billede: "assets/images/billede.jpg",
+    fodnote: "Valgfri tekst nederst i kortet."
+  },
+
   // ---- TILHØRENDE OPGAVER: en ANDEN liste end SIDE_INDHOLD ----
   // Sættes i sit eget <script>-tag på siden, som: const OPGAVER = [ ... ];
   // (se afstemme-reaktionsskemaer.html). Findes listen, får siden en knap

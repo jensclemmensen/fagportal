@@ -103,6 +103,24 @@
     ],
     "description": "Nummereret eller unummereret liste (fx reaktionsskemaer)"
   },
+  "Blok: info-boks (kort med tabel)": {
+    "scope": "html,javascript",
+    "prefix": "blok-info-boks",
+    "body": [
+      "{",
+      "  type: \"info-boks\",",
+      "  overskrift: \"${1:Overskriften}\",",
+      "  tabelHoveder: [\"${2:Kolonne 1}\", \"${3:Kolonne 2}\"],",
+      "  tabelRaekker: [",
+      "    [\"${4:Række 1, celle 1}\", \"${5:Række 1, celle 2}\"],",
+      "    [\"${6:Række 2, celle 1}\", \"${7:Række 2, celle 2}\"]",
+      "  ],",
+      "  billede: \"assets/images/${8:billede.jpg}\",",
+      "  fodnote: \"${9:Valgfri tekst nederst i kortet}\"",
+      "},"
+    ],
+    "description": "Et kort med overskrift, tabel, valgfrit billede til højre for tabellen og valgfri fodnote"
+  },
   "Opgave: tilhørende opgave (med tekst og punkter)": {
     "scope": "html,javascript",
     "prefix": "blok-opgave",

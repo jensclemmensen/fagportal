@@ -8,6 +8,7 @@
   --line: #e8e8e8;
   --blue: #6592e6;
   --blue-dark: #4472c4;
+  --violet-dark: #7c3aed;
   --radius: 6px;
   --maxw: 1200px;
 }
@@ -636,6 +637,53 @@ a.card { color: inherit; text-decoration: none !important; }
 }
 .reaction-eq sub { font-size: 0.7em; }
 .reaction-eq sup { font-size: 0.7em; }
+.reaction-ion { color: var(--violet-dark); }
+
+/* --- Info-boks (fx byggesæt-tabel) --- */
+
+.info-boks {
+  background: #eaf1fc;
+  border: 1px solid var(--blue);
+  border-radius: var(--radius);
+  padding: 1.6rem 1.8rem;
+}
+.info-boks h2 { margin-bottom: 1.2rem; }
+.info-boks-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.info-boks-table-wrap { overflow-x: auto; }
+.info-boks-table {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+.info-boks-table th,
+.info-boks-table td {
+  text-align: center;
+  padding: 0.5rem 1.2rem;
+  border: 1px solid var(--blue);
+}
+.info-boks-table thead th {
+  background: var(--paper);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.info-boks-table tbody { background: var(--paper); }
+.info-boks-img { flex: 0 1 240px; }
+.info-boks-img img {
+  width: 100%;
+  border-radius: var(--radius);
+  display: block;
+}
+.info-boks-fodnote {
+  margin: 1.4rem 0 0;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  text-align: center;
+}
 .reaction-arrow {
   color: var(--blue-dark);
   font-weight: 700;

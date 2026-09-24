@@ -237,7 +237,7 @@
     if (b.undertekst) {
       var p = el("p");
       p.style.textAlign = "center";
-      p.textContent = b.undertekst;
+      p.innerHTML = b.undertekst;
       wrap.appendChild(p);
     }
     var ul = el("ul", "reaction-list");
@@ -261,11 +261,66 @@
     return wrap;
   }
 
+  function lavInfoBoks(b) {
+    var wrap = el("div", "wrap");
+    wrap.style.maxWidth = "820px";
+    var boks = el("div", "info-boks");
+    if (b.overskrift) {
+      var h2 = el("h2");
+      h2.textContent = b.overskrift;
+      boks.appendChild(h2);
+    }
+    var body = el("div", "info-boks-body");
+    if (b.tabelHoveder && b.tabelRaekker) {
+      var tableWrap = el("div", "info-boks-table-wrap");
+      var table = el("table", "info-boks-table");
+      var thead = el("thead");
+      var trh = el("tr");
+      b.tabelHoveder.forEach(function (h) {
+        var th = el("th");
+        th.textContent = h;
+        trh.appendChild(th);
+      });
+      thead.appendChild(trh);
+      table.appendChild(thead);
+      var tbody = el("tbody");
+      b.tabelRaekker.forEach(function (raekke) {
+        var tr = el("tr");
+        raekke.forEach(function (celle) {
+          var td = el("td");
+          td.textContent = celle;
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+      tableWrap.appendChild(table);
+      body.appendChild(tableWrap);
+    }
+    if (b.billede) {
+      var imgWrap = el("div", "info-boks-img");
+      var img = el("img");
+      img.src = b.billede;
+      img.alt = b.overskrift || "";
+      imgWrap.appendChild(img);
+      body.appendChild(imgWrap);
+    }
+    boks.appendChild(body);
+    if (b.fodnote) {
+      var p = el("p", "info-boks-fodnote");
+      p.innerHTML = b.fodnote;
+      boks.appendChild(p);
+    }
+    wrap.appendChild(boks);
+    return wrap;
+  }
+
   var BYGGERE = {
     "tekst-billede": lavTekstBillede,
     "video": lavVideo,
     "billede": lavBillede,
-    "liste": lavListe
+    "liste": lavListe,
+    "info-boks": lavInfoBoks
   };
 
   function renderIndhold(containerId, liste) {
