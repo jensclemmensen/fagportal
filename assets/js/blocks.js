@@ -353,13 +353,13 @@
       kort.appendChild(p);
     });
     if (o.punkter && o.punkter.length) {
-      var ul = el("ul");
+      var ol = el("ol");
       o.punkter.forEach(function (t) {
         var li = el("li");
         li.innerHTML = t;
-        ul.appendChild(li);
+        ol.appendChild(li);
       });
-      kort.appendChild(ul);
+      kort.appendChild(ol);
     }
     if (o.link) {
       var a = el("a", "opgave-link");

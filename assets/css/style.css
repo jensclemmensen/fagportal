@@ -190,7 +190,7 @@ img { max-width: 100%; display: block; }
   margin-bottom: 1rem;
 }
 .opgave h3 { font-size: 1.15rem; color: var(--ink); margin-bottom: 0.6rem; }
-.opgave ul { margin: 0 0 1em; padding-left: 1.3rem; color: var(--ink-soft); }
+.opgave ol { margin: 0 0 1em; padding-left: 1.3rem; color: var(--ink-soft); }
 .opgave li { margin-bottom: 0.3rem; font-size: 1.05rem; }
 .opgave-link { font-weight: 600; }
 
