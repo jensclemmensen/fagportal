@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atombyggeren — El FagPortal de Jensemand</title>
+<meta name="description" content="Byg atomer af protoner, neutroner og elektroner, og test dig selv i spillet med grundstof 1-12.">
+<link rel="icon" href="assets/images/favicon.png">
+<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Atombyggerens skrifttyper. Tallene 0-9 hentes fra Source Sans 3, så nul vises uden streg igennem -->
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;700&text=0123456789&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+
+<style>
+/* =====================================================================
+   ATOMBYGGEREN
+   Alle regler starter med .ab, så de kun gælder inde i værktøjet.
+   ===================================================================== */
+.ab{
+  --paper:#EEF2EF; --surface:#FFFFFF; --ink:#1D2733; --ink-soft:#56626E; --line:#C3CCC7; --tray:#E3E9E5;
+  --proton:#D93A36; --neutron:#9AA4A9; --electron:#2563C9; --tile:#BDE5B0;
+  --ok:#1F8A5B; --ok-bg:#E2F1E8; --warn:#B4540F; --warn-bg:#FBEBDC;
+  --ab-font:"Source Sans 3","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif;
+  display:flex; flex-direction:column; width:100%; margin:.8rem 0 0;
+  background:var(--paper); color:var(--ink);
+  font:400 1.0625rem/1.5 var(--ab-font); font-variant-numeric:tabular-nums; text-align:left;
+}
+.ab *,.ab *::before,.ab *::after{box-sizing:border-box}
+.ab [hidden]{display:none!important}
+.ab :focus-visible{outline:3px solid var(--electron);outline-offset:2px}
+/* Nulstil det, sidens eget stylesheet kan have sat på knapper, felter og overskrifter */
+.ab button{margin:0;padding:0;border:0;border-radius:0;background:none;box-shadow:none;font:inherit;color:inherit;line-height:inherit;text-transform:none;letter-spacing:normal;text-align:center;width:auto;min-width:0;min-height:0}
+.ab input{margin:0;font:inherit;color:inherit;box-shadow:none}
+.ab h1,.ab h2,.ab p,.ab dl,.ab dt,.ab dd,.ab ol,.ab ul,.ab li{margin:0;padding:0}
+.ab h1,.ab h2{font-family:inherit;color:inherit;text-transform:none;letter-spacing:normal}
+.ab ol,.ab ul{list-style:none}
+.ab .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+.ab[data-mode="free"] .game-only{display:none!important}
+.ab[data-mode="game"] .free-only{display:none!important}
+
+/* Top */
+.ab .top{flex:none;width:100%;max-width:1180px;margin:0 auto;padding:12px 20px 4px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px}
+.ab .top h1{font-size:1.6rem;line-height:1.1;font-weight:700;letter-spacing:-.01em}
+.ab .top p{margin-top:.15rem;color:var(--ink-soft);font-size:.975rem}
+.ab .modes{display:inline-flex;border:2px solid var(--ink);border-radius:999px;padding:3px;background:var(--surface)}
+.ab .modes button{padding:.4em 1.25em;border-radius:999px;font-weight:700;cursor:pointer;min-height:40px}
+.ab .modes button[aria-pressed="true"]{background:var(--ink);color:#fff}
+
+/* Layout */
+.ab .layout{width:100%;max-width:1180px;margin:0 auto;padding:10px 20px 16px;display:grid;
+  grid-template-columns:minmax(0,1.3fr) minmax(300px,1fr);
+  grid-template-areas:"stage head" "stage rest";grid-template-rows:auto 1fr;gap:16px 30px;align-items:start}
+.ab .stage{grid-area:stage}
+.ab .head{grid-area:head}
+.ab .rest{grid-area:rest}
+
+/* Atomfeltet */
+.ab .stage{background:var(--surface);border:1.5px solid #D3DAD6;border-radius:24px;overflow:hidden}
+.ab .atom-wrap{position:relative;width:100%;max-width:620px;aspect-ratio:1/1;margin:0 auto}
+.ab .atom-svg{position:absolute;top:6px;left:6px;width:calc(100% - 12px);height:calc(100% - 12px);display:block;touch-action:none;overflow:visible;user-select:none;-webkit-user-select:none}
+.ab .shell{fill:none;stroke:var(--line);stroke-width:2;stroke-dasharray:2 8;stroke-linecap:round;transition:stroke .15s}
+.ab .shell-label{font:700 17px var(--ab-font);fill:var(--ink-soft);text-anchor:middle;paint-order:stroke;stroke:#fff;stroke-width:6px;stroke-linejoin:round}
+.ab .halo{fill:#F3F6F4;stroke:var(--line);stroke-width:1.5;stroke-dasharray:4 5;transition:fill .15s,stroke .15s}
+.ab .core-label{font:400 15px var(--ab-font);fill:var(--ink-soft);text-anchor:middle;pointer-events:none}
+.ab .drag-nuc .halo{fill:#EAF6E5;stroke:#8CC47E}
+.ab .drag-nuc.drop-over .halo{fill:#D2EDC8;stroke:var(--ink)}
+.ab .drag-e .shell{stroke:#A9C2EC}
+.ab .drag-e.drop-over .shell{stroke:var(--electron)}
+.ab .pt{cursor:grab;transition:transform 420ms cubic-bezier(.2,.8,.2,1)}
+.ab .pt text{font:700 13px var(--ab-font);fill:#fff;text-anchor:middle;pointer-events:none;user-select:none}
+.ab .pt-e text{font-size:15px}
+.ab .no-anim .pt{transition:none}
+
+/* Partikelbakker */
+.ab .trays{flex:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:10px 12px 4px;background:var(--tray)}
+.ab .tray{display:flex;flex-direction:column;align-items:center;text-align:center;padding:8px 6px;border-radius:14px;background:rgba(255,255,255,.6)}
+.ab .source{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:1.35rem;line-height:1;cursor:grab;touch-action:none;margin:2px 0 8px;user-select:none;-webkit-user-select:none;color:#fff}
+.ab .source:active{cursor:grabbing}
+.ab .source-p{background:radial-gradient(circle at 35% 30%,#F59A8F,#D93A36 55%,#9E211D);box-shadow:15px 7px 0 -8px #B92F2B,-13px 8px 0 -9px #C4332F}
+.ab .source-n{background:radial-gradient(circle at 35% 30%,#EEF1F2,#AEB6BB 55%,#7C868C);box-shadow:15px 7px 0 -8px #8F999E,-13px 8px 0 -9px #9AA4A9}
+.ab .source-e{background:radial-gradient(circle at 35% 30%,#8AB3F5,#2563C9 55%,#163F86);box-shadow:15px 7px 0 -8px #1E52A8,-13px 8px 0 -9px #2359B5}
+.ab .tray-name{font-weight:700;line-height:1.2}
+.ab .tray-charge{font-size:.9rem;color:var(--ink-soft)}
+.ab .stepper{display:flex;align-items:center;gap:6px;margin-top:6px}
+.ab .stepper button{width:38px;height:38px;border-radius:50%;border:2px solid var(--ink);background:var(--surface);font-weight:700;font-size:1.25rem;line-height:1;cursor:pointer;display:grid;place-items:center}
+.ab .stepper button:disabled{opacity:.3;cursor:default}
+.ab .stepper output{min-width:2.2ch;font-weight:700;font-size:1.2rem;text-align:center}
+.ab .stage-foot{flex:none;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 16px;padding:6px 16px 14px;background:var(--tray)}
+.ab .status{color:var(--ink-soft);font-size:.95rem;min-height:1.5em}
+.ab .linkbtn{padding:6px 0;text-decoration:underline;text-underline-offset:3px;cursor:pointer;color:var(--ink);font-size:.95rem}
+
+/* Partikel under træk */
+.ab .ghost{position:fixed;left:0;top:0;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;line-height:1;pointer-events:none;z-index:1000;box-shadow:0 8px 18px rgba(29,39,51,.28)}
+.ab .ghost-p{background:radial-gradient(circle at 35% 30%,#F59A8F,#D93A36 55%,#9E211D)}
+.ab .ghost-n{background:radial-gradient(circle at 35% 30%,#EEF1F2,#AEB6BB 55%,#7C868C)}
+.ab .ghost-e{background:radial-gradient(circle at 35% 30%,#8AB3F5,#2563C9 55%,#163F86)}
+
+/* Grundstofbrik og tekst */
+.ab .head{display:flex;flex-direction:column;gap:14px}
+.ab .head-row{display:flex;gap:18px;align-items:flex-start}
+.ab .tile{flex:none;width:160px;aspect-ratio:1;border-radius:10px;padding:10px 12px 12px;display:grid;grid-template-rows:auto 1fr auto;background:var(--tile);border:2px solid rgba(29,39,51,.2)}
+.ab .tile[data-state="empty"]{background:transparent;border:2px dashed var(--line)}
+.ab .tile[data-state="empty"] .tile-symbol{color:var(--line)}
+.ab .tile-z{font-weight:700;font-size:1.3rem;line-height:1;min-height:1em}
+.ab .tile-center{display:grid;place-items:center}
+.ab .tile-symbol{font-weight:700;font-size:4rem;line-height:1;letter-spacing:-.01em;white-space:nowrap}
+.ab .tile-symbol sup{font-size:.36em;vertical-align:top;position:relative;top:.05em;margin-left:.04em}
+.ab .tile-name{text-align:center;font-size:1rem;line-height:1.2;min-height:1.2em}
+.ab .tile-input{width:2.1em;font-weight:700;font-size:3.1rem;line-height:1.15;text-align:center;padding:0;border:0;border-bottom:3px solid var(--ink);background:rgba(255,255,255,.55);border-radius:6px 6px 0 0;height:auto}
+.ab .tile-input::placeholder{color:rgba(29,39,51,.3)}
+.ab .head-text{flex:1;min-width:0}
+.ab .el-title{margin:.1rem 0 .35rem;font-size:1.5rem;line-height:1.15;font-weight:700}
+.ab .el-line{margin-bottom:.3rem}
+.ab .el-line:empty{display:none}
+.ab .soft{color:var(--ink-soft)}
+.ab .dot{display:inline-block;width:.6em;height:.6em;border-radius:50%;margin-right:.45em;vertical-align:.05em}
+.ab .dot.ok{background:var(--ok)}
+.ab .dot.bad{background:var(--warn)}
+.ab .task{margin:.1rem 0 .9rem;font-size:1.1rem;line-height:1.4}
+.ab .task strong{font-size:1.25em}
+.ab .actions{display:flex;flex-wrap:wrap;gap:8px}
+.ab .btn{font-weight:700;padding:.55em 1.15em;min-height:44px;border-radius:999px;border:2px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer}
+.ab .btn-quiet{background:transparent;color:var(--ink)}
+.ab .btn:disabled{opacity:.35;cursor:default}
+.ab .feedback{border-left:5px solid;padding:.6em .9em;border-radius:0 8px 8px 0}
+.ab .feedback ul{padding-left:1.1em;list-style:disc}
+.ab .feedback li+li{margin-top:.3em}
+.ab .feedback .lead{font-weight:700;margin-bottom:.2em}
+.ab .feedback.right{border-color:var(--ok);background:var(--ok-bg)}
+.ab .feedback.wrong{border-color:var(--warn);background:var(--warn-bg)}
+
+/* Ladning, massetal og point */
+.ab .facts{display:grid;grid-template-columns:1fr 1fr;border-top:2px solid var(--ink)}
+.ab .fact{padding:12px 0 4px}
+.ab .fact+.fact{padding-left:18px;border-left:1px solid var(--line)}
+.ab .fact dt{font-weight:700}
+.ab .fact-value{font-size:2.2rem;font-weight:700;line-height:1.1}
+.ab .fact-calc{color:var(--ink-soft);font-size:.92rem}
+.ab .charge-pos{color:var(--proton)}
+.ab .charge-neg{color:var(--electron)}
+.ab .note{margin-top:10px;color:var(--ink-soft);font-size:.95rem;max-width:44ch}
+.ab .progress{margin-top:18px;border-top:2px solid var(--ink);padding-top:12px}
+.ab .progress-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.ab .progress-head p{font-size:1.1rem}
+.ab .progress-head strong{font-size:1.7rem}
+.ab .slots{margin:10px 0 8px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px}
+.ab .slots li{aspect-ratio:1;border-radius:4px;border:1.5px dashed var(--line);display:grid;place-items:center;font-weight:700;font-size:.82rem}
+.ab .slots li.filled{background:var(--tile);border:1.5px solid rgba(29,39,51,.2)}
+.ab .first{color:var(--ink-soft)}
+.ab .first strong{color:var(--ink)}
+
+@keyframes ab-shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+@keyframes ab-pop{0%{transform:scale(1)}40%{transform:scale(1.07)}100%{transform:scale(1)}}
+.ab .tile.shake{animation:ab-shake .4s}
+.ab .tile.pop{animation:ab-pop .45s}
+
+/* Smalle skærme: stables under hinanden */
+@media (max-width:880px){
+  .ab .layout{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "stage" "rest";grid-template-rows:auto}
+}
+/* Tilpas til skærmhøjden under sidens menu, så man ikke skal scrolle */
+@media (min-width:881px) and (min-height:560px){
+  .ab{height:calc(100vh - var(--ab-offset,0px));height:calc(100dvh - var(--ab-offset,0px));min-height:500px}
+  .ab .layout{flex:1;min-height:0;grid-template-rows:auto minmax(0,1fr)}
+  .ab .stage{align-self:stretch;display:flex;flex-direction:column;min-height:0}
+  .ab .atom-wrap{flex:1;min-height:0;max-width:none;aspect-ratio:auto}
+  .ab .rest{align-self:stretch;min-height:0;overflow-y:auto}
+}
+@media (max-width:880px) and (min-height:860px){
+  .ab{height:calc(100vh - var(--ab-offset,0px));height:calc(100dvh - var(--ab-offset,0px))}
+  .ab .layout{flex:1;min-height:0;grid-template-rows:auto minmax(0,1fr) auto}
+  .ab .stage{align-self:stretch;display:flex;flex-direction:column;min-height:0}
+  .ab .atom-wrap{flex:1;min-height:0;max-width:none;aspect-ratio:auto}
+}
+/* Lave skærme: kompakte bakker, så atomet får mere plads */
+@media (min-width:881px) and (max-height:900px){
+  .ab .tray{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto auto;column-gap:12px;align-items:center;text-align:left;padding:8px 10px}
+  .ab .source{grid-row:1 / 3;margin:0 8px 0 2px;width:38px;height:38px;font-size:1.2rem}
+  .ab .tray-name,.ab .tray-charge{grid-column:2}
+  .ab .tray-name{display:flex;gap:.4em;align-items:baseline}
+  .ab .tray-charge{display:none}
+  .ab .tray-name::after{content:attr(data-charge);font-weight:400;font-size:.88rem;color:var(--ink-soft)}
+  .ab .stepper{grid-column:2;margin-top:2px}
+  .ab .stepper button{width:32px;height:32px;font-size:1.1rem}
+  .ab[data-mode="game"] .note{display:none}
+  .ab .fact{padding-top:8px}
+  .ab .fact-value{font-size:1.8rem}
+  .ab .progress{margin-top:12px;padding-top:8px}
+  .ab .slots{margin:8px 0 6px}
+  .ab .slots li{aspect-ratio:auto;height:26px}
+  .ab .top{padding-top:8px}
+  .ab .top p{display:none}
+  .ab .layout{padding-top:6px;row-gap:12px}
+  .ab .head{gap:10px}
+  .ab .tile{width:140px}
+  .ab .tile-symbol{font-size:3.5rem}
+  .ab .tile-input{font-size:2.7rem}
+  .ab .task{margin-bottom:.6rem}
+  .ab .feedback{padding:.45em .8em;line-height:1.4}
+}
+/* Meget lave skærme (fx Chromebook med browserens værktøjslinjer) */
+@media (min-width:881px) and (max-height:700px){
+  .ab .slots{display:none}
+  .ab .progress{margin-top:10px}
+  .ab .first{margin-top:2px}
+  .ab .fact-value{font-size:1.6rem}
+  .ab .fact{padding-bottom:0}
+  .ab .progress{padding-top:6px}
+  .ab .progress-head strong{font-size:1.4rem}
+}
+@media (max-width:480px){
+  .ab .top h1{font-size:1.5rem}
+  .ab .tile{width:136px;padding:8px 10px 10px}
+  .ab .tile-symbol{font-size:3.3rem}
+  .ab .tile-input{font-size:2.6rem}
+  .ab .el-title{font-size:1.25rem}
+  .ab .head-row{gap:14px}
+  .ab .trays{gap:6px;padding:10px 8px 4px}
+  .ab .stepper{gap:3px}
+  .ab .stepper button{width:34px;height:34px}
+  .ab .fact-value{font-size:2rem}
+  .ab .slots{grid-template-columns:repeat(6,minmax(0,1fr))}
+}
+@media (prefers-reduced-motion:reduce){
+  .ab .pt{transition:none!important}
+  .ab .tile.shake,.ab .tile.pop{animation:none}
+}
+</style>
+</head>
+<body data-fag="fysik-kemi.html">
+
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">El FagPortal de Jensemand</a>
+    <button class="nav-toggle" aria-label="Åbn menu">☰</button>
+    <ul class="nav-links"></ul>
+  </div>
+</header>
+
+<div class="wrap" style="padding-top:1.2rem;">
+  <a class="crumb" href="fysik-kemi.html" style="margin-bottom:0;">&larr; Fysik-kemi</a>
+</div>
+
+<!-- ============================ ATOMBYGGEREN ============================ -->
+<div class="ab" id="atombyggeren" data-mode="free">
+
+  <div class="top">
+    <div>
+      <h1>Atombyggeren</h1>
+      <p>Byg atomer af protoner, neutroner og elektroner.</p>
+    </div>
+    <div class="modes" role="group" aria-label="Vælg funktion">
+      <button type="button" data-mode="free" aria-pressed="true">Byg frit</button>
+      <button type="button" data-mode="game" aria-pressed="false">Spil</button>
+    </div>
+  </div>
+
+  <div class="layout">
+
+    <div class="stage" role="region" aria-label="Atomet">
+      <div class="atom-wrap">
+        <svg id="ab-atom" class="atom-svg" viewBox="38 38 524 524" role="img" aria-labelledby="ab-atom-title">
+          <title id="ab-atom-title">Tomt atom</title>
+          <defs>
+            <radialGradient id="ab-g-p" cx="35%" cy="30%" r="75%">
+              <stop offset="0" stop-color="#F59A8F"/><stop offset=".55" stop-color="#D93A36"/><stop offset="1" stop-color="#9E211D"/>
+            </radialGradient>
+            <radialGradient id="ab-g-n" cx="35%" cy="30%" r="75%">
+              <stop offset="0" stop-color="#F2F4F5"/><stop offset=".55" stop-color="#AEB6BB"/><stop offset="1" stop-color="#7C868C"/>
+            </radialGradient>
+            <radialGradient id="ab-g-e" cx="35%" cy="30%" r="75%">
+              <stop offset="0" stop-color="#8AB3F5"/><stop offset=".55" stop-color="#2563C9"/><stop offset="1" stop-color="#163F86"/>
+            </radialGradient>
+          </defs>
+          <g id="ab-shells"></g>
+          <circle id="ab-halo" class="halo" cx="300" cy="300" r="34"/>
+          <text id="ab-core-label" class="core-label" x="300" y="300" dy=".35em">kerne</text>
+          <g id="ab-particles"></g>
+        </svg>
+      </div>
+
+      <div class="trays">
+        <div class="tray">
+          <div class="source source-p" data-t="p" aria-hidden="true">+</div>
+          <div class="tray-name" data-charge="+1">Proton</div>
+          <div class="tray-charge">Ladning +1</div>
+          <div class="stepper">
+            <button type="button" data-t="p" data-step="-1" aria-label="Fjern en proton">−</button>
+            <output id="ab-count-p" aria-label="Antal protoner">0</output>
+            <button type="button" data-t="p" data-step="1" aria-label="Tilføj en proton">+</button>
+          </div>
+        </div>
+        <div class="tray">
+          <div class="source source-n" data-t="n" aria-hidden="true"></div>
+          <div class="tray-name" data-charge="0">Neutron</div>
+          <div class="tray-charge">Ladning 0</div>
+          <div class="stepper">
+            <button type="button" data-t="n" data-step="-1" aria-label="Fjern en neutron">−</button>
+            <output id="ab-count-n" aria-label="Antal neutroner">0</output>
+            <button type="button" data-t="n" data-step="1" aria-label="Tilføj en neutron">+</button>
+          </div>
+        </div>
+        <div class="tray">
+          <div class="source source-e" data-t="e" aria-hidden="true">−</div>
+          <div class="tray-name" data-charge="−1">Elektron</div>
+          <div class="tray-charge">Ladning −1</div>
+          <div class="stepper">
+            <button type="button" data-t="e" data-step="-1" aria-label="Fjern en elektron">−</button>
+            <output id="ab-count-e" aria-label="Antal elektroner">0</output>
+            <button type="button" data-t="e" data-step="1" aria-label="Tilføj en elektron">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="stage-foot">
+        <p class="status" id="ab-status" aria-live="polite"></p>
+        <button type="button" class="linkbtn" id="ab-clear">Ryd atomet</button>
+      </div>
+    </div>
+
+    <div class="head" role="region" aria-label="Grundstof">
+      <div class="head-row">
+        <div class="tile" id="ab-tile" data-state="empty">
+          <div class="tile-z" id="ab-tile-z"></div>
+          <div class="tile-center">
+            <div class="tile-symbol" id="ab-tile-symbol">?</div>
+            <label id="ab-tile-inputwrap" hidden>
+              <span class="sr-only">Grundstoffets symbol</span>
+              <input id="ab-symbol-input" class="tile-input" type="text" maxlength="2" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="?">
+            </label>
+          </div>
+          <div class="tile-name" id="ab-tile-name"></div>
+        </div>
+        <div class="head-text">
+          <div class="free-only">
+            <h2 class="el-title" id="ab-el-title">Intet grundstof endnu</h2>
+            <p class="el-line" id="ab-el-kind"></p>
+            <p class="el-line" id="ab-el-stab"></p>
+            <p class="el-line soft" id="ab-el-alt"></p>
+          </div>
+          <div class="game-only">
+            <p class="task" id="ab-task"></p>
+            <div class="actions">
+              <button type="button" class="btn" id="ab-primary">Tjek atomet</button>
+              <button type="button" class="btn btn-quiet" id="ab-skip">Spring over</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feedback game-only" id="ab-feedback" role="status" aria-live="polite" hidden></div>
+    </div>
+
+    <div class="rest">
+      <dl class="facts">
+        <div class="fact">
+          <dt>Ladning</dt>
+          <dd class="fact-value" id="ab-f-charge">0</dd>
+          <dd class="fact-calc" id="ab-f-charge-calc">0 protoner − 0 elektroner</dd>
+        </div>
+        <div class="fact">
+          <dt>Massetal</dt>
+          <dd class="fact-value" id="ab-f-mass">0</dd>
+          <dd class="fact-calc" id="ab-f-mass-calc">0 protoner + 0 neutroner</dd>
+        </div>
+      </dl>
+      <p class="note">Elektronerne fylder skallerne indefra. Den 1. skal har plads til 2 elektroner, den 2. og 3. skal har plads til 8.</p>
+
+      <div class="progress game-only" role="region" aria-label="Dine point">
+        <div class="progress-head">
+          <p><strong id="ab-solved-count">0</strong> af 12 løst</p>
+          <button type="button" class="linkbtn" id="ab-restart">Start forfra</button>
+        </div>
+        <ol class="slots" id="ab-slots" aria-label="Løste grundstoffer"></ol>
+        <p class="first">Rigtigt i første forsøg: <strong id="ab-first-count">0</strong></p>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- ========================== /ATOMBYGGEREN ============================ -->
+
+<div class="wrap">
+  <div class="pager">
+    <a class="prev" href="fysik-kemi.html">
+      <span class="dir">&larr; Tilbage</span>
+      <span class="title">Fysik-kemi</span>
+    </a>
+    <a class="next" href="bindingstyper.html">
+      <span class="dir">Næste</span>
+      <span class="title">Fysik-kemi</span>
+    </a>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>El FagPortal de Jensemand</strong> — lavet til mine elever, helt uden reklamer.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/mhchem.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="assets/js/fag-liste.js"></script>
+<script src="assets/js/blocks.js"></script>
+<script src="assets/js/main.js"></script>
+
+<!-- ====================== ATOMBYGGERENS PROGRAM ====================== -->
+<script>
+(() => {
+  "use strict";
+  const root = document.getElementById("atombyggeren");
+  if (!root) return;
+  const NS = "http://www.w3.org/2000/svg";
+
+  // Grundstof 1-20: symbol, dansk navn, evt. hverdagsnavn, massetal for den almindeligste isotop, stabile neutrontal
+  const ELEMENTS = [null,
+    {s:"H",  n:"Hydrogen",  alt:"brint",    a:1,  stable:[0,1]},
+    {s:"He", n:"Helium",                     a:4,  stable:[1,2]},
+    {s:"Li", n:"Lithium",                    a:7,  stable:[3,4]},
+    {s:"Be", n:"Beryllium",                  a:9,  stable:[5]},
+    {s:"B",  n:"Bor",                        a:11, stable:[5,6]},
+    {s:"C",  n:"Carbon",    alt:"kulstof",   a:12, stable:[6,7]},
+    {s:"N",  n:"Nitrogen",  alt:"kvælstof",  a:14, stable:[7,8]},
+    {s:"O",  n:"Oxygen",    alt:"ilt",       a:16, stable:[8,9,10]},
+    {s:"F",  n:"Fluor",                      a:19, stable:[10]},
+    {s:"Ne", n:"Neon",                       a:20, stable:[10,11,12]},
+    {s:"Na", n:"Natrium",                    a:23, stable:[12]},
+    {s:"Mg", n:"Magnesium",                  a:24, stable:[12,13,14]},
+    {s:"Al", n:"Aluminium",                  a:27, stable:[14]},
+    {s:"Si", n:"Silicium",                   a:28, stable:[14,15,16]},
+    {s:"P",  n:"Fosfor",                     a:31, stable:[16]},
+    {s:"S",  n:"Svovl",                      a:32, stable:[16,17,18,20]},
+    {s:"Cl", n:"Chlor",                      a:35, stable:[18,20]},
+    {s:"Ar", n:"Argon",                      a:40, stable:[18,20,22]},
+    {s:"K",  n:"Kalium",                     a:39, stable:[20,22]},
+    {s:"Ca", n:"Calcium",                    a:40, stable:[20,22,23,24,26,28]}
+  ];
+
+  const GAME_SIZE = 12;                 // spillet bruger grundstof 1-12
+  const MAX = {p:20, n:28, e:20};       // grænser i frit mode
+  const NAMES = {p:["proton","protoner"], n:["neutron","neutroner"], e:["elektron","elektroner"]};
+  const SIGN = {p:"+", n:"", e:"−"};
+  const SHELLS = [{r:110,cap:2,name:"1."},{r:155,cap:8,name:"2."},{r:200,cap:8,name:"3."},{r:245,cap:2,name:"4."}];
+  const CX = 300, CY = 300, NUC_R = 10, NUC_C = 11, EL_R = 9, ATOM_R = 278;
+  const DEFAULT_STATUS = "Træk partiklerne ind. Træk dem ud igen for at fjerne dem.";
+
+  const $ = id => document.getElementById("ab-" + id);
+  const svg = $("atom"), layer = $("particles"), halo = $("halo"), coreLabel = $("core-label"), svgTitle = $("atom-title");
+  const tile = $("tile"), tileZ = $("tile-z"), tileSymbol = $("tile-symbol"), tileName = $("tile-name");
+  const tileInputWrap = $("tile-inputwrap"), input = $("symbol-input");
+  const elTitle = $("el-title"), elKind = $("el-kind"), elStab = $("el-stab"), elAlt = $("el-alt");
+  const taskEl = $("task"), primary = $("primary"), skipBtn = $("skip"), feedback = $("feedback");
+  const fCharge = $("f-charge"), fChargeCalc = $("f-charge-calc"), fMass = $("f-mass"), fMassCalc = $("f-mass-calc");
+  const statusEl = $("status"), slotsEl = $("slots");
+  const outs = {p:$("count-p"), n:$("count-n"), e:$("count-e")};
+  const minus = {}, plus = {};
+  root.querySelectorAll(".stepper button").forEach(b => {
+    (b.dataset.step === "1" ? plus : minus)[b.dataset.t] = b;
+  });
+
+  let mode = "free";
+  let uid = 0;
+  const atoms = {free:{nuc:[], el:[]}, game:{nuc:[], el:[]}};
+  let atom = atoms.free;
+  const nodes = new Map();
+  const game = {queue:[], solved:[], firstTry:0, missed:new Set(), state:null};
+  let drag = null;
+
+  /* ---------- Hjælpere ---------- */
+  const plural = (k, t) => k === 1 ? NAMES[t][0] : NAMES[t][1];
+  const fmtCharge = q => q > 0 ? "+" + q : q < 0 ? "−" + (-q) : "0";
+  const ionSup = q => { if (!q) return ""; const a = Math.abs(q); return (a === 1 ? "" : a) + (q > 0 ? "+" : "−"); };
+  const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+  function shuffle(a){ for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+  function counts(){ let p = 0, n = 0; for (const x of atom.nuc) x.t === "p" ? p++ : n++; return {p, n, e:atom.el.length}; }
+
+  let statusTimer;
+  function setStatus(msg){
+    clearTimeout(statusTimer);
+    statusEl.textContent = msg || DEFAULT_STATUS;
+    if (msg) statusTimer = setTimeout(() => { statusEl.textContent = DEFAULT_STATUS; }, 3500);
+  }
+
+  // Værktøjet fylder skærmen under sidens menu. Her måles, hvor meget der står over det.
+  function measureOffset(){
+    const top = root.getBoundingClientRect().top + window.scrollY;
+    root.style.setProperty("--ab-offset", Math.max(0, Math.round(top)) + "px");
+  }
+
+  /* ---------- Skaller ---------- */
+  function buildShells(){
+    const g = $("shells");
+    const a = -62 * Math.PI / 180;
+    SHELLS.forEach(s => {
+      const c = document.createElementNS(NS, "circle");
+      c.setAttribute("cx", CX); c.setAttribute("cy", CY); c.setAttribute("r", s.r); c.setAttribute("class", "shell");
+      const t = document.createElementNS(NS, "text");
+      t.setAttribute("x", (CX + s.r * Math.cos(a)).toFixed(1));
+      t.setAttribute("y", (CY + s.r * Math.sin(a)).toFixed(1));
+      t.setAttribute("dy", ".35em"); t.setAttribute("class", "shell-label");
+      t.textContent = s.name;
+      g.append(c, t);
+      s.els = [c, t];
+    });
+  }
+
+  /* ---------- Placering ---------- */
+  // Bland protoner og neutroner jævnt, så kernen ser blandet ud
+  function nucleonOrder(){
+    const ps = atom.nuc.filter(x => x.t === "p"), ns = atom.nuc.filter(x => x.t === "n");
+    const out = []; let ip = 0, iN = 0;
+    for (let i = 0; i < ps.length + ns.length; i++){
+      const wp = ps.length ? (ip + .5) / ps.length : Infinity;
+      const wn = ns.length ? (iN + .5) / ns.length : Infinity;
+      out.push(wp <= wn ? ps[ip++] : ns[iN++]);
+    }
+    return out;
+  }
+  function nucPos(i, total){
+    if (total === 1) return [CX, CY];
+    const r = NUC_C * Math.sqrt(i + .5), th = i * 2.39996323;
+    return [CX + r * Math.cos(th), CY + r * Math.sin(th)];
+  }
+  function elPositions(n){
+    const pos = []; let left = n;
+    for (const sh of SHELLS){
+      if (left <= 0) break;
+      const k = Math.min(left, sh.cap);
+      for (let j = 0; j < k; j++){
+        const th = -Math.PI / 2 + j * 2 * Math.PI / k;
+        pos.push([CX + sh.r * Math.cos(th), CY + sh.r * Math.sin(th)]);
+      }
+      left -= k;
+    }
+    return pos;
+  }
+
+  /* ---------- Tegning ---------- */
+  function makeNode(t, id){
+    const g = document.createElementNS(NS, "g");
+    g.setAttribute("class", "pt pt-" + t);
+    g.dataset.t = t; g.dataset.id = id;
+    const c = document.createElementNS(NS, "circle");
+    c.setAttribute("r", t === "e" ? EL_R : NUC_R);
+    c.setAttribute("fill", "url(#ab-g-" + t + ")");
+    c.setAttribute("stroke", "rgba(29,39,51,.22)"); c.setAttribute("stroke-width", "1");
+    g.append(c);
+    if (SIGN[t]){
+      const s = document.createElementNS(NS, "text");
+      s.setAttribute("dy", ".35em");
+      s.textContent = SIGN[t];
+      g.append(s);
+    }
+    return g;
+  }
+  const setT = (g, x, y) => { g.style.transform = "translate(" + x.toFixed(2) + "px," + y.toFixed(2) + "px)"; };
+
+  function render(){
+    const order = nucleonOrder(), total = order.length;
+    const target = new Map();
+    order.forEach((x, i) => target.set(x.id, nucPos(i, total)));
+    const ep = elPositions(atom.el.length);
+    atom.el.forEach((x, i) => target.set(x.id, ep[i]));
+
+    for (const [id, g] of nodes) if (!target.has(id)){ g.remove(); nodes.delete(id); }
+
+    const all = order.concat(atom.el), fresh = [];
+    for (const x of all){
+      if (nodes.has(x.id)) continue;
+      const g = makeNode(x.t, x.id);
+      nodes.set(x.id, g); layer.appendChild(g);
+      if (x.from){ setT(g, x.from[0], x.from[1]); fresh.push(g); }
+      x.from = null;
+    }
+    fresh.forEach(g => getComputedStyle(g).transform); // start fra slippunktet
+    for (const x of all){ const [tx, ty] = target.get(x.id); setT(nodes.get(x.id), tx, ty); }
+
+    updateZones();
+    updateInfo();
+  }
+
+  function rebuild(){
+    svg.classList.add("no-anim");
+    layer.textContent = ""; nodes.clear();
+    render();
+    requestAnimationFrame(() => requestAnimationFrame(() => svg.classList.remove("no-anim")));
+  }
+
+  function updateZones(){
+    const total = atom.nuc.length;
+    halo.setAttribute("r", total ? (NUC_C * Math.sqrt(total - .5) + NUC_R + 10).toFixed(1) : 34);
+    coreLabel.style.display = total ? "none" : "";
+    const e = atom.el.length;
+    const showN = e > 18 || (drag && drag.t === "e" && e >= 18);
+    SHELLS[3].els.forEach(x => { x.style.display = showN ? "" : "none"; });
+  }
+
+  function updateInfo(){
+    const {p, n, e} = counts(), q = p - e;
+    const v = {p, n, e};
+    for (const t of ["p","n","e"]){
+      outs[t].textContent = v[t];
+      minus[t].disabled = v[t] === 0;
+      plus[t].disabled = v[t] >= MAX[t];
+    }
+    fCharge.textContent = fmtCharge(q);
+    fCharge.className = "fact-value" + (q > 0 ? " charge-pos" : q < 0 ? " charge-neg" : "");
+    fChargeCalc.textContent = p + " " + plural(p, "p") + " − " + e + " " + plural(e, "e");
+    fMass.textContent = p + n;
+    fMassCalc.textContent = p + " " + plural(p, "p") + " + " + n + " " + plural(n, "n");
+    svgTitle.textContent = (p + n + e === 0) ? "Tomt atom"
+      : "Atom med " + p + " " + plural(p, "p") + ", " + n + " " + plural(n, "n") + " og " + e + " " + plural(e, "e");
+    if (mode === "free") renderFreeTile(p, n, e, q);
+  }
+
+  function renderFreeTile(p, n, e, q){
+    tileInputWrap.hidden = true; tileSymbol.hidden = false;
+    if (p === 0){
+      tile.dataset.state = "empty";
+      tileZ.textContent = ""; tileSymbol.textContent = "?"; tileName.textContent = "";
+      elTitle.textContent = "Intet grundstof endnu";
+      elKind.textContent = e > 0
+        ? "Der er elektroner, men ingen kerne. Træk en proton ind i midten."
+        : "Træk en proton ind i kernen. Antallet af protoner bestemmer, hvilket grundstof atomet er.";
+      elStab.textContent = ""; elAlt.textContent = "";
+      return;
+    }
+    const el = ELEMENTS[p];
+    tile.dataset.state = "element";
+    tileZ.textContent = p;
+    tileSymbol.innerHTML = el.s + (q ? "<sup>" + ionSup(q) + "</sup>" : "");
+    tileName.textContent = el.n;
+    elTitle.textContent = el.n + "-" + (p + n);
+    elKind.textContent = q === 0 ? "Neutralt atom."
+      : (q > 0 ? "Positiv ion" : "Negativ ion") + " med ladningen " + fmtCharge(q) + ".";
+    const stable = el.stable.includes(n);
+    elStab.innerHTML = '<span class="dot ' + (stable ? "ok" : "bad") + '"></span>' + (stable ? "Kernen er stabil." : "Kernen er ustabil.");
+    elAlt.textContent = el.alt ? "Kaldes også " + el.alt + "." : "";
+  }
+
+  /* ---------- Tilføj og fjern ---------- */
+  function addParticle(t, from){
+    const c = counts(), cur = t === "p" ? c.p : t === "n" ? c.n : c.e;
+    if (cur >= MAX[t]){ setStatus("Værktøjet kan højst have " + MAX[t] + " " + NAMES[t][1] + "."); return false; }
+    (t === "e" ? atom.el : atom.nuc).push({id:++uid, t, from});
+    render();
+    return true;
+  }
+  function removeLast(t){
+    const arr = t === "e" ? atom.el : atom.nuc;
+    for (let i = arr.length - 1; i >= 0; i--){
+      if (arr[i].t === t){ arr.splice(i, 1); render(); return; }
+    }
+  }
+  function clearAtom(which){
+    which.nuc.length = 0; which.el.length = 0;
+    if (which === atom) render();
+  }
+
+  /* ---------- Træk og slip ---------- */
+  function toSvg(x, y){
+    const m = svg.getScreenCTM();
+    if (!m) return [CX, CY];
+    const pt = new DOMPoint(x, y).matrixTransform(m.inverse());
+    return [pt.x, pt.y];
+  }
+  function insideAtom(x, y){ const [sx, sy] = toSvg(x, y); return Math.hypot(sx - CX, sy - CY) <= ATOM_R; }
+
+  function beginDrag(t, ev, fromAtom){
+    const m = svg.getScreenCTM();
+    const scale = m ? m.a : svg.getBoundingClientRect().width / 600;
+    const size = Math.max(28, 2 * (t === "e" ? EL_R : NUC_R) * scale * 1.25);
+    const ghost = document.createElement("div");
+    ghost.className = "ghost ghost-" + t;
+    ghost.textContent = SIGN[t];
+    ghost.style.width = ghost.style.height = size + "px";
+    ghost.style.fontSize = Math.round(size * .56) + "px";
+    root.appendChild(ghost);
+    drag = {t, ghost, size, pid:ev.pointerId, fromAtom};
+    svg.classList.add(t === "e" ? "drag-e" : "drag-nuc");
+    updateZones();
+    placeGhost(ev.clientX, ev.clientY);
+    window.addEventListener("pointermove", onDragMove);
+    window.addEventListener("pointerup", onDragEnd);
+    window.addEventListener("pointercancel", onDragCancel);
+  }
+  function placeGhost(x, y){
+    drag.ghost.style.transform = "translate(" + (x - drag.size / 2) + "px," + (y - drag.size / 2) + "px)";
+    svg.classList.toggle("drop-over", insideAtom(x, y));
+  }
+  function onDragMove(ev){ if (drag && ev.pointerId === drag.pid) placeGhost(ev.clientX, ev.clientY); }
+  function finishDrag(){
+    drag.ghost.remove();
+    svg.classList.remove("drag-e", "drag-nuc", "drop-over");
+    window.removeEventListener("pointermove", onDragMove);
+    window.removeEventListener("pointerup", onDragEnd);
+    window.removeEventListener("pointercancel", onDragCancel);
+    drag = null;
+    updateZones();
+  }
+  function onDragEnd(ev){
+    if (!drag || ev.pointerId !== drag.pid) return;
+    const {t, fromAtom} = drag;
+    const inside = insideAtom(ev.clientX, ev.clientY), pt = toSvg(ev.clientX, ev.clientY);
+    finishDrag();
+    if (inside) addParticle(t, pt);
+    else if (fromAtom) setStatus(cap(NAMES[t][0]) + "en er fjernet.");
+  }
+  function onDragCancel(ev){
+    if (!drag || ev.pointerId !== drag.pid) return;
+    const {t, fromAtom} = drag;
+    finishDrag();
+    if (fromAtom) addParticle(t, null);
+  }
+
+  root.querySelectorAll(".source").forEach(src => {
+    src.addEventListener("pointerdown", ev => {
+      if (drag || (ev.pointerType === "mouse" && ev.button !== 0)) return;
+      ev.preventDefault();
+      beginDrag(src.dataset.t, ev, false);
+    });
+  });
+  layer.addEventListener("pointerdown", ev => {
+    if (drag || (ev.pointerType === "mouse" && ev.button !== 0)) return;
+    const g = ev.target.closest(".pt");
+    if (!g) return;
+    ev.preventDefault();
+    const t = g.dataset.t, id = +g.dataset.id;
+    const arr = t === "e" ? atom.el : atom.nuc;
+    const i = arr.findIndex(x => x.id === id);
+    if (i < 0) return;
+    arr.splice(i, 1);
+    render();
+    beginDrag(t, ev, true);
+  });
+
+  root.querySelectorAll(".stepper button").forEach(b => {
+    b.addEventListener("click", () => {
+      const t = b.dataset.t;
+      if (b.dataset.step === "1"){
+        const r = root.querySelector(".source-" + t).getBoundingClientRect();
+        addParticle(t, toSvg(r.left + r.width / 2, r.top + r.height / 2));
+      } else removeLast(t);
+    });
+  });
+  $("clear").addEventListener("click", () => clearAtom(atom));
+
+  /* ---------- Spil ---------- */
+  for (let i = 0; i < GAME_SIZE; i++) slotsEl.appendChild(document.createElement("li"));
+
+  function renderSlots(){
+    [...slotsEl.children].forEach((li, i) => {
+      const z = game.solved[i];
+      li.textContent = z ? ELEMENTS[z].s : "";
+      li.title = z ? ELEMENTS[z].n : "";
+      li.classList.toggle("filled", !!z);
+    });
+    $("solved-count").textContent = game.solved.length;
+    $("first-count").textContent = game.firstTry;
+  }
+
+  function renderGame(){
+    renderSlots();
+    if (mode !== "game") return;
+    tile.dataset.state = "element";
+    if (game.state === "done"){
+      tileZ.textContent = "";
+      tileSymbol.hidden = false; tileInputWrap.hidden = true;
+      tileSymbol.textContent = String(game.solved.length);
+      tileName.textContent = "løst";
+      taskEl.innerHTML = "<strong>Flot!</strong> Du har løst alle " + GAME_SIZE + " grundstoffer. "
+        + game.firstTry + " af dem var rigtige i første forsøg.";
+      primary.textContent = "Spil igen";
+      skipBtn.hidden = true;
+      return;
+    }
+    const Z = game.queue[0], el = ELEMENTS[Z];
+    tileZ.textContent = Z;
+    taskEl.innerHTML = "Byg et neutralt atom af grundstof nr. <strong>" + Z + "</strong>, og skriv symbolet i feltet.";
+    if (game.state === "solved"){
+      tileSymbol.hidden = false; tileInputWrap.hidden = true;
+      tileSymbol.textContent = el.s;
+      tileName.textContent = el.n;
+      primary.textContent = game.queue.length > 1 ? "Næste grundstof" : "Se resultat";
+      skipBtn.hidden = true;
+    } else {
+      tileSymbol.hidden = true; tileInputWrap.hidden = false;
+      tileName.textContent = "";
+      primary.textContent = "Tjek atomet";
+      skipBtn.hidden = false;
+      skipBtn.disabled = game.queue.length < 2;
+    }
+  }
+
+  function showFeedback(kind, lead, msgs){
+    feedback.hidden = false;
+    feedback.className = "feedback game-only " + kind;
+    let html = '<p class="lead">' + lead + "</p>";
+    if (msgs.length === 1) html += "<p>" + msgs[0] + "</p>";
+    else if (msgs.length > 1) html += "<ul>" + msgs.map(m => "<li>" + m + "</li>").join("") + "</ul>";
+    feedback.innerHTML = html;
+  }
+  function hideFeedback(){ feedback.hidden = true; feedback.innerHTML = ""; }
+
+  function animateTile(cls){
+    tile.classList.remove("shake", "pop");
+    void tile.offsetWidth;
+    tile.classList.add(cls);
+  }
+  tile.addEventListener("animationend", () => tile.classList.remove("shake", "pop"));
+
+  function newGame(){
+    game.queue = shuffle(Array.from({length:GAME_SIZE}, (_, i) => i + 1));
+    game.solved = []; game.firstTry = 0; game.missed = new Set(); game.state = "play";
+    input.value = "";
+    hideFeedback();
+    clearAtom(atoms.game);
+    renderGame();
+  }
+
+  function checkAnswer(){
+    const Z = game.queue[0], el = ELEMENTS[Z];
+    const {p, n, e} = counts();
+    const msgs = [];
+    if (p === 0) msgs.push("Der er ingen protoner i kernen endnu.");
+    else if (p !== Z) msgs.push("Antallet af protoner passer ikke. Grundstofnummeret fortæller, hvor mange protoner der er i kernen.");
+    if (p === Z){
+      if (e !== p) msgs.push("Atomet skal være neutralt, men ladningen er " + fmtCharge(p - e) + ". Der skal være lige så mange elektroner som protoner.");
+      if (!el.stable.includes(n)) msgs.push("Kernen er ustabil med " + n + " " + plural(n, "n") + ". Find massetallet i det periodiske system (atommassen rundet af). Neutroner = massetal − protoner.");
+    }
+    const sym = input.value.trim();
+    if (!sym) msgs.push("Skriv grundstoffets symbol i feltet.");
+    else if (sym !== el.s){
+      msgs.push(sym.toLowerCase() === el.s.toLowerCase()
+        ? "Symbolet er næsten rigtigt. Tjek store og små bogstaver."
+        : "Symbolet passer ikke til grundstof nr. " + Z + ".");
+    }
+
+    if (msgs.length){
+      game.missed.add(Z);
+      showFeedback("wrong", "Ikke helt endnu.", msgs);
+      animateTile("shake");
+      return;
+    }
+    game.solved.push(Z);
+    if (!game.missed.has(Z)) game.firstTry++;
+    game.state = "solved";
+    input.blur();
+    showFeedback("right", "Rigtigt!", ["Grundstof nr. " + Z + " er " + el.n.toLowerCase()
+      + (el.alt ? " (" + el.alt + ")" : "") + " med symbolet " + el.s + "."]);
+    renderGame();
+    animateTile("pop");
+  }
+
+  function nextTask(){
+    game.queue.shift();
+    input.value = "";
+    hideFeedback();
+    clearAtom(atoms.game);
+    game.state = game.queue.length ? "play" : "done";
+    renderGame();
+    if (game.state === "done") animateTile("pop");
+  }
+
+  function skipTask(){
+    if (game.state !== "play" || game.queue.length < 2) return;
+    game.queue.push(game.queue.shift());
+    input.value = "";
+    hideFeedback();
+    clearAtom(atoms.game);
+    renderGame();
+  }
+
+  primary.addEventListener("click", () => {
+    if (game.state === "play") checkAnswer();
+    else if (game.state === "solved") nextTask();
+    else if (game.state === "done") newGame();
+  });
+  skipBtn.addEventListener("click", skipTask);
+  input.addEventListener("keydown", ev => { if (ev.key === "Enter"){ ev.preventDefault(); primary.click(); } });
+  $("restart").addEventListener("click", () => {
+    if (game.solved.length && game.state !== "done" && !confirm("Vil du starte forfra? Dine point bliver nulstillet.")) return;
+    newGame();
+  });
+
+  /* ---------- Skift mellem frit og spil ---------- */
+  const modeButtons = root.querySelectorAll(".modes button");
+  function setMode(m){
+    if (drag) finishDrag();
+    mode = m;
+    root.dataset.mode = m;
+    modeButtons.forEach(b => b.setAttribute("aria-pressed", String(b.dataset.mode === m)));
+    atom = atoms[m];
+    rebuild();
+    if (m === "game"){
+      if (!game.state) newGame(); else renderGame();
+    }
+    setStatus();
+  }
+  modeButtons.forEach(b => b.addEventListener("click", () => { if (b.dataset.mode !== mode) setMode(b.dataset.mode); }));
+
+  /* ---------- Start ---------- */
+  buildShells();
+  renderSlots();
+  render();
+  setStatus();
+  measureOffset();
+  window.addEventListener("load", measureOffset);
+  window.addEventListener("resize", measureOffset);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureOffset);
+})();
+</script>
+</body>
+</html>
