@@ -417,14 +417,67 @@ a.card { color: inherit; text-decoration: none !important; }
 /* --- Full-bleed diagrammer med lup-zoom --- */
 
 .full-bleed {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  width: 100%;
+  container-type: inline-size;
   display: flex;
   justify-content: center;
+}
+
+.zoom-toprow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.2rem 1.5rem;
+  flex-wrap: wrap;
+  padding-top: 0.5rem;
+  padding-bottom: 0.4rem;
+}
+.zoom-toprow .crumb { margin-bottom: 0; }
+.zoom-tools {
+  display: flex;
+  align-items: baseline;
+  gap: 0.2rem 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.fullscreen-btn {
+  background: var(--paper);
+  color: var(--blue-dark);
+  border: 1px solid var(--blue);
+  border-radius: var(--radius);
+  padding: 0.2rem 0.75rem;
+  font-family: "Jost", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.fullscreen-btn:hover { background: var(--paper-alt); }
+.fullscreen-exit {
+  display: none;
+  position: fixed;
+  top: 0.6rem;
+  right: 0.8rem;
+  z-index: 100;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Fuld skærm: kun kortet er tilbage, og det fylder hele vinduet */
+body.kort-fuldskaerm { overflow: hidden; }
+body.kort-fuldskaerm .site-nav,
+body.kort-fuldskaerm .zoom-toprow,
+body.kort-fuldskaerm .print-btn-wrap,
+body.kort-fuldskaerm .pager,
+body.kort-fuldskaerm .site-footer { display: none; }
+body.kort-fuldskaerm .fullscreen-exit { display: block; }
+body.kort-fuldskaerm .full-bleed {
+  height: 100vh;
+  height: 100dvh;
+  align-items: center;
+}
+body.kort-fuldskaerm .zoom-wrap img {
+  width: min(calc(100vw - 20px), calc((100vh - 1.2rem) * 1.5792));
+  width: min(100cqw, calc((100dvh - 1.2rem) * 1.5792));
 }
 
 .zoom-wrap {
@@ -436,9 +489,9 @@ a.card { color: inherit; text-decoration: none !important; }
   /* Kortet fylder så meget af skærmen som muligt, uden at blive skåret af:
      bredden er den mindste af skærmens bredde og den bredde, der lige præcis
      passer til den ledige højde (billedets format er 1096 × 694).
-     9.8rem er plads til menu, "tilbage"-link og hint-teksten under kortet. */
-  width: min(100vw, calc((100vh - 9.8rem) * 1.5792));
-  width: min(100vw, calc((100dvh - 9.8rem) * 1.5792));
+     7.1rem er plads til menuen og rækken med "tilbage"-link og hint-tekst. */
+  width: min(calc(100vw - 20px), calc((100vh - 7.1rem) * 1.5792));
+  width: min(100cqw, calc((100dvh - 7.1rem) * 1.5792));
   height: auto;
   display: block;
 }
@@ -484,10 +537,10 @@ a.card { color: inherit; text-decoration: none !important; }
 }
 
 .zoom-hint {
-  text-align: center;
+  text-align: right;
   color: var(--ink-soft);
   font-size: 0.88rem;
-  padding: 0.8rem 0 0;
+  margin: 0;
 }
 
 .print-btn-wrap { text-align: center; }
@@ -508,7 +561,7 @@ a.card { color: inherit; text-decoration: none !important; }
 
 @media print {
   @page { size: A4 landscape; margin: 10mm; }
-  .site-nav, .crumb, .zoom-hint, .print-btn-wrap, .pager, .site-footer, .el-hot, .el-popup {
+  .site-nav, .crumb, .zoom-hint, .zoom-tools, .fullscreen-btn, .print-btn-wrap, .pager, .site-footer, .el-hot, .el-popup {
     display: none !important;
   }
   .full-bleed { width: 100% !important; left: auto !important; right: auto !important; margin: 0 !important; }

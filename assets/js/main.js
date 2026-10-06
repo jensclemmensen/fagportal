@@ -122,6 +122,40 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  var fsBtn = document.getElementById("fullscreen-btn");
+  var fsExit = document.getElementById("fullscreen-exit");
+  if (fsBtn && fsExit) {
+    var docEl = document.documentElement;
+    var erFuldskaerm = function () {
+      return !!(document.fullscreenElement || document.webkitFullscreenElement);
+    };
+    var aaben = function () {
+      document.body.classList.add("kort-fuldskaerm");
+      var req = docEl.requestFullscreen || docEl.webkitRequestFullscreen;
+      if (req) {
+        var p = req.call(docEl);
+        if (p && p.catch) p.catch(function () {});
+      }
+    };
+    var luk = function () {
+      document.body.classList.remove("kort-fuldskaerm");
+      if (erFuldskaerm()) {
+        var ud = document.exitFullscreen || document.webkitExitFullscreen;
+        if (ud) ud.call(document);
+      }
+    };
+    fsBtn.addEventListener("click", aaben);
+    fsExit.addEventListener("click", luk);
+    var ved = function () {
+      if (!erFuldskaerm()) document.body.classList.remove("kort-fuldskaerm");
+    };
+    document.addEventListener("fullscreenchange", ved);
+    document.addEventListener("webkitfullscreenchange", ved);
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && document.body.classList.contains("kort-fuldskaerm")) luk();
+    });
+  }
+
   var printBtn = document.getElementById("print-chart-btn");
   if (printBtn) {
     printBtn.addEventListener("click", function () {
