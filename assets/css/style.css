@@ -433,11 +433,13 @@ a.card { color: inherit; text-decoration: none !important; }
   max-width: 100%;
 }
 .zoom-wrap img {
-  width: auto;
+  /* Kortet fylder så meget af skærmen som muligt, uden at blive skåret af:
+     bredden er den mindste af skærmens bredde og den bredde, der lige præcis
+     passer til den ledige højde (billedets format er 1096 × 694).
+     9.8rem er plads til menu, "tilbage"-link og hint-teksten under kortet. */
+  width: min(100vw, calc((100vh - 9.8rem) * 1.5792));
+  width: min(100vw, calc((100dvh - 9.8rem) * 1.5792));
   height: auto;
-  max-width: 100%;
-  /* så hele kortet kan ses uden at scrolle, uanset skærmens højde */
-  max-height: 78vh;
   display: block;
 }
 
@@ -510,7 +512,7 @@ a.card { color: inherit; text-decoration: none !important; }
     display: none !important;
   }
   .full-bleed { width: 100% !important; left: auto !important; right: auto !important; margin: 0 !important; }
-  .zoom-wrap img { max-height: none !important; }
+  .zoom-wrap img { width: auto !important; max-width: 100% !important; }
 }
 
 /* --- Datatabel (fx musikstykkers formled) --- */
