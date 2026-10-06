@@ -32,7 +32,7 @@
 </div>
 <button id="fullscreen-exit" class="fullscreen-btn fullscreen-exit" type="button">Luk fuld skærm &times;</button>
 
-<div class="full-bleed">
+<div class="full-bleed" id="kortet">
   <div class="zoom-wrap">
     <img src="assets/images/periodisk-system.svg" alt="Det periodiske system med grundstoffernes tegn, navn, atommasse og antal elektroner i skallerne">
       <button class="el-hot" style="left:5.063%;top:22.409%;width:4.563%;height:7.157%;" data-sym="H" aria-label="H"></button>
@@ -155,6 +155,53 @@
   <button id="print-chart-btn" class="print-btn" type="button">Print kort</button>
 </div>
 
+<section class="section pse-traener" id="traener" aria-labelledby="pse-titel">
+  <div class="wrap">
+    <h2 id="pse-titel">Træn det periodiske system</h2>
+    <p class="pse-intro">Vælg, hvad du vil træne. Vælger du flere ting, får du tilfældige spørgsmål fra dem alle. Brug kortet ovenfor til at finde svarene.</p>
+
+    <div class="pse-grid">
+      <div class="pse-panel">
+        <fieldset class="pse-kategorier">
+          <legend>Hvad vil du træne?</legend>
+          <label class="pse-kat"><input type="checkbox" value="nummer"> Grundstof og grundstofnummer</label>
+          <label class="pse-kat"><input type="checkbox" value="periode"> Grundstof og periode (elektronskaller)</label>
+          <label class="pse-kat"><input type="checkbox" value="hovedgruppe"> Grundstof og hovedgruppe (elektroner i yderste skal)</label>
+          <label class="pse-kat"><input type="checkbox" value="metal"> Metal eller ikke-metal</label>
+        </fieldset>
+
+        <p id="pse-tom" class="pse-tom" hidden>Vælg mindst én ting at træne ovenfor.</p>
+
+        <div class="pse-sp" id="pse-sp" aria-live="polite">
+          <p class="pse-q" id="pse-q"></p>
+          <form class="pse-form" id="pse-form" autocomplete="off">
+            <input class="pse-input" id="pse-svar" type="text" autocapitalize="off" autocorrect="off" spellcheck="false">
+            <button class="pse-btn" type="submit">Tjek svar</button>
+          </form>
+          <div class="pse-valg" id="pse-valg" hidden>
+            <button class="pse-btn" type="button" data-v="m">Metal</button>
+            <button class="pse-btn" type="button" data-v="i">Ikke-metal</button>
+          </div>
+          <div class="pse-fb" id="pse-fb" hidden></div>
+          <button class="pse-btn pse-next" id="pse-next" type="button" hidden>Næste spørgsmål</button>
+        </div>
+      </div>
+
+      <aside class="pse-score" aria-labelledby="pse-score-titel">
+        <h3 id="pse-score-titel">Dine rigtige svar</h3>
+        <ul id="pse-score-liste"></ul>
+        <p class="pse-sum" id="pse-sum"></p>
+        <button class="pse-nulstil" id="pse-nulstil" type="button">Nulstil score</button>
+        <div class="pse-bekraeft" id="pse-bekraeft" hidden>
+          <p>Vil du nulstille al din score?</p>
+          <button class="pse-btn pse-btn-lille" id="pse-ja" type="button">Ja, nulstil</button>
+          <button class="pse-btn pse-btn-lille pse-btn-let" id="pse-nej" type="button">Annuller</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
 <div class="wrap">
   <div class="pager">
     <a class="prev" href="fysik-kemi.html">
@@ -180,5 +227,6 @@
 <script src="assets/js/fag-liste.js"></script>
 <script src="assets/js/blocks.js"></script>
 <script src="assets/js/main.js"></script>
+<script src="assets/js/pse-traener.js"></script>
 </body>
 </html>

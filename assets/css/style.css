@@ -466,6 +466,7 @@ a.card { color: inherit; text-decoration: none !important; }
 body.kort-fuldskaerm { overflow: hidden; }
 body.kort-fuldskaerm .site-nav,
 body.kort-fuldskaerm .zoom-toprow,
+body.kort-fuldskaerm .pse-traener,
 body.kort-fuldskaerm .print-btn-wrap,
 body.kort-fuldskaerm .pager,
 body.kort-fuldskaerm .site-footer { display: none; }
@@ -543,6 +544,108 @@ body.kort-fuldskaerm .zoom-wrap img {
   margin: 0;
 }
 
+/* --- Træningsspil under det periodiske system --- */
+
+.pse-traener { padding: 2.4rem 0 1.2rem; }
+.pse-traener [hidden] { display: none !important; }
+.pse-traener h2 { text-align: center; }
+.pse-intro { text-align: center; max-width: 62ch; margin: 0 auto 1.6rem; }
+.pse-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 1.4rem;
+  align-items: start;
+  max-width: 980px;
+  margin: 0 auto;
+}
+@media (max-width: 800px) { .pse-grid { grid-template-columns: minmax(0, 1fr); } }
+.pse-panel, .pse-score {
+  background: var(--paper-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.4rem;
+}
+.pse-kategorier { border: 0; padding: 0; margin: 0 0 1.1rem; }
+.pse-kategorier legend { font-weight: 600; color: var(--ink); margin-bottom: 0.4rem; padding: 0; }
+.pse-kat { display: flex; align-items: center; gap: 0.6rem; padding: 0.3rem 0; cursor: pointer; font-size: 1.05rem; color: var(--ink); }
+.pse-kat input { width: 1.15rem; height: 1.15rem; accent-color: var(--blue-dark); flex: none; }
+.pse-tom { color: var(--ink-soft); margin: 0; }
+.pse-sp { border-top: 1px solid var(--line); padding-top: 1.1rem; }
+.pse-q { font-size: 1.2rem; color: var(--ink); margin: 0 0 0.9rem; line-height: 1.4; }
+.pse-q strong { color: var(--blue-dark); font-size: 1.25em; }
+.pse-form { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.pse-input {
+  flex: 1 1 12rem;
+  font: inherit;
+  font-size: 1.15rem;
+  padding: 0.55rem 0.8rem;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--ink);
+}
+.pse-input:focus { outline: none; border-color: var(--blue); }
+.pse-input:disabled { background: var(--paper-alt); }
+.pse-btn {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.55rem 1.3rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--blue-dark);
+  color: #fff;
+  cursor: pointer;
+}
+.pse-btn:hover { background: var(--blue); }
+.pse-btn:disabled { opacity: 0.45; cursor: default; }
+.pse-valg { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.pse-fb {
+  margin-top: 1rem;
+  padding: 0.7rem 1rem;
+  border-left: 5px solid;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.pse-fb p { margin: 0; color: var(--ink); font-size: 1.02rem; line-height: 1.45; }
+.pse-fb.rigtigt { border-color: #1f8a5b; background: #e2f1e8; }
+.pse-fb.forkert { border-color: #b4540f; background: #fbebdc; }
+.pse-fb.info { border-color: var(--blue); background: #eaf1fc; }
+.pse-vis { white-space: nowrap; margin-left: 0.3em; }
+.pse-next { margin-top: 0.9rem; }
+.pse-score h3 { margin: 0 0 1rem; font-size: 1.1rem; color: var(--ink); }
+.pse-score ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.pse-score li, .pse-sum { display: flex; justify-content: space-between; align-items: baseline; gap: 0.8rem; color: var(--ink); font-size: 1rem; }
+.pse-score li strong { font-size: 1.4rem; color: var(--blue-dark); }
+.pse-sum { margin: 1rem 0 0; padding-top: 0.8rem; border-top: 1px solid var(--line); font-weight: 600; }
+.pse-sum strong { font-size: 1.4rem; color: var(--ink); }
+.pse-vil {
+  display: block;
+  width: fit-content;
+  margin-top: 0.6rem;
+  padding: 0.2rem 0.8rem;
+  border-radius: 999px;
+  background: #e1eafa;
+  color: var(--blue-dark);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.pse-nulstil {
+  margin-top: 0.8rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--ink-soft);
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.92rem;
+}
+.pse-bekraeft { margin-top: 0.9rem; padding-top: 0.8rem; border-top: 1px solid var(--line); }
+.pse-bekraeft p { margin: 0 0 0.6rem; color: var(--ink); font-size: 0.98rem; }
+.pse-btn-lille { padding: 0.35rem 0.9rem; font-size: 0.95rem; margin-right: 0.4rem; }
+.pse-btn-let { background: #fff; color: var(--blue-dark); border: 2px solid var(--blue-dark); padding: calc(0.35rem - 2px) calc(0.9rem - 2px); }
+.pse-btn-let:hover { background: var(--paper-alt); }
+.el-hot.pse-markeret { background: rgba(255, 196, 0, 0.5); border-color: #e0a000; }
+
 .print-btn-wrap { text-align: center; }
 .print-btn {
   display: inline-block;
@@ -561,7 +664,7 @@ body.kort-fuldskaerm .zoom-wrap img {
 
 @media print {
   @page { size: A4 landscape; margin: 10mm; }
-  .site-nav, .crumb, .zoom-hint, .zoom-tools, .fullscreen-btn, .print-btn-wrap, .pager, .site-footer, .el-hot, .el-popup {
+  .site-nav, .crumb, .zoom-hint, .zoom-tools, .fullscreen-btn, .print-btn-wrap, .pse-traener, .pager, .site-footer, .el-hot, .el-popup {
     display: none !important;
   }
   .full-bleed { width: 100% !important; left: auto !important; right: auto !important; margin: 0 !important; }
