@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Undersatte sange — El FagPortal de Jensemand</title>
+<meta name="description" content="Undersatte sange: en ny dansk tekst, der lyder som den originale. Lyt til eksemplerne, og prøv at lave dine egne.">
+<link rel="icon" href="assets/images/favicon.png">
+<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+</head>
+<body data-fag="musik.html">
+
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">El FagPortal de Jensemand</a>
+    <button class="nav-toggle" aria-label="Åbn menu">☰</button>
+    <ul class="nav-links"></ul>
+  </div>
+</header>
+
+<div class="page-header wrap">
+  <a class="crumb" href="musik.html">&larr; Musik</a>
+  <h1>Undersatte sange</h1>
+  <p style="max-width:65ch;">Når man fx oversætter en sang fra engelsk til dansk, skriver man en ny dansk tekst til sangen, som har den samme betydning som den engelske tekst. Når man derimod undersætter en sang, laver man en ny dansk tekst, som tilnærmelsesvis lyder som den originale tekst.</p>
+  <p style="max-width:65ch;">Fx kan ordene "Killing me softly" undersættes til "Kylling og softice". Dette giver mulighed for at lave nogle ret sjove sange, og det er en god måde at øve sangskrivning. Lyt til eksemplerne og se om du kan lave nogle selv :)</p>
+</div>
+
+<div id="side-indhold"></div>
+
+<!-- SIDE_INDHOLD: her tilføjer/retter du eksemplerne. Nyt eksempel? Kopiér en
+     video-blok, og ret "youtubeId" og "overskrift" i "videoer". -->
+<script>
+const SIDE_INDHOLD = [
+  {
+    type: "video",
+    visning: "kort",
+    overskrift: "Eksempel 1",
+    videoer: [
+      { youtubeId: "oKOtzIo-uYw", billede: "https://img.youtube.com/vi/oKOtzIo-uYw/hqdefault.jpg", overskrift: "Original sang" },
+      { youtubeId: "muXqeso752k", billede: "https://img.youtube.com/vi/muXqeso752k/hqdefault.jpg", overskrift: "Undersat version" }
+    ]
+  },
+  {
+    type: "video",
+    visning: "kort",
+    overskrift: "Eksempel 2",
+    videoer: [
+      { youtubeId: "9bZkp7q19f0", billede: "https://img.youtube.com/vi/9bZkp7q19f0/hqdefault.jpg", overskrift: "Original sang" },
+      { youtubeId: "6asTjBH2SKg", billede: "https://img.youtube.com/vi/6asTjBH2SKg/hqdefault.jpg", overskrift: "Undersat version 1" },
+      { youtubeId: "3ykiEop8oGo", billede: "https://img.youtube.com/vi/3ykiEop8oGo/hqdefault.jpg", overskrift: "Undersat version 2" }
+    ]
+  },
+  {
+    type: "video",
+    visning: "kort",
+    overskrift: "Eksempel 3",
+    videoer: [
+      { youtubeId: "TSffz_bl6zo", billede: "https://img.youtube.com/vi/TSffz_bl6zo/hqdefault.jpg", overskrift: "Original sang" }
+    ]
+  },
+  {
+    type: "liste",
+    overskrift: "Undersat version",
+    undertekst: "Prøv at rappe nedenstående over omkvædet :)",
+    nummereret: false,
+    punkter: [
+      "I formning der la'ved jeg en lille mand af le-er",
+      "det gør jeg aldrig mere",
+      "pigerne blev vilde, og de sag' at jeg skulle lave flere",
+      "det gør jeg aldrig mere"
+    ]
+  }
+];
+</script>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>El FagPortal de Jensemand</strong> — lavet til mine elever, helt uden reklamer.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/mhchem.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="assets/js/fag-liste.js"></script>
+<script src="assets/js/blocks.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
