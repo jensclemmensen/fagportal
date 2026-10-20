@@ -235,6 +235,17 @@ a.card { color: inherit; text-decoration: none !important; }
 }
 .card .card-body p { margin: 0; font-size: 0.95rem; }
 
+/* Tekstkort (fx en sangtekst) i et videogrid — fylder to kolonner, når der er plads. */
+@media (min-width: 900px) {
+  .card.tekst-kort { grid-column: span 2; }
+}
+.card .card-body p.tekst-kort-linjer {
+  margin-top: 1rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.8;
+}
+
 .card.disabled { opacity: 0.85; }
 .card.disabled .card-img {
   display: flex;

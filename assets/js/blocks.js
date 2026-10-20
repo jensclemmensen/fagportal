@@ -165,6 +165,29 @@
     return a;
   }
 
+  // Et kort uden video, fx en sangtekst ved siden af et videokort.
+  function lavTekstKort(v) {
+    var kort = el("div", "card tekst-kort");
+    var body = el("div", "card-body");
+    if (v.overskrift) {
+      var h3 = el("h3", "card-title");
+      h3.textContent = v.overskrift;
+      body.appendChild(h3);
+    }
+    if (v.tekst) {
+      var p = el("p");
+      p.innerHTML = v.tekst;
+      body.appendChild(p);
+    }
+    if (v.linjer && v.linjer.length) {
+      var linjer = el("p", "tekst-kort-linjer");
+      linjer.innerHTML = v.linjer.join("<br>");
+      body.appendChild(linjer);
+    }
+    kort.appendChild(body);
+    return kort;
+  }
+
   function lavVideo(b) {
     var wrap = el("div", "wrap");
 
@@ -178,7 +201,7 @@
       }
       var grid = el("div", "card-grid");
       b.videoer.forEach(function (v) {
-        grid.appendChild(lavVideoKort(v));
+        grid.appendChild(v.youtubeId ? lavVideoKort(v) : lavTekstKort(v));
       });
       wrap.appendChild(grid);
     } else if (b.visning === "kort") {

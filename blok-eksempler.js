@@ -72,6 +72,8 @@ const BLOK_EKSEMPLER = [
   // "overskriftJustering" er valgfri: "venstre" eller "centreret" (centreret er standard).
   // Hvert kort i "videoer" kan have "tekst" (valgfri beskrivelse) og "start" (valgfrit
   // starttidspunkt i sekunder, hvis videoen ikke skal starte forfra).
+  // Et kort UDEN youtubeId bliver et tekstkort (fx en sangtekst ved siden af en video,
+  // se undersatte-sange.html): { overskrift, tekst, linjer: ["linje 1", "linje 2"] }
   {
     type: "video",
     visning: "kort",
