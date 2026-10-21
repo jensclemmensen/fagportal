@@ -353,6 +353,7 @@
       var byg = BYGGERE[b.type];
       if (!byg) throw new Error('Ukendt type: "' + b.type + '"');
       var indre = byg(b);
+      if (b.opgaver && b.opgaver.length) indre.appendChild(lavBlokOpgaver(b.opgaver));
       var section = el("section", "section" + (i % 2 === 1 ? " section-alt" : ""));
       if (b.id) section.id = b.id;
       section.appendChild(indre);
@@ -382,6 +383,7 @@
         li.innerHTML = t;
         ol.appendChild(li);
       });
+      if (o.kolonner) ol.style.setProperty("--kolonner", o.kolonner);
       kort.appendChild(ol);
     }
     if (o.link) {
@@ -395,6 +397,23 @@
       kort.appendChild(a);
     }
     return kort;
+  }
+
+  // Opgaver der hører til én bestemt blok (feltet "opgaver" på blokken).
+  // Vises som en knap under blokken, der folder opgaverne ud.
+  function lavBlokOpgaver(liste) {
+    var details = el("details", "blok-opgaver");
+    var summary = el("summary", "opgave-knap");
+    summary.innerHTML = 'Tilhørende opgaver <span class="opgave-antal"></span>';
+    // Tallet på knappen: antal punkter, hvis opgaverne er en punktliste, ellers antal opgaver.
+    var antal = 0;
+    liste.forEach(function (o) { antal += (o.punkter && o.punkter.length) || 1; });
+    summary.querySelector(".opgave-antal").textContent = antal;
+    details.appendChild(summary);
+    safeEach(liste, function (o) {
+      details.appendChild(lavOpgave(o));
+    });
+    return details;
   }
 
   function renderOpgaver(liste) {

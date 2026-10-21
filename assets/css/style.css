@@ -193,6 +193,16 @@ img { max-width: 100%; display: block; }
 .opgave ol { margin: 0 0 1em; padding-left: 1.3rem; color: var(--ink-soft); }
 .opgave li { margin-bottom: 0.3rem; font-size: 1.05rem; }
 .opgave-link { font-weight: 600; }
+/* "kolonner" på en opgave: punkterne fordeles i flere kolonner (falder til færre på små skærme) */
+.opgave ol[style*="--kolonner"] { column-count: var(--kolonner); column-gap: 2.5rem; }
+@media (max-width: 700px) { .opgave ol[style*="--kolonner"] { column-count: 2; } }
+.opgave ol[style*="--kolonner"] li { break-inside: avoid; }
+/* Opgaver under en enkelt blok (fx ét opslag på matematikvæggen) */
+.blok-opgaver { margin-top: 1.5rem; text-align: center; }
+.blok-opgaver summary { cursor: pointer; list-style: none; }
+.blok-opgaver summary::-webkit-details-marker { display: none; }
+.blok-opgaver[open] summary { margin-bottom: 1rem; }
+.blok-opgaver .opgave { text-align: left; }
 
 .crumb {
   display: inline-block;

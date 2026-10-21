@@ -137,6 +137,19 @@ const BLOK_EKSEMPLER = [
     fodnote: "Valgfri tekst nederst i kortet."
   },
 
+  // ---- Opgaver til ÉN bestemt blok (fx ét opslag på matematikvæggen) ----
+  // Alle blokke kan få feltet "opgaver" (samme felter som OPGAVER herunder).
+  // Blokken får så en knap "Tilhørende opgaver", der folder opgaverne ud.
+  // "kolonner" fordeler punkterne i flere kolonner (godt til mange korte opgaver).
+  {
+    type: "billede",
+    overskrift: "Valgfri overskrift",
+    billede: "assets/images/billede.jpg",
+    opgaver: [
+      { titel: "Regn opgaverne", kolonner: 3, punkter: ["7+(−3)=", "(−8)⋅4="] }
+    ]
+  },
+
   // ---- TILHØRENDE OPGAVER: en ANDEN liste end SIDE_INDHOLD ----
   // Sættes i sit eget <script>-tag på siden, som: const OPGAVER = [ ... ];
   // (se afstemme-reaktionsskemaer.html). Findes listen, får siden en knap
