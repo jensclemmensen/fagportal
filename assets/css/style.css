@@ -197,6 +197,9 @@ img { max-width: 100%; display: block; }
 .opgave ol[style*="--kolonner"] { column-count: var(--kolonner); column-gap: 2.5rem; }
 @media (max-width: 700px) { .opgave ol[style*="--kolonner"] { column-count: 2; } }
 .opgave ol[style*="--kolonner"] li { break-inside: avoid; }
+/* "facit" på en opgave: skjult liste, der foldes ud med "Vis facit" */
+.opgave-facit summary { cursor: pointer; font-weight: 600; color: var(--blue-dark); }
+.opgave-facit[open] summary { margin-bottom: 0.6rem; }
 /* Opgaver under en enkelt blok (fx ét opslag på matematikvæggen) */
 .blok-opgaver { margin-top: 1.5rem; text-align: center; }
 .blok-opgaver summary { cursor: pointer; list-style: none; }

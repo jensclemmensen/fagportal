@@ -386,6 +386,21 @@
       if (o.kolonner) ol.style.setProperty("--kolonner", o.kolonner);
       kort.appendChild(ol);
     }
+    if (o.facit && o.facit.length) {
+      var facit = el("details", "opgave-facit");
+      var vis = el("summary");
+      vis.textContent = "Vis facit";
+      facit.appendChild(vis);
+      var fol = el("ol");
+      o.facit.forEach(function (t) {
+        var li = el("li");
+        li.innerHTML = t;
+        fol.appendChild(li);
+      });
+      if (o.kolonner) fol.style.setProperty("--kolonner", o.kolonner);
+      facit.appendChild(fol);
+      kort.appendChild(facit);
+    }
     if (o.link) {
       var a = el("a", "opgave-link");
       a.href = o.link;

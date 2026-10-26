@@ -146,7 +146,9 @@ const BLOK_EKSEMPLER = [
     overskrift: "Valgfri overskrift",
     billede: "assets/images/billede.jpg",
     opgaver: [
-      { titel: "Regn opgaverne", kolonner: 3, punkter: ["7+(−3)=", "(−8)⋅4="] }
+      { titel: "Regn opgaverne", kolonner: 3, punkter: ["7+(−3)=", "(−8)⋅4="] },
+      // "facit" (valgfri) vises først, når eleven klikker "Vis facit":
+      { titel: "Med facit", punkter: ["x+7 = 15", "4⋅x = 28"], facit: ["x = 8", "x = 7"] }
     ]
   },
 
