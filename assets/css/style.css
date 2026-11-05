@@ -1017,19 +1017,21 @@ body.kort-fuldskaerm .zoom-wrap img {
   color: var(--blue-dark);
   font-size: 1rem;
 }
+/* Forklaringen har ingen ramme/luft om sig, så billedet kan fylde hele kolonnen. */
 .tjekliste-forklaring {
   position: sticky;
   top: 5rem;
-  background: var(--paper);
+}
+.tjekliste-forklaring p {
+  background: var(--paper-alt);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 1.4rem 1.6rem;
-  min-height: 8rem;
+  padding: 1rem 1.2rem;
+  margin: 0 0 0.75rem;
 }
-.tjekliste-forklaring img { display: block; max-width: 100%; height: auto; margin-top: 1rem; border: 1px solid var(--line); border-radius: var(--radius); }
-.tjekliste-forklaring img:first-child { margin-top: 0; }
+.tjekliste-forklaring img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: var(--radius); }
 .tjekliste-tom { font-style: italic; }
 @media (max-width: 800px) {
   .tjekliste { grid-template-columns: 1fr; }
-  .tjekliste-forklaring { position: static; margin-top: 0.5rem; min-height: 0; }
+  .tjekliste-forklaring { position: static; margin-top: 0.5rem; }
 }
