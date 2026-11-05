@@ -152,6 +152,17 @@ const BLOK_EKSEMPLER = [
     ]
   },
 
+  // ---- Tjekliste: punkter til venstre, forklaring til højre (se tjekliste-problemregning.html) ----
+  // Forklaringen vises, når man holder musen over et punkt (eller trykker på det på mobil).
+  // "tekst" og "billede" er valgfri på hvert punkt.
+  {
+    type: "tjekliste",
+    punkter: [
+      { titel: "Første punkt", tekst: "Forklaringen, der vises til højre.", billede: "assets/images/billede.jpg" },
+      { titel: "Andet punkt", tekst: "Forklaringen, der vises til højre." }
+    ]
+  },
+
   // ---- TILHØRENDE OPGAVER: en ANDEN liste end SIDE_INDHOLD ----
   // Sættes i sit eget <script>-tag på siden, som: const OPGAVER = [ ... ];
   // (se afstemme-reaktionsskemaer.html). Findes listen, får siden en knap

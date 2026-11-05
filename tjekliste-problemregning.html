@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tjekliste til problemregning — El FagPortal de Jensemand</title>
+<meta name="description" content="Tjekliste til problemregning: det skal du huske, når du afleverer.">
+<link rel="icon" href="assets/images/favicon.png">
+<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+</head>
+<body data-fag="fysik-kemi.html">
+
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">El FagPortal de Jensemand</a>
+    <button class="nav-toggle" aria-label="Åbn menu">☰</button>
+    <ul class="nav-links"></ul>
+  </div>
+</header>
+
+<div class="page-header wrap">
+  <a class="crumb" href="fysik-kemi.html">&larr; Fysik-kemi</a>
+  <h1>Tjekliste til problemregning</h1>
+  <p style="max-width:65ch;">Gå listen igennem, inden du afleverer.</p>
+</div>
+
+<div id="side-indhold"></div>
+
+<!-- SIDE_INDHOLD: her tilføjer/retter du punkterne i tjeklisten.
+     "titel" står i listen til venstre. "tekst" (og evt. "billede") vises til højre,
+     når man holder musen over punktet. Kopiér et punkt for at lave et nyt. -->
+<script>
+const SIDE_INDHOLD = [
+  {
+    type: "tjekliste",
+    punkter: [
+      {
+        titel: "Angiv de viste ting",
+        tekst: "Hver opgave skal have de fem ting: opgavenummer, hvad du skal finde, udregning, facit og enhed — ligesom i eksemplet herunder.",
+        billede: "assets/images/tjekliste-de-5.png"
+      },
+      {
+        titel: "Marker endeligt facit",
+        tekst: "Gør det tydeligt, hvad dit endelige svar er, fx med fed skrift — ligesom 12896,25 kr i eksemplet herunder.",
+        billede: "assets/images/tjekliste-de-5.png"
+      },
+      {
+        titel: "Angiv fornuftigt antal decimaler (max 3)",
+        tekst: "Rund dit facit af, så det har højst 3 decimaler. Fx skal 12,345678 skrives som 12,346 — eller 12,35, hvis det giver mere mening."
+      },
+      {
+        titel: "Tegninger, tabeller og diagrammer",
+        tekst: "Sæt et screenshot ind under opgaven."
+      },
+      {
+        titel: "Vis alle relevante mål på tegning",
+        tekst: "Alle oplyste mål skal desuden fremgå."
+      },
+      {
+        titel: "Koordinatsystem",
+        tekst: "Skriv, hvad akserne viser (fx tid og strækning), og hvilken enhed der bruges på hver akse. Vælg en inddeling på akserne, så grafen er nem at aflæse."
+      },
+      {
+        titel: "Beregn",
+        tekst: "Hvis der står beregn i en opgave, kan du kun få fuld point ved at finde facit ved beregning. Du kan dog ofte stadig få nogle point ved en anden løsning som fx en tegning."
+      }
+    ]
+  }
+];
+</script>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>El FagPortal de Jensemand</strong> — lavet til mine elever, helt uden reklamer.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/mhchem.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="assets/js/fag-liste.js"></script>
+<script src="assets/js/blocks.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

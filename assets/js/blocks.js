@@ -338,12 +338,79 @@
     return wrap;
   }
 
+  // Tjekliste: punkterne står til venstre. Holder man musen over et punkt
+  // (eller trykker på det), vises forklaringen til højre. På smalle skærme
+  // vises forklaringen i stedet lige under det punkt, man har trykket på.
+  function lavTjekliste(b) {
+    var wrap = el("div", "wrap");
+    if (b.overskrift) {
+      var h2 = el("h2");
+      h2.textContent = b.overskrift;
+      wrap.appendChild(h2);
+    }
+    var boks = el("div", "tjekliste");
+    var ul = el("ul", "tjekliste-punkter");
+    var panel = el("div", "tjekliste-forklaring");
+    var tom = el("p", "tjekliste-tom");
+    tom.textContent = b.hjaelpetekst || "Hold musen over et punkt — eller tryk på det — for at se en forklaring.";
+    panel.appendChild(tom);
+    var smal = window.matchMedia("(max-width: 800px)");
+    var knapper = [];
+
+    function vis(i) {
+      var punkt = b.punkter[i];
+      knapper.forEach(function (k, j) { k.classList.toggle("aktiv", j === i); });
+      panel.innerHTML = "";
+      var h3 = el("h3");
+      h3.textContent = punkt.titel;
+      panel.appendChild(h3);
+      var afsnit = Array.isArray(punkt.tekst) ? punkt.tekst : (punkt.tekst ? [punkt.tekst] : []);
+      afsnit.forEach(function (t) {
+        var p = el("p");
+        p.innerHTML = t;
+        panel.appendChild(p);
+      });
+      if (punkt.billede) {
+        var img = el("img");
+        img.src = punkt.billede;
+        img.alt = punkt.titel;
+        panel.appendChild(img);
+      }
+      if (smal.matches) knapper[i].parentNode.appendChild(panel);
+      else if (panel.parentNode !== boks) boks.appendChild(panel);
+    }
+
+    (b.punkter || []).forEach(function (punkt, i) {
+      var li = el("li");
+      var knap = el("button", "tjekliste-punkt");
+      knap.type = "button";
+      var tjek = el("span", "tjekliste-tjek");
+      tjek.textContent = "✓";
+      var titel = el("span");
+      titel.textContent = punkt.titel;
+      knap.appendChild(tjek);
+      knap.appendChild(titel);
+      knap.addEventListener("mouseenter", function () { if (!smal.matches) vis(i); });
+      knap.addEventListener("focus", function () { vis(i); });
+      knap.addEventListener("click", function () { vis(i); });
+      knapper.push(knap);
+      li.appendChild(knap);
+      ul.appendChild(li);
+    });
+
+    boks.appendChild(ul);
+    boks.appendChild(panel);
+    wrap.appendChild(boks);
+    return wrap;
+  }
+
   var BYGGERE = {
     "tekst-billede": lavTekstBillede,
     "video": lavVideo,
     "billede": lavBillede,
     "liste": lavListe,
-    "info-boks": lavInfoBoks
+    "info-boks": lavInfoBoks,
+    "tjekliste": lavTjekliste
   };
 
   function renderIndhold(containerId, liste) {

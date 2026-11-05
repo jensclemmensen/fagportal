@@ -977,3 +977,59 @@ body.kort-fuldskaerm .zoom-wrap img {
   font-size: 0.9rem;
 }
 .site-footer strong { color: var(--ink); }
+
+/* --- Tjekliste (punkter til venstre, forklaring til højre) --- */
+.tjekliste {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  gap: 2rem;
+  align-items: start;
+  margin-top: 1.5rem;
+}
+.tjekliste-punkter { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.tjekliste-punkt {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--paper-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+}
+.tjekliste-punkt:hover,
+.tjekliste-punkt.aktiv { border-color: var(--blue); background: #eef3fc; color: var(--blue-dark); }
+.tjekliste-tjek {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 2px solid var(--blue);
+  border-radius: 4px;
+  color: var(--blue-dark);
+  font-size: 1rem;
+}
+.tjekliste-forklaring {
+  position: sticky;
+  top: 5rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.6rem;
+  min-height: 8rem;
+}
+.tjekliste-forklaring h3 { color: var(--ink); font-size: 1.25rem; margin-bottom: 0.7rem; }
+.tjekliste-forklaring img { display: block; max-width: 100%; height: auto; margin-top: 1rem; border: 1px solid var(--line); border-radius: var(--radius); }
+.tjekliste-tom { font-style: italic; }
+@media (max-width: 800px) {
+  .tjekliste { grid-template-columns: 1fr; }
+  .tjekliste-forklaring { position: static; margin-top: 0.5rem; min-height: 0; }
+}
