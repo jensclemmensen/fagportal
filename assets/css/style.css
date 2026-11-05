@@ -981,8 +981,8 @@ body.kort-fuldskaerm .zoom-wrap img {
 /* --- Tjekliste (punkter til venstre, forklaring til højre) --- */
 .tjekliste {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
-  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 1.5rem;
   align-items: start;
   margin-top: 1.5rem;
 }
@@ -990,17 +990,17 @@ body.kort-fuldskaerm .zoom-wrap img {
 .tjekliste-punkt {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 0.7rem;
   width: 100%;
   text-align: left;
   font: inherit;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--ink);
   background: var(--paper-alt);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 0.8rem 1rem;
+  padding: 0.6rem 0.9rem;
   cursor: pointer;
 }
 .tjekliste-punkt:hover,
