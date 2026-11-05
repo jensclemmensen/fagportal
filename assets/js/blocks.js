@@ -361,9 +361,6 @@
       var punkt = b.punkter[i];
       knapper.forEach(function (k, j) { k.classList.toggle("aktiv", j === i); });
       panel.innerHTML = "";
-      var h3 = el("h3");
-      h3.textContent = punkt.titel;
-      panel.appendChild(h3);
       var afsnit = Array.isArray(punkt.tekst) ? punkt.tekst : (punkt.tekst ? [punkt.tekst] : []);
       afsnit.forEach(function (t) {
         var p = el("p");
